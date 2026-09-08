@@ -84,13 +84,13 @@
         .category-group.open .category-title { background-color: #edf2f7; border-color: #cbd5e1; }
         .category-group.open .category-title i.toggle-icon { transform: rotate(180deg); }
 
-        /* ★ 新增：當主分類內包含「正在閱讀的文章」時的專屬高亮樣式 ★ */
-        .category-group.has-active-article .category-title { 
+        /* ★ 修改：改為 active-category，讓點擊標題時也能觸發這個高亮樣式 ★ */
+        .category-group.active-category .category-title { 
             background-color: #fff8e7 !important; /* 淺金底色 */
             border-color: #fca311 !important;     /* 琥珀金邊框 */
             color: #9a5b13 !important;            /* 文字改為深琥珀色，凸顯層級 */
         }
-        .category-group.has-active-article .category-title i.toggle-icon {
+        .category-group.active-category .category-title i.toggle-icon {
             color: #fca311 !important;            /* 右側箭頭也變為琥珀金 */
         }
 
@@ -169,14 +169,21 @@
             knowledgeTree.forEach((group, index) => {
                 const groupDiv = document.createElement('div');
                 groupDiv.className = 'category-group';
-                
-                // 預設不強制展開第一個，由後續的參數載入邏輯來決定誰該展開
 
                 // 建立分類標題
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'category-title';
                 titleDiv.innerHTML = `<i class="fa-solid ${group.icon}"></i> ${group.category} <i class="fa-solid fa-chevron-down toggle-icon"></i>`;
-                titleDiv.onclick = () => groupDiv.classList.toggle('open');
+                
+                // ★ 關鍵修改：點擊主標題時，高亮反色區塊立刻跟著移動 ★
+                titleDiv.onclick = () => {
+                    // 先移除所有群組的高亮
+                    document.querySelectorAll('.category-group').forEach(g => g.classList.remove('active-category'));
+                    // 為當前點擊的群組加上高亮
+                    groupDiv.classList.add('active-category');
+                    // 展開或收合子選單
+                    groupDiv.classList.toggle('open');
+                };
 
                 // 建立文章清單
                 const listUl = document.createElement('ul');
@@ -212,7 +219,7 @@
 
             // ★ 清除所有文章與主分類的 Active 狀態 ★
             document.querySelectorAll('.article-item').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.category-group').forEach(group => group.classList.remove('has-active-article'));
+            document.querySelectorAll('.category-group').forEach(group => group.classList.remove('active-category'));
 
             // ★ 找到當前點擊的文章並加上標示，同時向上尋找父層群組標示主標題 ★
             const activeItem = document.querySelector(`.article-item[data-id="${id}"]`);
@@ -222,7 +229,7 @@
                 // 向上尋找最接近的 .category-group，加上高亮 class
                 const parentGroup = activeItem.closest('.category-group');
                 if(parentGroup) {
-                    parentGroup.classList.add('has-active-article');
+                    parentGroup.classList.add('active-category');
                     parentGroup.classList.add('open'); // 確保它同時是展開狀態
                 }
             }
