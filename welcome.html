@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <!-- ========================================== -->
+    <!-- ======= 0. 跨瀏覽器 Viewport 與文字防縮放設定 開始 ======= -->
+    <!-- ========================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- ========================================== -->
+    <!-- ======= 0. 跨瀏覽器 Viewport 與文字防縮放設定 結束 ======= -->
+    <!-- ========================================== -->
+    
+    <title>歡迎使用陶藝與釉藥調配工具</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ========================================== -->
+    <!-- ======= CSS 樣式設定區塊 開始 ======= -->
+    <!-- ========================================== -->
+    <style>
+        /* === 1. 根目錄與顏色變數定義 開始 === */
+        :root {
+            --primary-color: #14213d;
+            --accent-color: #fca311;
+            --bg-color: #fff8e7; 
+            --card-bg: #ffffff;  
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-y: auto;
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .welcome-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* === 1. 根目錄與顏色變數定義 結束 === */
+
+        /* === 2. 頂部 Banner 標題區塊 (純白底) 開始 === */
+        .top-banner {
+            background: var(--card-bg);
+            width: 100%;
+            border-radius: 16px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 25px; 
+        }
+
+        /* ★ 電腦版：破框立體特效的專屬樣式 ★ */
+        .banner-avatar {
+            width: 180px; 
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
+            filter: drop-shadow(10px 15px 18px rgba(0,0,0,0.45)); 
+            transition: transform 0.3s ease;
+            
+            /* 負邊距讓圖片向外突破，絕對不撐高白色背景框 */
+            margin-top: -45px;
+            margin-bottom: -35px;
+            margin-left: -10px;
+            position: relative;
+            z-index: 10;
+        }
+        .banner-avatar:hover {
+            transform: scale(1.08) rotate(-2deg); 
+        }
+
+        .banner-title-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .banner-icon {
+            font-size: 3.8rem;
+            color: #fca311;
+        }
+
+        .banner-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .banner-text p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .install-btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #e6920b 100%);
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(252, 163, 17, 0.3);
+            transition: all 0.3s ease;
+        }
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(252, 163, 17, 0.4);
+            background: linear-gradient(135deg, #ffd166 0%, #fca311 100%);
+        }
+
+        .banner-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .share-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-title i { color: #fca311; }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-circle-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .share-circle-btn:hover { transform: scale(1.1); }
+        .share-circle-btn.fb { background-color: #1877f2; }
+        .share-circle-btn.line { background-color: #00c300; }
+        .share-circle-btn.copy { background-color: #64748b; }
+        /* === 2. 頂部 Banner 標題區塊 (純白底) 結束 === */
+
+        /* === 3. 功能導覽卡片區 (電腦版 4 欄) 開始 === */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--accent-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-card.card-calc { border-left-color: #fca311; }
+        .feature-card.card-video { border-left-color: #ef4444; }
+        .feature-card.card-lecture { border-left-color: #2ec4b6; }
+        .feature-card.card-life { border-left-color: #8b5cf6; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+        }
+
+        .card-calc .card-icon { color: #fca311; background: #fff8e7; }
+        .card-video .card-icon { color: #ef4444; background: #fee2e2; }
+        .card-lecture .card-icon { color: #2ec4b6; background: #e0f2f1; }
+        .card-life .card-icon { color: #8b5cf6; background: #f3e8ff; }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .card-list li i {
+            font-size: 1.05rem;
+            color: #64748b;
+            width: 18px;
+            text-align: center;
+        }
+        /* === 3. 功能導覽卡片區 (電腦版 4 欄) 結束 === */
+
+        /* === 4. 探索陶藝知識 15大區塊與搜尋列 開始 === */
+        .knowledge-header {
+            width: 100%;
+            text-align: center;
+            margin: 50px 0 35px 0;
+            position: relative;
+        }
+        
+        .knowledge-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .knowledge-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .knowledge-search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .knowledge-search-bar i {
+            position: absolute;
+            left: 20px;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .knowledge-search-bar input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 30px;
+            border: 2px solid rgba(0,0,0,0.05);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: white;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .knowledge-search-bar input::placeholder {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .knowledge-search-bar input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 20px rgba(252, 163, 17, 0.15);
+        }
+
+        .no-results-msg {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: rgba(0,0,0,0.02);
+            border-radius: 16px;
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .knowledge-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        .k-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #b45309;
+            background: #fff8e7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            border: 1px solid rgba(252, 163, 17, 0.2);
+        }
+
+        .k-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .k-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .k-link {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+            margin-top: auto;
+        }
+        
+        .k-link i {
+            transition: transform 0.2s ease;
+            color: var(--text-muted);
+        }
+
+        .knowledge-card:hover .k-link {
+            color: var(--accent-color);
+        }
+        .knowledge-card:hover .k-link i {
+            transform: translateX(6px);
+            color: var(--accent-color);
+        }
+        /* === 4. 探索陶藝知識 15大區塊與搜尋列 結束 === */
+
+        /* === 5. App風格文章閱讀器 (滑動重疊層) 開始 === */
+        .article-reader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 3000; display: flex; flex-direction: column;
+            transform: translateX(100%); 
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .article-reader-overlay.show { transform: translateX(0); }
+        
+        .reader-header {
+            height: 44px;
+            background: var(--primary-color); color: white;
+            display: flex; align-items: center; padding: 0 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15); flex-shrink: 0; gap: 10px;
+        }
+        
+        .reader-back-btn {
+            background: rgba(255,255,255,0.1); border: none; color: white;
+            font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex;
+            align-items: center; gap: 5px; padding: 5px 12px; border-radius: 15px; transition: all 0.2s ease;
+        }
+        .reader-back-btn:hover { background: rgba(255,255,255,0.25); transform: translateX(-3px); }
+        
+        .reader-title { font-size: 0.95rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .reader-frame { flex-grow: 1; width: 100%; border: none; background: var(--bg-color); }
+        /* === 5. App風格文章閱讀器 (滑動重疊層) 結束 === */
+
+        /* === 6. 安裝教學 Modal 樣式 開始 === */
+        .install-modal-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(20, 33, 61, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 4000;
+            align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .install-modal-overlay.show { opacity: 1; }
+        .install-modal-content {
+            background: white; padding: 30px; border-radius: 20px;
+            max-width: 400px; width: 90%; position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .install-modal-overlay.show .install-modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 18px; right: 20px;
+            font-size: 1.5rem; color: #94a3b8; cursor: pointer; transition: 0.2s;
+        }
+        .modal-close:hover { color: #ef4444; }
+        .install-modal-content h3 { color: var(--primary-color); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: 1.4rem; }
+        .install-modal-content p { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; font-weight: 600; }
+        .install-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .step-item { 
+            background: #f8fafc; padding: 15px; border-radius: 12px; 
+            font-size: 1rem; color: #334155; font-weight: 700; 
+            display: flex; align-items: center; gap: 12px; 
+            border: 1px solid #e2e8f0;
+        }
+        .step-item i { color: var(--accent-color); font-size: 1.3rem; width: 25px; text-align: center; }
+        .modal-ok-btn {
+            width: 100%; background: var(--primary-color); color: white; border: none; padding: 14px;
+            border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+        .modal-ok-btn:hover { background: #1e3057; }
+        /* === 6. 安裝教學 Modal 樣式 結束 === */
+
+        /* ========================================== */
+        /* === 7. 手機版專屬 RWD 響應式區塊 開始 === */
+        /* ========================================== */
+        @media (max-width: 1250px) {
+            .welcome-wrapper { padding: 4vw 4vw 35vw 4vw !important; }
+            
+            .top-banner {
+                flex-direction: column !important; 
+                align-items: stretch !important; 
+                padding: 8vw 5vw 8vw 5vw !important; 
+                border-radius: 16px !important; 
+                margin-bottom: 8vw !important;
+                margin-top: 4vw !important;
+                position: relative !important; 
+            }
+            
+            .banner-left { 
+                flex-direction: column !important; 
+                width: 100% !important;
+                gap: 0 !important; 
+                position: static !important;
+            }
+
+            /* ★ 手機專屬魔法：順序與對齊大洗牌 ★ */
+            .banner-title-group {
+                display: grid !important;
+                grid-template-columns: auto 1fr !important; /* 圖示與標題並排 */
+                align-items: center !important;
+                row-gap: 3vw !important;
+                column-gap: 2vw !important;
+                width: 100% !important;
+                position: relative;
+                z-index: 12 !important; 
+            }
+            
+            .banner-text {
+                display: contents !important; 
+            }
+            
+            .banner-icon {
+                grid-column: 1 !important;
+                grid-row: 1 !important;
+                font-size: 8vw !important; /* 圖示大小與標題協調 */
+                margin: 0 !important;
+            }
+
+            .banner-text h1 {
+                grid-column: 2 !important; 
+                grid-row: 1 !important;
+                text-align: left !important; /* 標題靠左對齊 */
+                font-size: 6vw !important;
+                margin: 0 !important;
+            }
+            
+            .banner-text p {
+                grid-column: 1 / -1 !important; 
+                grid-row: 2 !important;
+                text-align: left !important; /* 簡介靠左對齊 */
+                font-size: 3.5vw !important; /* 微縮字體確保只顯示2行 */
+                letter-spacing: -0.2px !important;
+                line-height: 1.5 !important;
+                margin: 1vw 0 0 0 !important;
+                font-weight: 700 !important; 
+                white-space: nowrap !important; /* ★ 強制不換行，依靠 <br> 完美斷成2行 ★ */
+            }
+            
+            .install-btn {
+                grid-column: 1 / -1 !important; 
+                grid-row: 3 !important;
+                justify-self: start !important; /* ★ 按鈕強制靠左 ★ */
+                margin: 2vw 0 0 0 !important;
+                padding: 2.2vw 4.5vw !important;
+                font-size: 3.6vw !important;
+                border-radius: 50px !important;
+                width: fit-content !important; /* 確保按鈕不會過寬 */
+                position: relative !important;
+                z-index: 15 !important; /* 確保按鈕層級高於 LULU */
+            }
+
+            /* ★ 分享區塊靠左 ★ */
+            .banner-right {
+                width: 100% !important;
+                align-items: flex-start !important; 
+                padding-left: 0 !important;
+                margin-top: 6vw !important;
+                gap: 3vw !important;
+                position: relative !important;
+                z-index: 11 !important; 
+            }
+            .share-title { font-size: 4.2vw !important; margin: 0 !important; justify-content: flex-start !important;}
+            .share-buttons { gap: 3vw !important; }
+            .share-circle-btn { width: 11vw !important; height: 11vw !important; font-size: 5.5vw !important; }
+
+            /* ★ LULU 完美降落右下角並破框 ★ */
+            .banner-avatar { 
+                position: absolute !important;
+                bottom: -5vw !important;  
+                right: -3vw !important;   
+                width: 38vw !important;   /* 稍微縮小 LULU 讓出空間 */
+                max-width: 150px !important;
+                margin: 0 !important;     
+                z-index: 10 !important;
+                pointer-events: none !important; /* ★ 魔法：防止 LULU 的鹿角擋住按鈕點擊 ★ */
+            }
+
+            /* 手機版四大功能卡片壓縮版 */
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+                margin-bottom: 10vw !important;
+            }
+
+            .feature-card {
+                padding: 10px 8px !important;
+                border-radius: 12px !important;
+                border-left-width: 4px !important; 
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+            }
+
+            .card-header {
+                gap: 6px !important;
+                margin-bottom: 6px !important;
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+
+            .card-icon {
+                font-size: 1rem !important; width: 28px !important; height: 28px !important;
+                border-radius: 6px !important; flex-shrink: 0;
+            }
+
+            .card-title {
+                font-size: 0.85rem !important; font-weight: 800 !important; letter-spacing: -0.5px !important;
+            }
+
+            .card-desc {
+                font-size: 0.7rem !important; line-height: 1.2 !important;
+                margin-bottom: 6px !important; letter-spacing: -0.2px !important;
+            }
+
+            .card-list { gap: 4px !important; }
+
+            .card-list li {
+                font-size: 0.7rem !important; font-weight: 700 !important; gap: 4px !important;
+                line-height: 1.2 !important; letter-spacing: -0.5px !important;
+                white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+            }
+
+            .card-list li i { font-size: 0.75rem !important; width: 14px !important; margin-top: 0 !important; }
+
+            .knowledge-header { margin: 8vw 0 5vw 0 !important; }
+            .knowledge-header h2 { font-size: 6.5vw !important; margin-bottom: 2vw !important; }
+            .knowledge-header p { font-size: 4vw !important; margin-bottom: 5vw !important; }
+            
+            .knowledge-search-bar input { padding: 4vw 5vw 4vw 12vw !important; font-size: 4vw !important; }
+            .knowledge-search-bar i { left: 4.5vw !important; font-size: 4.5vw !important; }
+
+            .knowledge-grid {
+                grid-template-columns: 1fr !important; 
+                gap: 4vw !important;
+                margin-bottom: 8vw !important;
+            }
+
+            .knowledge-card {
+                padding: 6vw 5vw !important;
+                border-radius: 16px !important;
+            }
+
+            .k-category { font-size: 3.2vw !important; margin-bottom: 3.5vw !important; padding: 1vw 3.5vw !important; }
+            .k-title { font-size: 5.5vw !important; margin-bottom: 3vw !important; }
+            .k-desc { font-size: 4.2vw !important; margin-bottom: 5vw !important; line-height: 1.6 !important; }
+            .k-link { font-size: 4.2vw !important; }
+        }
+        /* === 7. 手機版專屬 RWD 響應式區塊 結束 === */
+    </style>
+</head>
+<body onclick="unlockParentAudio()">
+
+    <div class="welcome-wrapper">
+        
+        <!-- 頂部 Banner 區塊 -->
+        <div class="top-banner">
+            <div class="banner-left">
+                <!-- 原創作品圖 -->
+                <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar" onmouseenter="playHover()">
+                
+                <div class="banner-title-group">
+                    <i class="fa-solid fa-layer-group banner-icon"></i>
+                    <div class="banner-text">
+                        <h1>陶藝與釉藥調配</h1>
+                        <!-- ★ 精簡文字以確保雙行顯示 ★ -->
+                        <p>融合科學計算與藝術創作的陶藝中心。<br>分享陶瓷歷史、創作靈感與生活美學。</p>
+                        <button class="install-btn" onmouseenter="playHover()" onclick="playClick(); showInstallGuide()">
+                            <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-right">
+                <div class="share-title"><i class="fa-solid fa-share-nodes"></i> 分享給好友</div>
+                <div class="share-buttons">
+                    <button onclick="playClick(); shareToFB()" onmouseenter="playHover()" class="share-circle-btn fb" title="分享到 Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="playClick(); shareToLine()" onmouseenter="playHover()" class="share-circle-btn line" title="分享到 LINE"><i class="fa-brands fa-line"></i></button>
+                    <button onclick="playClick(); copyCurrentLink()" onmouseenter="playHover()" class="share-circle-btn copy" title="複製連結"><i class="fa-solid fa-link"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="feature-card card-calc" onmouseenter="playHover()">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="card-title">精準釉藥計算</div>
+                </div>
+                <div class="card-desc">科學調配完美釉色之專業工具：</div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-flask"></i> 原料轉釉式</li>
+                    <li><i class="fa-solid fa-table"></i> 釉式轉原料</li>
+                    <li><i class="fa-solid fa-right-left"></i> 雙向精準轉換</li>
+                    <li><i class="fa-solid fa-chalkboard-user"></i> 賽格式與三角座標教學</li>
+                </ul>
+            </div>
+            <div class="feature-card card-video" onmouseenter="playHover()">
+                <div class="card-header"><div class="card-icon"><i class="fa-brands fa-youtube"></i></div><div class="card-title">豐富影音課程</div></div>
+                <div class="card-desc">完整 YouTube 教學影片庫：</div>
+                <ul class="card-list"><li><i class="fa-solid fa-landmark"></i> 陶瓷歷史與文化介紹</li><li><i class="fa-solid fa-hands-holding"></i> 陶瓷拉坯製作過程</li><li><i class="fa-solid fa-paintbrush"></i> 釉色與裝飾技法</li><li><i class="fa-solid fa-vial"></i> 釉藥調配實務</li></ul>
+            </div>
+            <div class="feature-card card-lecture" onmouseenter="playHover()">
+                <div class="card-header"><div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div><div class="card-title">陶釉教學講義</div></div>
+                <div class="card-desc">完整七大章節陶瓷專書文稿：</div>
+                <ul class="card-list"><li><i class="fa-solid fa-book-bookmark"></i> 陶瓷歷史與五大名窯</li><li><i class="fa-solid fa-cubes-stacked"></i> 14種常用釉藥原料解析</li><li><i class="fa-solid fa-shapes"></i> 三角座標與賽格爾式理論</li><li><i class="fa-solid fa-fire-burner"></i> 窯爐操作與安全規範</li></ul>
+            </div>
+            <div class="feature-card card-life" onmouseenter="playHover()">
+                <div class="card-header"><div class="card-icon"><i class="fa-solid fa-heart"></i></div><div class="card-title">陶藝生活與靈感</div></div>
+                <div class="card-desc">關注 FB 與 IG 獲得創作養分：</div>
+                <ul class="card-list"><li><i class="fa-solid fa-palette"></i> 個人原創作品分享</li><li><i class="fa-solid fa-fire-flame-curved"></i> 炎變の燒柴燒記錄</li><li><i class="fa-solid fa-school"></i> 鶯歌工商教學資源交流</li><li><i class="fa-solid fa-comments"></i> 留言板互動提問</li></ul>
+            </div>
+        </div>
+
+        <div class="knowledge-header">
+            <h2><i class="fa-solid fa-book-journal-whills" style="color: #fca311;"></i> 探索陶藝知識</h2>
+            <p>循序漸進，從基礎理論到進階實作，用最清楚的解答陪伴您理解陶藝。</p>
+            
+            <div class="knowledge-search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="搜尋本站知識關鍵字 (例如：三角座標、釉藥)..." onkeyup="filterCards()">
+            </div>
+        </div>
+
+        <div class="knowledge-grid" id="knowledgeGrid">
+            <div class="no-results-msg" id="noResultsMsg">
+                <i class="fa-solid fa-ghost"></i> 找不到相關內容，請嘗試更換關鍵字！
+            </div>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/buy_clay.html', '陶土與瓷土怎麼選？', true)">
+                <span class="k-category">陶藝入門</span>
+                <h3 class="k-title">陶土與瓷土怎麼選？新手買泥全指南</h3>
+                <p class="k-desc">走進材料行，面對琳瑯滿目的土條感到不知所措？白瓷土、日本土、還是常見的熟料土到底有什麼差別？教您依據「手捏或拉坯成型方式」與「預期燒成溫度」，挑選出最適合您的第一包泥土。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/dry_crack.html', '為什麼作品乾了總會裂開？', true)">
+                <span class="k-category">疑難雜症</span>
+                <h3 class="k-title">為什麼作品乾了總會裂開？接合與乾燥的致命錯誤</h3>
+                <p class="k-desc">杯把掉下來、盤底出現裂痕，絕對是新手最常遇到的痛！為您破解泥土收縮的原理，掌握「厚度均勻」、「控制陰乾速度」與正確的「刻痕塗泥漿」技巧，大幅提升作品進窯前的存活率。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/centering.html', '快速手拉坯定中心', false)">
+                <span class="k-category">成型技法</span>
+                <h3 class="k-title">教你快速手拉坯定中心?</h3>
+                <p class="k-desc">萬丈高樓平地起，定中心是手拉坯成功的第一步！掌握雙手施力支點與身體重心的完美配合，加上三個實用的手部姿勢訣竅，讓泥團在轉盤上瞬間穩如泰山。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/recycle_clay.html', '乾掉的土千萬別丟！', false)">
+                <span class="k-category">實用技巧</span>
+                <h3 class="k-title">乾掉的土千萬別丟！教你如何「練土」讓廢土重生</h3>
+                <p class="k-desc">拉坯失敗的泥團、乾硬的土屑只能丟垃圾桶嗎？陶藝是一門惜物的藝術，帶您學習「泡水、晾土、揉土（菊花揉與牛角揉）」的標準流程，不只省錢，還能練就一身好臂力！</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/bisque_glaze.html', '什麼是素燒與釉燒？', true)">
+                <span class="k-category">燒窯知識</span>
+                <h3 class="k-title">什麼是素燒與釉燒？</h3>
+                <p class="k-desc">為什麼做好的陶器通常要進窯燒兩次？作品都素燒過了，施釉時有什麼要注意的細節？帶您快速認識從生坯緩慢排水、低溫素燒定型，到最終高溫釉燒熔融的完整陶藝科學旅程。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/glaze_nature.html', '何謂釉藥釉的本質?', false)">
+                <span class="k-category">釉藥基礎</span>
+                <h3 class="k-title">何謂釉藥釉的本質?</h3>
+                <p class="k-desc">釉藥就像是陶瓷的玻璃外衣。它是由多種礦物粉末混合而成，經過高溫燒製後熔融，附著在坯體表面，不僅能防水防汙，更能展現千變萬化的色彩與質感。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/glaze_elements.html', '釉藥三大元素', true)">
+                <span class="k-category">釉藥基礎</span>
+                <h3 class="k-title">認識釉藥三大元素</h3>
+                <p class="k-desc">完美的釉藥建立在「三足鼎立」的化學基礎上：提供堅硬玻璃質的「石英」、幫助低溫熔融的「助熔劑」，以及讓釉藥在高溫下能黏附不流失的「氧化鋁」。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/glaze_crazing.html', '釉面開片是美感還是瑕疵？', false)">
+                <span class="k-category">釉藥與裝飾</span>
+                <h3 class="k-title">釉面開片是美感還是瑕疵？</h3>
+                <p class="k-desc">汝窯的冰裂紋令人著迷，但食器上不規則的開片卻可能藏污納垢。當泥胎與釉藥的「熱膨脹係數」不匹配時，就會產生開片或剝釉。教您如何透過調整配方中的石英與長石來完美馴服它。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/kiln_atmosphere.html', '窯爐氣氛控制', false)">
+                <span class="k-category">燒窯知識</span>
+                <h3 class="k-title">氧化與還原的魔術、窯爐氣氛控制</h3>
+                <p class="k-desc">同樣含有「銅」元素的釉藥，為什麼在電窯裡是綠色，進了瓦斯窯卻變成鮮豔的牛血紅？深入探討「窯爐氣氛」對金屬氧化物發色的決定性影響，揭開千峰翠色與鈞窯的歷史秘密。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/triaxial_mystery.html', '釉藥的奧秘~三角座標', true)">
+                <span class="k-category">配方實驗</span>
+                <h3 class="k-title">釉藥的奧秘~三角座標</h3>
+                <p class="k-desc">告別憑感覺調配！透過等邊三角形的幾何圖表，有系統地測試三種原料的比例變化，幫助您精準掌握釉色漸變與最適合的熔融範圍，是開發新釉色的必備科學方法。</p>
+                <div class="k-link">閱讀完整知識 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./jiaoxue/triaxial_basic.html', '三角座標基礎教學', true)">
+                <span class="k-category">新手教學</span>
+                <h3 class="k-title">三角座標基礎教學</h3>
+                <p class="k-desc">專為初學者設計的圖解指南。從認識三角形的三個頂點代表100%原料開始，一步步帶您學會如何讀取網格中的平行線刻度，並快速換算出實際的試片調配重量。</p>
+                <div class="k-link">前往使用工具 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./yuanliao/index.html', '原料轉釉式', true)">
+                <span class="k-category">進階計算</span>
+                <h3 class="k-title">原料轉釉式</h3>
+                <p class="k-desc">深入陶瓷化學的核心。將實際秤重的「原料重量百分比」，透過分子量換算成科學的「賽格爾分子式 (Seger Formula)」，讓您能精準分析並預測釉藥的化學結構與發色表現。</p>
+                <div class="k-link">開啟計算工具 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./youzhi/index.html', '釉藥轉原料', true)">
+                <span class="k-category">進階計算</span>
+                <h3 class="k-title">釉藥轉原料</h3>
+                <p class="k-desc">看到大師的經典釉式配方，卻不知道怎麼進窯房調配？這個單元教您如何將抽象的「化學分子式」反推回現實中可取得的「礦物原料重量」，讓理論完美落地成為實體作品。</p>
+                <div class="k-link">開啟計算工具 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('./book/gallery.html', '作品分享', false)">
+                <span class="k-category">靈感啟發</span>
+                <h3 class="k-title">作品分享</h3>
+                <p class="k-desc">來自泥土與窯火的深度對話。這裡收錄了各式手捏、拉坯與特殊調配的釉色作品，分享每件器皿創作背後的靈感來源與燒製經驗，希望能激發您更多陶藝創作的火花。</p>
+                <div class="k-link">欣賞更多作品 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+
+            <a href="javascript:void(0)" class="knowledge-card" onmouseenter="playHover()" onclick="openArticle('guestbook.html', '新話題~你想知道什麼?', true)">
+                <span class="k-category">互動交流</span>
+                <h3 class="k-title">新話題~你想知道什麼?</h3>
+                <p class="k-desc">學習陶藝的路上遇到瓶頸了嗎？無論是配方調整疑問、燒窯迷思，還是對某種成型技巧感到好奇，都歡迎在這裡提出您的專屬問題，讓我們一起探索陶瓷的無限可能！</p>
+                <div class="k-link">前往留言板 <i class="fa-solid fa-arrow-right-long"></i></div>
+            </a>
+            
+        </div>
+    </div>
+
+    <div class="article-reader-overlay" id="articleReader">
+        <div class="reader-header">
+            <button class="reader-back-btn" onclick="closeArticle()" onmouseenter="playHover()">
+                <i class="fa-solid fa-chevron-left"></i> 返回
+            </button>
+            <div class="reader-title" id="readerTitle">陶藝知識閱讀</div>
+        </div>
+        <iframe id="readerFrame" class="reader-frame" src=""></iframe>
+    </div>
+
+    <div class="install-modal-overlay" id="installModal" onclick="playClick(); closeInstallGuide()">
+        <div class="install-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-close" onmouseenter="playHover()" onclick="playClick(); closeInstallGuide()"><i class="fa-solid fa-xmark"></i></div>
+            <h3 id="install-title"><i class="fa-solid fa-mobile-screen"></i> 取得專屬桌面 APP</h3>
+            <p id="install-desc">系統載入中...</p>
+            <div class="install-steps" id="install-steps"></div>
+            <button class="modal-ok-btn" onmouseenter="playHover()" onclick="playClick(); closeInstallGuide()">我知道了，立刻設定！</button>
+        </div>
+    </div>
+
+    <audio id="hoverSound" src="hover.wav" preload="auto"></audio>
+    <audio id="clickSound" src="click.wav" preload="auto"></audio>
+
+    <script>
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('welcomeScrollPosition', document.documentElement.scrollTop || document.body.scrollTop);
+        });
+        
+        window.addEventListener('load', () => {
+            const savedScroll = sessionStorage.getItem('welcomeScrollPosition');
+            if (savedScroll) {
+                setTimeout(() => { 
+                    window.scrollTo({
+                        top: parseInt(savedScroll),
+                        behavior: 'smooth'
+                    }); 
+                }, 150);
+                sessionStorage.removeItem('welcomeScrollPosition');
+            }
+        });
+
+        function openArticle(url, title, isReady) {
+            playClick();
+            
+            if (!isReady) {
+                alert('🚧 內容建置中：這篇精彩的教學文章黃老師正在趕工撰寫中，敬請期待！\n\n（💡 提示：未來將檔案存入 book 資料夾後，請至 html 將 false 改為 true 即可直接連線）');
+                return;
+            }
+
+            document.getElementById('readerTitle').innerText = title;
+            document.getElementById('readerFrame').src = url;
+            document.getElementById('articleReader').classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeArticle() {
+            playClick();
+            document.getElementById('articleReader').classList.remove('show');
+            document.body.style.overflow = ''; 
+            
+            setTimeout(() => { document.getElementById('readerFrame').src = ''; }, 400);
+        }
+
+        function filterCards() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const grid = document.getElementById('knowledgeGrid');
+            const cards = grid.querySelectorAll('.knowledge-card');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const text = card.textContent || card.innerText;
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    card.style.display = "flex";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResultsMsg.style.display = "block";
+            } else {
+                noResultsMsg.style.display = "none";
+            }
+        }
+
+        var hoverAudio = document.getElementById("hoverSound");
+        var clickAudio = document.getElementById("clickSound");
+
+        function unlockAudio() {
+            if(hoverAudio) { hoverAudio.play().then(() => { hoverAudio.pause(); hoverAudio.currentTime = 0; }).catch((e) => {}); }
+            if(clickAudio) { clickAudio.play().then(() => { clickAudio.pause(); clickAudio.currentTime = 0; }).catch((e) => {}); }
+            document.body.onclick = null;
+        }
+
+        function playHoverSound() {
+            if (hoverAudio) { hoverAudio.currentTime = 0; hoverAudio.volume = 0.15; var p = hoverAudio.play(); if (p !== undefined) { p.catch(() => {}); } }
+        }
+
+        function playClickSound() {
+            if (clickAudio) { clickAudio.currentTime = 0; clickAudio.volume = 0.15; var p = clickAudio.play(); if (p !== undefined) { p.catch(() => {}); } }
+        }
+
+        function playHover() {
+            try { if (window.parent && typeof window.parent.playHoverSound === 'function') { window.parent.playHoverSound(); } else { playHoverSound(); } } catch (e) { playHoverSound(); }
+        }
+
+        function playClick() {
+            try { if (window.parent && typeof window.parent.playClickSound === 'function') { window.parent.playClickSound(); } else { playClickSound(); } } catch (e) { playClickSound(); }
+        }
+
+        function unlockParentAudio() {
+            try { if (window.parent && typeof window.parent.unlockAudio === 'function') { window.parent.unlockAudio(); } else { unlockAudio(); } } catch (e) { unlockAudio(); }
+        }
+
+        function getSiteUrl() { return window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/index.html'); }
+
+        function shareToFB() {
+            const rawUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/index.html');
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile && navigator.share) { navigator.share({ title: '陶藝與釉藥調配', url: rawUrl }).catch((e) => console.log('分享取消或失敗', e)); } else { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(rawUrl)}`, '_blank', 'width=600,height=400'); }
+        }
+
+        function shareToLine() {
+            const url = getSiteUrl(); const textToShare = encodeURIComponent('推薦這個實用的陶藝與釉藥調配工具：\n' + url); const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) { window.location.href = `https://line.me/R/msg/text/?${textToShare}`; } else { window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`, '_blank', 'width=500,height=500'); }
+        }
+
+        function copyCurrentLink() {
+            navigator.clipboard.writeText(getSiteUrl()).then(() => { alert('✨ 網站網址已複製！快去分享給陶藝好友吧！'); }).catch(() => { alert('複製失敗，請手動複製網址。'); });
+        }
+
+        function showInstallGuide() {
+            const modal = document.getElementById('installModal'); const desc = document.getElementById('install-desc'); const steps = document.getElementById('install-steps');
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; const isAndroid = /Android/.test(navigator.userAgent);
+
+            if (isIOS) {
+                desc.innerHTML = "蘋果 iOS (Safari) 專屬安裝步驟：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動，選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角「新增」，即可隨時開啟全螢幕 APP！</div>`;
+            } else if (isAndroid) {
+                desc.innerHTML = "安卓 Android (Chrome) 專屬安裝步驟：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-ellipsis-vertical"></i> 1. 點擊瀏覽器右上角的「選單 (三個點)」</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 選擇「加到主畫面」或「安裝應用程式」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊「新增」，即可隨時開啟全螢幕 APP！</div>`;
+            } else {
+                desc.innerHTML = "電腦版儲存方式：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-star"></i> 1. 請使用鍵盤 Ctrl+D (或 Cmd+D) 加入書籤</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 若要體驗免網址列的 APP 模式，請使用您的手機瀏覽器開啟本站設定！</div>`;
+            }
+            modal.style.display = 'flex'; setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeInstallGuide() {
+            const modal = document.getElementById('installModal'); modal.classList.remove('show'); setTimeout(() => modal.style.display = 'none', 300);
+        }
+    </script>
+</body>
+</html>

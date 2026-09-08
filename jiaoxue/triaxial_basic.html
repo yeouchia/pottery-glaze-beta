@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陶瓷釉藥的奧秘：三角座標基礎教學</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #14213d;      /* 主色：深海軍藍 */
+            --accent-color: #fca311;    /* 輔助色：琥珀金 */
+            --bg-color: #f4f7f6;        /* 背景色 */
+            --text-main: #333333;       /* 主要文字 */
+            --text-light: #555555;      /* 次要文字 */
+            --border-color: #e0e0e0;
+            --color-a: #e74c3c;         /* A原料紅 */
+            --color-b: #2ecc71;         /* B原料綠 */
+            --color-c: #3498db;         /* C原料藍 */
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+            overflow-x: hidden; /* 防止整個網頁左右晃動 */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 頁首標題區 */
+        .page-header {
+            background-color: var(--primary-bg);
+            color: white;
+            padding: 45px 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .page-header p {
+            margin: 15px auto 0;
+            font-size: 1.1em;
+            color: rgba(255,255,255,0.85);
+            max-width: 800px;
+        }
+
+        /* 內容區段 */
+        .section-block {
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section-block:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: var(--primary-bg);
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 6px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        .sub-title {
+            color: #2c3e50;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 8px;
+        }
+
+        /* 強調與提示框 */
+        .highlight-text {
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: #fff8e7;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            color: #8a6d3b;
+            font-size: 1.05em;
+        }
+
+        .formula-box {
+            background: #e8f4f8;
+            border: 1px solid #bce0fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        /* Canvas 繪圖區 */
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .canvas-wrapper {
+            flex: 1;
+            min-width: 320px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px 5px 10px 5px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box; 
+        }
+
+        .canvas-wrapper canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* =========================================
+           14步驟 絕美交錯垂直時間軸 (Timeline) 
+           ========================================= */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent-color), #e74c3c);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) { left: 0; padding-right: 45px; }
+        .timeline-item:nth-child(even) { left: 50%; padding-left: 45px; }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            background: var(--primary-bg);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:last-child .timeline-marker {
+            background: #e74c3c;
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.6);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker { right: -21px; }
+        .timeline-item:nth-child(even) .timeline-marker { left: -21px; }
+
+        .timeline-content {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border: 1px solid #eaeaea;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--primary-bg);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
+        .timeline-item:nth-child(even) .timeline-content { text-align: left; }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-style: solid;
+        }
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            border-color: var(--accent-color);
+        }
+        .timeline-item:hover .timeline-marker {
+            transform: translateY(-50%) scale(1.1);
+            background: var(--accent-color);
+        }
+
+        /* 比較表格外框 */
+        .table-responsive {
+            width: 100%;
+        }
+
+        /* 比較表格 */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: white;
+            table-layout: fixed; /* 讓欄位寬度固定，更好控制 */
+        }
+
+        .compare-table th, .compare-table td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .compare-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-bg);
+            font-size: 1.1em;
+            white-space: nowrap; 
+        }
+
+        .compare-table th:first-child { width: 20%; }
+        
+        ul.clean-list { padding-left: 25px; margin: 10px 0; text-align: left;}
+        ul.clean-list li { margin-bottom: 8px; }
+
+        .pros-cons-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .abc-cards-container {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .abc-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        /* =========================================================
+           ★ 手機版專屬響應式結界 (極致壓縮版，絕對不出現左右滾動條) ★
+           ★ 以下代碼絕對不會影響電腦版任何排版 ★
+           ========================================================= */
+        @media screen and (max-width: 768px) {
+            body { padding: 5px; } /* 極致縮小外側邊距，爭取內部最大空間 */
+            .section-block { padding: 20px 10px; }
+            .page-header { padding: 25px 15px; }
+            .page-header h1 { font-size: 1.4em; flex-wrap: wrap; }
+            
+            /* 1. Canvas 畫布防爆框：徹底解決超過左右邊框 */
+            .canvas-container {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                overflow: hidden; /* 防止子層撐破 */
+            }
+            .canvas-wrapper {
+                min-width: 0 !important; /* 解除強制 100% 最小寬度，改用 max-width */
+                max-width: 100% !important;
+                width: 100%;
+                padding: 10px 5px !important;
+                box-sizing: border-box; /* 確保 padding 不增加總寬度 */
+            }
+            canvas {
+                max-width: 100% !important;
+                height: auto !important;
+                width: 100% !important;
+            }
+
+            /* 2. ABC卡片 & 優缺點卡片：進行極致垂直壓縮 */
+            .abc-cards-container, .pros-cons-container {
+                flex-direction: column !important;
+                gap: 6px !important; /* 大幅縮小卡片之間的間隔 */
+                width: 100%;
+            }
+            .abc-card {
+                min-width: 0 !important; 
+                width: 100% !important;
+                padding: 8px 10px !important; /* 極限壓縮上下內距 */
+                box-sizing: border-box;
+            }
+            .abc-card strong {
+                font-size: 1.1em !important; /* 標題微調縮小 */
+            }
+            .abc-card i {
+                margin: 2px 0 !important; /* 強制覆蓋箭頭的上下留白 (原本是8px) */
+            }
+            .pros-cons-container > div {
+                min-width: 0 !important; 
+                width: 100% !important;
+                padding: 12px 10px !important; 
+                box-sizing: border-box;
+                font-size: 0.95em; 
+            }
+
+            /* 3. ★ 表格終極壓縮，解決文字變長很怪的問題 ★ */
+            .table-responsive {
+                overflow-x: hidden !important; /* 絕對禁止左右滑動 */
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .compare-table {
+                min-width: 0 !important;
+                width: 100% !important;
+                margin: 15px 0 !important;
+                font-size: 12px !important; /* 極致縮小表格字體 */
+                table-layout: auto !important; /* 取消固定寬度！讓瀏覽器自動分配，解決文字擠成一直線的怪異感 */
+            }
+            .compare-table th, .compare-table td {
+                padding: 6px 3px !important; /* 極限壓縮單元格空間 */
+                white-space: normal !important; 
+                word-break: normal !important; /* 恢復正常中文換行，避免破字 */
+            }
+            .compare-table th {
+                font-size: 12.5px !important;
+            }
+            .compare-table th:first-child { 
+                width: auto !important; /* 解除第一欄的 20% 限制，釋放空間給說明文字 */
+            }
+
+            /* 4. 時間軸改為單邊排列 */
+            .timeline::before { left: 30px; }
+            .timeline-item { width: 100%; padding-left: 65px !important; padding-right: 0 !important; }
+            .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { left: 0; }
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker { left: 9px; right: auto; width: 36px; height: 36px; line-height: 30px; font-size: 1em;}
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content { text-align: left; padding: 12px 15px; font-size: 1em;}
+            .timeline-item:nth-child(odd) .timeline-content::after { display: none; }
+            .timeline-item:nth-child(even) .timeline-content::after { left: -10px; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fa-solid fa-shapes"></i> 陶瓷釉藥的奧秘：三角座標基礎教學</h1>
+        <p>不再憑感覺調配！透過科學化的「三角座標試驗法」，帶您建立清晰的釉藥實驗地圖，精準找出理想配方。</p>
+    </div>
+
+    <!-- 第一段：基本概念 -->
+    <div class="section-block">
+        <h2 class="section-title">一、 什麼是「三角座標試驗法」？</h2>
+        <p>釉藥是由多種原料混合而成。但是，如果我們只是憑經驗：<br>
+        <span class="highlight-text">「這個多加一點、那個少加一點。」</span><br>
+        就很難知道到底是哪一個比例造成釉面變化。</p>
+
+        <p>因此，陶瓷釉藥實驗發展出一種非常實用的方法：<strong>三角座標試驗法（Triaxial Blend）</strong></p>
+        <p>它的基本概念非常簡單：選擇三種原料，利用一個等邊三角形，把三種原料的不同比例排列出來，再逐一燒製比較。</p>
+
+        <div class="info-box" style="text-align: center; font-size: 1.1em; line-height: 2;">
+            三種原料 ➔ 三角座標 ➔ 不同比例 ➔ 不同釉方 ➔ 試片燒成 ➔ 觀察釉面 ➔ <strong style="color:var(--color-a);">找出理想配方</strong>
+        </div>
+        <p style="text-align: center; color: var(--text-light);">利用三種原料的不同比例進行系統性試釉，並藉由燒成後的試片比較釉藥特性。</p>
+    </div>
+
+    <!-- 第二段：頂點與邊界 -->
+    <div class="section-block">
+        <h2 class="section-title">二、 為什麼叫「三角座標」？</h2>
+        <p>因為我們一次研究<strong>三種原料</strong>，所以使用<strong>一個三角形</strong>。三角形的三個頂點，就代表三種不同的原料。</p>
+        
+        <div class="info-box">
+            <strong>例如本課程指定：</strong><br>
+            A頂點：長石<br>
+            B頂點：碳酸鈣<br>
+            C頂點：石英
+        </div>
+
+        <h3 class="sub-title">📌 三個頂點代表「100%」</h3>
+        <p>這是學習三角座標最重要的第一個觀念。</p>
+        <ul class="clean-list">
+            <li><strong>A頂點：</strong> 代表 A＝100%（因此 B＝0%, C＝0%）</li>
+            <li><strong>B頂點：</strong> 代表 B＝100%（因此 A＝0%, C＝0%）</li>
+            <li><strong>C頂點：</strong> 代表 C＝100%（因此 A＝0%, B＝0%）</li>
+        </ul>
+        <p class="highlight-text">★ 結論：頂點＝某一種原料 100%。</p>
+
+        <h3 class="sub-title">📌 三角形的三條「邊」代表什麼？</h3>
+        <p>這個觀念非常重要。假設 A＝長石，那麼：<strong>距離 A 最遠的那一條邊，就代表 A＝0%</strong>。</p>
+        <p>因此：<br>
+        <i class="fa-solid fa-caret-up" style="color:var(--accent-color);"></i> <strong>越靠近某個頂點 → 該原料越多</strong><br>
+        <i class="fa-solid fa-caret-down" style="color:var(--accent-color);"></i> <strong>越遠離某個頂點 → 該原料越少</strong></p>
+
+        <!-- A圖置中獨立，B圖與C圖並排 -->
+        <div class="canvas-container" style="margin-bottom: 10px;">
+            <div class="canvas-wrapper" style="max-width: 450px; width: 100%;">
+                <canvas id="conceptCanvasA" width="380" height="300"></canvas>
+                <div style="font-weight: bold; color: #555; margin-top: 10px;">(圖1) A原料 (紅) 比例遞減</div>
+            </div>
+        </div>
+        
+        <div class="canvas-container" style="margin-top: 10px;">
+            <div class="canvas-wrapper">
+                <canvas id="conceptCanvasB" width="380" height="300"></canvas>
+                <div style="font-weight: bold; color: #555; margin-top: 10px;">(圖2) B原料 (綠) 比例遞減</div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="conceptCanvasC" width="380" height="300"></canvas>
+                <div style="font-weight: bold; color: #555; margin-top: 10px;">(圖3) C原料 (藍) 比例遞減</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三段：比例刻度與點 -->
+    <div class="section-block">
+        <h2 class="section-title">三、 平行線與交叉點的意義</h2>
+        
+        <h3 class="sub-title">📌 平行線就是「比例刻度」</h3>
+        <p>三角座標真正有用的地方，是我們可以在三角形裡面畫出很多條平行線。這些線就像「刻度尺」（如上圖的 80, 60, 40, 20, 0）。實際繪製時，是由三個方向建立互相平行的等比例線。</p>
+
+        <h3 class="sub-title">📌 為什麼一個「點」就是一個「釉方」？</h3>
+        <p>這是三角座標最核心的概念。例如我們在三角形中找到一個點，這個點同時可以讀出：</p>
+        <div class="formula-box">
+            A＝40% ｜ B＝40% ｜ C＝20%<br>
+            <strong style="color:var(--color-a);">A ＋ B ＋ C ＝ 100%</strong>
+        </div>
+        <p>如果我們要做 100g 的釉藥，就直接換算成實際重量：</p>
+        
+        <!-- 表格加響應式外框 -->
+        <div class="table-responsive">
+            <table class="compare-table" style="margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th style="width:33%;">原料</th>
+                        <th style="width:33%;">比例</th>
+                        <th style="width:33%;">實際重量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: rgba(231, 76, 60, 0.08);">
+                        <td style="color: #c0392b; font-weight: bold;">A 長石</td>
+                        <td style="color: #c0392b; font-weight: bold;">40%</td>
+                        <td style="color: #c0392b; font-weight: bold;">40g</td>
+                    </tr>
+                    <tr style="background-color: rgba(46, 204, 113, 0.08);">
+                        <td style="color: #27ae60; font-weight: bold;">B 碳酸鈣</td>
+                        <td style="color: #27ae60; font-weight: bold;">40%</td>
+                        <td style="color: #27ae60; font-weight: bold;">40g</td>
+                    </tr>
+                    <tr style="background-color: rgba(52, 152, 219, 0.08);">
+                        <td style="color: #2980b9; font-weight: bold;">C 石英</td>
+                        <td style="color: #2980b9; font-weight: bold;">20%</td>
+                        <td style="color: #2980b9; font-weight: bold;">20g</td>
+                    </tr>
+                    <tr style="background:#fef5e7; font-weight:bold;">
+                        <td>總和</td>
+                        <td>100%</td>
+                        <td>100g</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <p class="highlight-text" style="font-size:1.4em; margin-bottom: 20px;">★ 一個交叉點 ＝ 一組釉藥配方 ★</p>
+            
+            <!-- 配方交會點圖解 Canvas -->
+            <div class="canvas-container" style="margin-top: 20px;">
+                <div class="canvas-wrapper" style="min-width: 320px; border: 2px solid var(--accent-color); padding-bottom: 20px;">
+                    <canvas id="pointCanvas" width="500" height="320"></canvas>
+                    <div style="font-weight: bold; color: #555; margin-top: 10px; font-size: 1.1em;">(圖) 配方交會點解析：A=40% | B=40% | C=20%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第四段：21點與66點 -->
+    <div class="section-block">
+        <h2 class="section-title">四、 21點與66點的實驗地圖</h2>
+        
+        <h3 class="sub-title">📌 為什麼要做這麼多配方？</h3>
+        <p>假設只做一種配方，燒完不好，我們只知道「這個配方不好」，但是不知道「那怎麼改？」。</p>
+        <p>如果我們一次做 21 組或 66 組不同的比例，就可以看到：<br>
+        <strong>原料比例改變 ➔ 釉面逐漸改變 ➔ 找到比較好的區域</strong></p>
+
+        <h3 class="sub-title">📌 21點與66點的關係</h3>
+        <p>可以把它想像成找尋寶藏的過程：</p>
+        <ul class="clean-list">
+            <li>🗺️ <strong>21點 ＝ 基礎練習：</strong> 建立方向感，學會尋找釉藥變化的「藏寶地點」！ (初步篩選、大方向搜尋)</li>
+            <li>🔍 <strong>66點 ＝ 實戰尋寶：</strong> 進入基礎釉方實戰，仔細尋找「這個區域裡面，到底哪一個比例最完美？」 (細部微調、精準搜尋)</li>
+        </ul>
+        <div class="info-box" style="text-align: center; font-size: 1.2em;">
+            <strong>口訣：</strong><span style="color:#e74c3c;">「21點初學 ABC 找方向，66點細節實戰挖寶藏！」</span>
+        </div>
+
+        <!-- 21點與66點 比較圖 -->
+        <div class="canvas-container">
+            <div class="canvas-wrapper" style="min-width: 300px;">
+                <canvas id="canvas21" width="340" height="310"></canvas>
+                <div style="font-weight: bold; color: #555; margin-top: 5px;">21點 (5等分) - 找方向</div>
+            </div>
+            <div class="canvas-wrapper" style="min-width: 300px;">
+                <canvas id="canvas66" width="340" height="310"></canvas>
+                <div style="font-weight: bold; color: #555; margin-top: 5px;">66點 (10等分) - 找細節</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第五段：原料角色與優缺點 -->
+    <div class="section-block">
+        <h2 class="section-title">五、 實驗原料的角色與限制</h2>
+        <p>以本課程指定的「長石＋碳酸鈣＋石英」為例，這三種原料可以用來建立一個非常直觀的基礎實驗：</p>
+        
+        <!-- 角色卡片 -->
+        <div class="abc-cards-container">
+            <div class="abc-card" style="background:rgba(231, 76, 60, 0.05); border:1px solid rgba(231, 76, 60, 0.3);">
+                <strong style="color:var(--color-a); font-size:1.2em;">長石 (A)</strong><br>
+                <i class="fa-solid fa-arrow-down" style="color:rgba(231, 76, 60, 0.5); margin:8px 0;"></i><br>
+                <span style="color:#333; font-weight:bold;">提供多種釉藥成分</span>
+            </div>
+            <div class="abc-card" style="background:rgba(46, 204, 113, 0.05); border:1px solid rgba(46, 204, 113, 0.3);">
+                <strong style="color:var(--color-b); font-size:1.2em;">碳酸鈣 (B)</strong><br>
+                <i class="fa-solid fa-arrow-down" style="color:rgba(46, 204, 113, 0.5); margin:8px 0;"></i><br>
+                <span style="color:#333; font-weight:bold;">助熔作用</span>
+            </div>
+            <div class="abc-card" style="background:rgba(52, 152, 219, 0.05); border:1px solid rgba(52, 152, 219, 0.3);">
+                <strong style="color:var(--color-c); font-size:1.2em;">石英 (C)</strong><br>
+                <i class="fa-solid fa-arrow-down" style="color:rgba(52, 152, 219, 0.5); margin:8px 0;"></i><br>
+                <span style="color:#333; font-weight:bold;">玻璃質來源</span>
+            </div>
+        </div>
+
+        <h3 class="sub-title"><i class="fa-solid fa-triangle-exclamation" style="color:#e74c3c;"></i> 注意：一種原料不一定只扮演一種角色</h3>
+        <p>例如：<strong>長石</strong>並不是「只有助熔劑」。它本身含有 K₂O、Na₂O、Al₂O₃、SiO₂、CaO 等成分，所以長石是一種<strong>「複合型原料」</strong>。學生要清楚區分「原料」與「原料裡面的氧化物」這兩個概念。</p>
+
+        <h3 class="sub-title">📌 三角座標法的優缺點</h3>
+        <div class="pros-cons-container">
+            <div style="flex:1; background:#f9f9f9; border-radius:8px; border-top:4px solid #2ecc71;">
+                <strong style="color:#27ae60; font-size:1.1em;"><i class="fa-solid fa-circle-check"></i> 優點</strong>
+                <ul class="clean-list">
+                    <li><strong>簡單：</strong> 學生容易理解。</li>
+                    <li><strong>直觀：</strong> 比例直接轉換成重量。</li>
+                    <li><strong>容易比較：</strong> 不同交叉點就是不同釉方。</li>
+                    <li><strong>系統化：</strong> 系統化實驗，不是憑感覺亂加。</li>
+                    <li><strong>找最佳區：</strong> 燒成後可直接比較整組試片。</li>
+                </ul>
+            </div>
+            <div style="flex:1; background:#f9f9f9; border-radius:8px; border-top:4px solid #e74c3c;">
+                <strong style="color:#c0392b; font-size:1.1em;"><i class="fa-solid fa-circle-xmark"></i> 缺點</strong>
+                <ul class="clean-list">
+                    <li><strong>數量龐大：</strong> 66點全做需大量原料與時間。</li>
+                    <li><strong>變數限制：</strong> 只能研究三種原料的變化。</li>
+                    <li><strong>非化學組成：</strong> 它是原料比例的實驗方法，無法直接代表完整的化學組成分析。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第六段：三角座標 vs 塞格式 -->
+    <div class="section-block">
+        <h2 class="section-title">六、 三角座標 vs. 塞格式 (Seger Formula)</h2>
+        <p>當理解三角座標後，可以開始認識另一種更進階的化學方法。兩者最大的差異在於：</p>
+        
+        <!-- 表格加響應式外框 -->
+        <div class="table-responsive">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th style="background-color: rgba(52, 152, 219, 0.05);">🔺 三角座標法</th>
+                        <th style="background-color: rgba(231, 76, 60, 0.05);">🧪 塞格式 (Seger Formula)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>思考方式</td><td>原料比例</td><td>化學氧化物比例</td></tr>
+                    <tr><td>基礎單位</td><td>重量百分比</td><td>莫耳／當量計算</td></tr>
+                    <tr><td>難度</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                    <tr><td>適合對象</td><td>初學、實驗</td><td>進階釉藥研究</td></tr>
+                    <tr><td>優點</td><td>直觀、容易操作</td><td>化學分析較精確</td></tr>
+                    <tr><td>缺點</td><td>受原料本身成分變化影響</td><td>計算較複雜</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>建議教學順序：</strong> 先學三角座標 ➔ 再理解原料與氧化物 ➔ 最後才進入塞格式。</p>
+    </div>
+
+    <!-- 第七段：完整實驗流程與觀察 -->
+    <div class="section-block">
+        <h2 class="section-title">七、 三角座標的完整實驗流程</h2>
+        <p>了解理論後，實務上的操作必須嚴謹。以下是完整的 14 步驟實驗流程：</p>
+        
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-marker">1</div><div class="timeline-content">選擇三種原料</div></div>
+            <div class="timeline-item"><div class="timeline-marker">2</div><div class="timeline-content">建立三角座標</div></div>
+            <div class="timeline-item"><div class="timeline-marker">3</div><div class="timeline-content">劃分21點／66點</div></div>
+            <div class="timeline-item"><div class="timeline-marker">4</div><div class="timeline-content">選擇交叉點</div></div>
+            <div class="timeline-item"><div class="timeline-marker">5</div><div class="timeline-content">讀取三種原料比例</div></div>
+            <div class="timeline-item"><div class="timeline-marker">6</div><div class="timeline-content">換算實際重量</div></div>
+            <div class="timeline-item"><div class="timeline-marker">7</div><div class="timeline-content">精準秤量</div></div>
+            <div class="timeline-item"><div class="timeline-marker">8</div><div class="timeline-content">混合、研磨</div></div>
+            <div class="timeline-item"><div class="timeline-marker">9</div><div class="timeline-content">製作／編號試片</div></div>
+            <div class="timeline-item"><div class="timeline-marker">10</div><div class="timeline-content">施釉</div></div>
+            <div class="timeline-item"><div class="timeline-marker">11</div><div class="timeline-content">燒成</div></div>
+            <div class="timeline-item"><div class="timeline-marker">12</div><div class="timeline-content">觀察釉面</div></div>
+            <div class="timeline-item"><div class="timeline-marker">13</div><div class="timeline-content">比較不同配方</div></div>
+            <div class="timeline-item"><div class="timeline-marker"><i class="fa-solid fa-flag-checkered"></i></div><div class="timeline-content">找出理想區域</div></div>
+        </div>
+
+        <h3 class="sub-title">📌 燒成後要觀察什麼？</h3>
+        <p>三角座標不是「配完就結束」，真正重要的是<strong>燒完以後的比較</strong>。每一個試片都要觀察：</p>
+        <ul class="clean-list">
+            <li><strong>① 是否熔融？</strong> 釉有沒有真正融化？</li>
+            <li><strong>② 是否流釉？</strong> 釉是否流得太厲害？</li>
+            <li><strong>③ 光澤：</strong> 是亮面、半光還是霧面？</li>
+            <li><strong>④ 透明度：</strong> 是透明、半透明還是不透明？</li>
+            <li><strong>⑤ 色彩：</strong> 呈現什麼顏色？</li>
+            <li><strong>⑥ 表面缺陷：</strong> 有沒有針孔、氣泡、縮釉、裂釉或流釉？</li>
+        </ul>
+        <p>三角座標的真正價值在於讓學生建立：<strong>「實驗 → 記錄 → 比較 → 修正」</strong> 的科學思考，讓陶藝不再只是憑經驗調釉，而是有系統地研究釉藥。</p>
+    </div>
+
+    <!-- 總結與口訣 -->
+    <div class="section-block" style="background-color: var(--primary-bg); color: white; border-radius: 0 0 12px 12px;">
+        <h2 style="text-align: center; color: var(--accent-color);">🌟 給學生的最後總結</h2>
+        <p style="text-align: center; font-size: 1.1em;">三角座標法可以理解成：<br><strong>「用三角形建立一張釉藥實驗地圖。」</strong></p>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 8px; margin-top: 20px; border-left: 5px solid var(--accent-color);">
+            <h3 style="margin-top: 0; color: #fca311;">🔺 三角座標四句話口訣：</h3>
+            <ol style="font-size: 1.15em; line-height: 2;">
+                <li>三個頂點，代表三種原料。</li>
+                <li>頂點100%，對邊0%。</li>
+                <li>一個交叉點，就是一組釉方。</li>
+                <li>三種比例加起來，永遠等於100%。</li>
+            </ol>
+            <p style="text-align: center; font-size: 1.3em; font-weight: bold; color: #fff; margin-top: 20px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.3);">
+                「21點初學 ABC 找方向，66點細節實戰挖寶藏！」
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Canvas 繪圖腳本 -->
+<script>
+    function drawArrowWithText(ctx, fromX, fromY, toX, toY, text, color) {
+        var headlen = 12;
+        var dx = toX - fromX;
+        var dy = toY - fromY;
+        var angle = Math.atan2(dy, dx);
+        
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 2.5;
+        
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.closePath();
+        ctx.fill();
+        
+        ctx.save();
+        ctx.translate((fromX+toX)/2, (fromY+toY)/2);
+        
+        var textAngle = angle;
+        if (angle > Math.PI/2 || angle < -Math.PI/2) {
+            textAngle += Math.PI;
+        }
+        ctx.rotate(textAngle);
+        
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.font = "bold 15px Arial";
+        ctx.fillText(text, 0, -8);
+        ctx.restore();
+    }
+
+    const basePtA = {x: 190, y: 50};
+    const basePtB = {x: 70, y: 240};
+    const basePtC = {x: 310, y: 240};
+
+    function getPt(a, b, c, ptA, ptB, ptC) {
+        return {
+            x: (a*ptA.x + b*ptB.x + c*ptC.x)/100,
+            y: (a*ptA.y + b*ptB.y + c*ptC.y)/100
+        };
+    }
+
+    // 1. A原料 (紅)
+    function drawConceptA() {
+        const canvas = document.getElementById('conceptCanvasA');
+        const ctx = canvas.getContext('2d');
+        const ptA = basePtA, ptB = basePtB, ptC = basePtC;
+        
+        let grad = ctx.createLinearGradient(0, ptA.y, 0, ptB.y);
+        grad.addColorStop(0, "rgba(231, 76, 60, 0.7)");
+        grad.addColorStop(1, "rgba(231, 76, 60, 0)");
+        
+        ctx.beginPath(); ctx.moveTo(ptA.x, ptA.y); ctx.lineTo(ptB.x, ptB.y); ctx.lineTo(ptC.x, ptC.y); ctx.closePath();
+        ctx.fillStyle = grad; ctx.fill();
+        ctx.strokeStyle = "#2c3e50"; ctx.lineWidth = 2; ctx.stroke();
+        
+        ctx.strokeStyle = "rgba(0,0,0,0.15)"; ctx.lineWidth = 1;
+        ctx.font = "bold 15px Arial"; ctx.fillStyle = "#e74c3c"; ctx.textAlign = "left";
+        for(let i=1; i<5; i++) {
+            let frac = i/5;
+            let xl = ptA.x + (ptB.x - ptA.x)*frac;
+            let xr = ptA.x + (ptC.x - ptA.x)*frac;
+            let yy = ptA.y + (ptB.y - ptA.y)*frac;
+            ctx.beginPath(); ctx.moveTo(xl, yy); ctx.lineTo(xr, yy); ctx.stroke();
+            ctx.fillText((100 - i*20), xr + 12, yy + 5);
+        }
+        
+        ctx.setLineDash([6, 4]); ctx.strokeStyle = "#e74c3c"; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(ptB.x-15, ptB.y); ctx.lineTo(ptC.x+15, ptC.y); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillText("0", ptC.x + 18, ptC.y + 5);
+
+        ctx.beginPath(); ctx.arc(ptA.x, ptA.y, 7, 0, Math.PI*2); ctx.fill();
+        ctx.textAlign = "center";
+        ctx.fillText("A原料 (100%)", ptA.x, ptA.y - 15);
+        ctx.fillText("對邊 A原料 (0%)", 190, 265);
+        ctx.fillStyle = "#2ecc71"; ctx.fillText("B原料", ptB.x, ptB.y + 25);
+        ctx.fillStyle = "#3498db"; ctx.fillText("C原料", ptC.x, ptC.y + 25);
+        
+        drawArrowWithText(ctx, 250, 75, 345, 225, "比例遞減", "#e74c3c");
+    }
+
+    // 2. B原料 (綠)
+    function drawConceptB() {
+        const canvas = document.getElementById('conceptCanvasB');
+        const ctx = canvas.getContext('2d');
+        const ptA = basePtA, ptB = basePtB, ptC = basePtC;
+        
+        let grad = ctx.createLinearGradient(ptB.x, ptB.y, (ptA.x+ptC.x)/2, (ptA.y+ptC.y)/2);
+        grad.addColorStop(0, "rgba(46, 204, 113, 0.7)");
+        grad.addColorStop(1, "rgba(46, 204, 113, 0)");
+        
+        ctx.beginPath(); ctx.moveTo(ptA.x, ptA.y); ctx.lineTo(ptB.x, ptB.y); ctx.lineTo(ptC.x, ptC.y); ctx.closePath();
+        ctx.fillStyle = grad; ctx.fill();
+        ctx.strokeStyle = "#2c3e50"; ctx.lineWidth = 2; ctx.stroke();
+        
+        ctx.strokeStyle = "rgba(0,0,0,0.15)"; ctx.lineWidth = 1;
+        ctx.font = "bold 15px Arial"; ctx.fillStyle = "#2ecc71"; ctx.textAlign = "right";
+        for(let i=1; i<5; i++) {
+            let frac = i/5;
+            let xt = ptB.x + (ptA.x - ptB.x)*frac;
+            let yt = ptB.y + (ptA.y - ptB.y)*frac;
+            let xb = ptB.x + (ptC.x - ptB.x)*frac;
+            let yb = ptB.y + (ptC.y - ptB.y)*frac;
+            ctx.beginPath(); ctx.moveTo(xt, yt); ctx.lineTo(xb, yb); ctx.stroke();
+            ctx.fillText((100 - i*20), xt - 12, yt + 5);
+        }
+        
+        ctx.setLineDash([6, 4]); ctx.strokeStyle = "#2ecc71"; ctx.lineWidth = 3;
+        let vecAC = {x: ptC.x - ptA.x, y: ptC.y - ptA.y};
+        ctx.beginPath(); ctx.moveTo(ptA.x - vecAC.x*0.1, ptA.y - vecAC.y*0.1); ctx.lineTo(ptC.x + vecAC.x*0.1, ptC.y + vecAC.y*0.1); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillText("0", ptA.x - 12, ptA.y + 5); 
+
+        ctx.beginPath(); ctx.arc(ptB.x, ptB.y, 7, 0, Math.PI*2); ctx.fill();
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#e74c3c"; ctx.fillText("A原料", ptA.x, ptA.y - 15);
+        ctx.fillStyle = "#2ecc71"; ctx.fillText("B原料 (100%)", ptB.x+15, ptB.y + 25);
+        ctx.fillStyle = "#3498db"; ctx.fillText("C原料", ptC.x, ptC.y + 25);
+        
+        ctx.save(); ctx.translate(245, 125); ctx.rotate(56 * Math.PI/180);
+        ctx.fillStyle = "#2ecc71"; ctx.fillText("對邊 B原料 (0%)", 0, 0); ctx.restore();
+
+        drawArrowWithText(ctx, 40, 220, 140, 65, "比例遞減", "#2ecc71");
+    }
+
+    // 3. C原料 (藍)
+    function drawConceptC() {
+        const canvas = document.getElementById('conceptCanvasC');
+        const ctx = canvas.getContext('2d');
+        const ptA = basePtA, ptB = basePtB, ptC = basePtC;
+        
+        let grad = ctx.createLinearGradient(ptC.x, ptC.y, (ptA.x+ptB.x)/2, (ptA.y+ptB.y)/2);
+        grad.addColorStop(0, "rgba(52, 152, 219, 0.7)");
+        grad.addColorStop(1, "rgba(52, 152, 219, 0)");
+        
+        ctx.beginPath(); ctx.moveTo(ptA.x, ptA.y); ctx.lineTo(ptB.x, ptB.y); ctx.lineTo(ptC.x, ptC.y); ctx.closePath();
+        ctx.fillStyle = grad; ctx.fill();
+        ctx.strokeStyle = "#2c3e50"; ctx.lineWidth = 2; ctx.stroke();
+        
+        ctx.strokeStyle = "rgba(0,0,0,0.15)"; ctx.lineWidth = 1;
+        ctx.font = "bold 15px Arial"; ctx.fillStyle = "#3498db"; ctx.textAlign = "center";
+        for(let i=1; i<5; i++) {
+            let frac = i/5;
+            let xt = ptC.x + (ptA.x - ptC.x)*frac;
+            let yt = ptC.y + (ptA.y - ptC.y)*frac;
+            let xb = ptC.x + (ptB.x - ptC.x)*frac;
+            let yb = ptC.y + (ptB.y - ptC.y)*frac;
+            ctx.beginPath(); ctx.moveTo(xt, yt); ctx.lineTo(xb, yb); ctx.stroke();
+            ctx.fillText((100 - i*20), xb, yb + 20); 
+        }
+        
+        ctx.setLineDash([6, 4]); ctx.strokeStyle = "#3498db"; ctx.lineWidth = 3;
+        let vecAB = {x: ptB.x - ptA.x, y: ptB.y - ptA.y};
+        ctx.beginPath(); ctx.moveTo(ptA.x - vecAB.x*0.1, ptA.y - vecAB.y*0.1); ctx.lineTo(ptB.x + vecAB.x*0.1, ptB.y + vecAB.y*0.1); ctx.stroke(); ctx.setLineDash([]);
+        ctx.textAlign = "right"; ctx.fillText("0", ptA.x - 12, ptA.y + 5);
+
+        ctx.beginPath(); ctx.arc(ptC.x, ptC.y, 7, 0, Math.PI*2); ctx.fill();
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#e74c3c"; ctx.fillText("A原料", ptA.x, ptA.y - 15);
+        ctx.fillStyle = "#2ecc71"; ctx.textAlign = "right"; ctx.fillText("B原料", ptB.x - 10, ptB.y + 15);
+        
+        ctx.fillStyle = "#3498db"; ctx.textAlign = "left"; 
+        ctx.fillText("C原料", ptC.x + 8, ptC.y + 10);
+        ctx.fillText("(100%)", ptC.x + 8, ptC.y + 28);
+        
+        ctx.save(); ctx.translate(100, 130); ctx.rotate(-58 * Math.PI/180);
+        ctx.textAlign = "center";
+        ctx.fillText("對邊 C原料 (0%)", 0, 0); ctx.restore();
+
+        drawArrowWithText(ctx, 310, 290, 70, 290, "比例遞減", "#3498db");
+    }
+
+    // 4. 配方交會點解析圖 
+    function drawPointCanvas() {
+        const canvas = document.getElementById('pointCanvas');
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        
+        const ptA = {x: 180, y: 50};
+        const ptB = {x: 50, y: 260};
+        const ptC = {x: 310, y: 260};
+        
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.strokeStyle = '#e0e0e0'; 
+        ctx.lineWidth = 1;
+        for (let i = 1; i < 5; i++) {
+            let frac = i * 20;
+            let l1p1 = getPt(100-frac, frac, 0, ptA, ptB, ptC), l1p2 = getPt(100-frac, 0, frac, ptA, ptB, ptC);
+            let l2p1 = getPt(frac, 100-frac, 0, ptA, ptB, ptC), l2p2 = getPt(0, 100-frac, frac, ptA, ptB, ptC);
+            let l3p1 = getPt(frac, 0, 100-frac, ptA, ptB, ptC), l3p2 = getPt(0, frac, 100-frac, ptA, ptB, ptC);
+            ctx.beginPath(); ctx.moveTo(l1p1.x, l1p1.y); ctx.lineTo(l1p2.x, l1p2.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(l2p1.x, l2p1.y); ctx.lineTo(l2p2.x, l2p2.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(l3p1.x, l3p1.y); ctx.lineTo(l3p2.x, l3p2.y); ctx.stroke();
+        }
+
+        ctx.font = "bold 13px Arial";
+        for (let i = 0; i <= 5; i++) {
+            let frac = i * 20;
+            let val = 100 - frac;
+            let pt_A_scale = getPt(val, 0, frac, ptA, ptB, ptC);
+            ctx.fillStyle = "#e74c3c"; ctx.textAlign = "left"; 
+            ctx.fillText(val, pt_A_scale.x + 8, pt_A_scale.y + 5);
+            
+            let pt_B_scale = getPt(frac, val, 0, ptA, ptB, ptC);
+            ctx.fillStyle = "#2ecc71"; ctx.textAlign = "right"; 
+            ctx.fillText(val, pt_B_scale.x - 8, pt_B_scale.y + 5);
+            
+            let pt_C_scale = getPt(0, frac, val, ptA, ptB, ptC);
+            ctx.fillStyle = "#3498db"; ctx.textAlign = "center"; 
+            ctx.fillText(val, pt_C_scale.x, pt_C_scale.y + 20);
+        }
+
+        ctx.strokeStyle = '#2c3e50'; 
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(ptA.x, ptA.y); ctx.lineTo(ptB.x, ptB.y); ctx.lineTo(ptC.x, ptC.y); ctx.closePath(); ctx.stroke();
+
+        let targetPt = getPt(40, 40, 20, ptA, ptB, ptC);
+
+        ctx.setLineDash([5, 5]);
+        ctx.strokeStyle = "rgba(231, 76, 60, 0.8)"; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(getPt(40, 60, 0, ptA, ptB, ptC).x, getPt(40, 60, 0, ptA, ptB, ptC).y); 
+        ctx.lineTo(getPt(40, 0, 60, ptA, ptB, ptC).x, getPt(40, 0, 60, ptA, ptB, ptC).y); ctx.stroke();
+        
+        ctx.strokeStyle = "rgba(46, 204, 113, 0.8)";
+        ctx.beginPath(); ctx.moveTo(getPt(60, 40, 0, ptA, ptB, ptC).x, getPt(60, 40, 0, ptA, ptB, ptC).y); 
+        ctx.lineTo(getPt(0, 40, 60, ptA, ptB, ptC).x, getPt(0, 40, 60, ptA, ptB, ptC).y); ctx.stroke();
+        
+        ctx.strokeStyle = "rgba(52, 152, 219, 0.8)";
+        ctx.beginPath(); ctx.moveTo(getPt(80, 0, 20, ptA, ptB, ptC).x, getPt(80, 0, 20, ptA, ptB, ptC).y); 
+        ctx.lineTo(getPt(0, 80, 20, ptA, ptB, ptC).x, getPt(0, 80, 20, ptA, ptB, ptC).y); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.arc(targetPt.x, targetPt.y, 7, 0, Math.PI*2);
+        ctx.fillStyle = "#fca311"; ctx.fill();
+        ctx.strokeStyle = "#333"; ctx.lineWidth = 2; ctx.stroke();
+
+        ctx.font = "bold 15px Arial";
+        ctx.fillStyle = "#e74c3c"; ctx.textAlign = "center"; ctx.fillText("A 長石", ptA.x, ptA.y - 15);
+        ctx.fillStyle = "#2ecc71"; ctx.textAlign = "right"; ctx.fillText("B 碳酸鈣", ptB.x - 15, ptB.y + 15);
+        ctx.fillStyle = "#3498db"; ctx.textAlign = "left"; ctx.fillText("C 石英", ptC.x + 15, ptC.y + 15);
+
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(targetPt.x + 5, targetPt.y - 5);
+        ctx.lineTo(340, 70);
+        ctx.lineTo(485, 70);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(targetPt.x + 5, targetPt.y - 5, 3, 0, Math.PI*2);
+        ctx.fillStyle = "#333"; ctx.fill();
+
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.fillRect(345, 50, 140, 20);
+
+        ctx.font = "bold 14px Arial";
+        ctx.textAlign = "left";
+        let tx = 350;
+        let ty = 65;
+        
+        ctx.fillStyle = "#e74c3c"; ctx.fillText("A 40%", tx, ty);
+        let wA = ctx.measureText("A 40% ").width;
+        
+        ctx.fillStyle = "#333"; ctx.fillText("| ", tx + wA, ty);
+        let wBar1 = ctx.measureText("| ").width;
+        
+        ctx.fillStyle = "#2ecc71"; ctx.fillText("B 40%", tx + wA + wBar1, ty);
+        let wB = ctx.measureText("B 40% ").width;
+        
+        ctx.fillStyle = "#333"; ctx.fillText("| ", tx + wA + wBar1 + wB, ty);
+        let wBar2 = ctx.measureText("| ").width;
+        
+        ctx.fillStyle = "#3498db"; ctx.fillText("C 20%", tx + wA + wBar1 + wB + wBar2, ty);
+    }
+
+    // 5. 21點與66點網格圖
+    function drawGridCanvas(canvasId, divisions) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        
+        const ptA = {x: 170, y: 50};
+        const ptB = {x: 50, y: 240};
+        const ptC = {x: 290, y: 240};
+        
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = '#cccccc'; 
+        ctx.lineWidth = 1;
+
+        for (let i = 1; i < divisions; i++) {
+            let frac = i * (100 / divisions);
+            let l1p1 = getPt(100-frac, frac, 0, ptA, ptB, ptC), l1p2 = getPt(100-frac, 0, frac, ptA, ptB, ptC);
+            let l2p1 = getPt(frac, 100-frac, 0, ptA, ptB, ptC), l2p2 = getPt(0, 100-frac, frac, ptA, ptB, ptC);
+            let l3p1 = getPt(frac, 0, 100-frac, ptA, ptB, ptC), l3p2 = getPt(0, frac, 100-frac, ptA, ptB, ptC);
+            ctx.beginPath(); ctx.moveTo(l1p1.x, l1p1.y); ctx.lineTo(l1p2.x, l1p2.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(l2p1.x, l2p1.y); ctx.lineTo(l2p2.x, l2p2.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(l3p1.x, l3p1.y); ctx.lineTo(l3p2.x, l3p2.y); ctx.stroke();
+        }
+
+        ctx.strokeStyle = '#2c3e50'; 
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(ptA.x, ptA.y); ctx.lineTo(ptB.x, ptB.y); ctx.lineTo(ptC.x, ptC.y); ctx.closePath(); ctx.stroke();
+
+        ctx.fillStyle = '#fca311';
+        let step = 100 / divisions;
+        for (let a = 100; a >= 0; a -= step) {
+            for (let b = (100 - a); b >= 0; b -= step) {
+                let c = 100 - a - b;
+                if (Math.abs(c) < 0.1) c = 0; 
+                let pt = getPt(a, b, c, ptA, ptB, ptC);
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, divisions===5 ? 5 : 3.5, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+        
+        ctx.font = "bold 15px Arial";
+        ctx.fillStyle = "#e74c3c"; ctx.textAlign = "center"; ctx.fillText("A原料", ptA.x, ptA.y - 10);
+        ctx.fillStyle = "#2ecc71"; ctx.textAlign = "right"; ctx.fillText("B原料", ptB.x - 5, ptB.y + 15);
+        ctx.fillStyle = "#3498db"; ctx.textAlign = "left"; ctx.fillText("C原料", ptC.x + 5, ptC.y + 15);
+    }
+
+    window.onload = function() {
+        drawConceptA();
+        drawConceptB();
+        drawConceptC();
+        drawPointCanvas();
+        drawGridCanvas('canvas21', 5);
+        drawGridCanvas('canvas66', 10);
+    };
+</script>
+
+</body>
+</html>

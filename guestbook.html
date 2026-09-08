@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陶藝交流討論區</title>
+    <!-- 引入 Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* =========================================
+           配色方案 (專業配色大師調教版)
+           ========================================= */
+        :root {
+            /* 1. 核心品牌色 */
+            --primary-bg: #14213d;      /* 軍艦藍 (深海軍藍) - 沉穩、專業 */
+            --accent-color: #fca311;    /* 琥珀金 - 亮眼、活力 */
+            
+            /* 2. 背景與層次色 */
+            --body-bg: #14213d;         /* 最底層：軍艦藍 */
+            --container-bg: rgba(255, 255, 255, 0.96); /* 容器：幾乎不透的白，帶點霧面感 */
+            
+            /* 3. 留言卡片專用色 (淺色琥珀金系) */
+            --card-bg-normal: #fffcf2;  /* 留言底色：極淡的奶油白 (區隔純白容器) */
+            --card-bg-hover: #fff8e1;   /* 懸停底色：稍微深一點的琥珀金淡色 */
+            
+            /* 4. 文字與其他 */
+            --text-main: #333333;       
+            --text-secondary: #666666;
+            
+            /* 選項顏色定義 */
+            --opt-blue: #00b4d8;  
+            --opt-green: #2ec4b6; 
+            --opt-pink: #ff006e;  
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px; /* 增加一點上下空間，讓深色背景露出來 */
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+            min-height: 100vh;
+            
+            /* [修改] 最底層背景：軍艦藍 + 微微的動態光影 */
+            background-color: var(--body-bg);
+            background-image: linear-gradient(135deg, #14213d 0%, #1f3a60 100%);
+            background-attachment: fixed; /* 背景固定，不隨捲軸移動 */
+        }
+
+        .container {
+            max-width: 900px; 
+            width: 100%;
+            margin: 0 auto;
+            
+            /* [修改] 容器背景：高對比的白色，讓內容在深藍底色上清晰可見 */
+            background: var(--container-bg);
+            backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+            
+            padding: 35px;
+            border-radius: 16px;
+            /* 強烈的陰影，製造懸浮感 */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-bg);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.8em;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* 總留言數顯示 (右上角) */
+        .total-badge {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-bg);
+            color: var(--accent-color);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.5em; 
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- 發文表單區域 --- */
+        .form-area {
+            background-color: #ffffff; /* 表單區維持純白，最乾淨 */
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+            border-top: 5px solid var(--accent-color); /* 改用琥珀金做頂部線條 */
+            position: relative; 
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-bg);
+            font-size: 1.05em;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box; 
+            font-family: inherit;
+            transition: all 0.3s;
+            background-color: #fafafa;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: var(--accent-color);
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(252, 163, 17, 0.15);
+        }
+
+        .website-field { display: none !important; }
+
+        /* Emoji 樣式 */
+        .textarea-wrapper { position: relative; }
+        
+        .emoji-toggle-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background-color: #f0f0f0;
+            color: #555;
+            border: 2px solid #ddd;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 2;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .emoji-toggle-btn:hover { 
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .emoji-picker {
+            display: none; 
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 280px;
+            z-index: 100;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .emoji-picker.hidden { display: none; }
+        .emoji-picker:not(.hidden) { display: grid; }
+
+        .emoji-item {
+            cursor: pointer;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: 5px;
+            border-radius: 8px;
+            transition: transform 0.1s, background 0.2s;
+        }
+        .emoji-item:hover { background-color: #f0f0f0; transform: scale(1.2); }
+
+        /* 送出按鈕 - 強烈的軍艦藍 */
+        button.submit-btn {
+            background-color: var(--primary-bg);
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin-left: auto; font-weight: bold; min-width: 140px;
+            box-shadow: 0 4px 8px rgba(20, 33, 61, 0.4);
+            border: 2px solid transparent;
+        }
+
+        button.submit-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(252, 163, 17, 0.5);
+            border-color: var(--primary-bg); /* 加個邊框增加層次 */
+        }
+        button.submit-btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* --- 工具列 (搜尋/排序) --- */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            margin-bottom: 25px;
+            flex-wrap: wrap; 
+            gap: 15px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            /* 工具列也加上一點琥珀金裝飾 */
+            border-left: 5px solid var(--accent-color); 
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1; 
+            min-width: 200px; 
+        }
+
+        .search-box input {
+            padding-left: 40px;
+            border-radius: 50px;
+            border: 2px solid var(--accent-color); 
+            background-color: #fff;
+            transition: all 0.3s;
+            width: 100%;
+            height: 40px; 
+        }
+        .search-box input:focus {
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(252, 163, 17, 0.2);
+            border-color: var(--accent-color);
+        }
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color); 
+        }
+
+        .page-size-select {
+            padding: 0 15px;
+            height: 40px;
+            border-radius: 50px;
+            border: 2px solid #ddd;
+            background-color: #fff;
+            color: #555;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            transition: border 0.3s;
+        }
+        .page-size-select:focus { border-color: var(--primary-bg); }
+
+        .sort-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .sort-btn {
+            padding: 6px 12px; 
+            border-radius: 50px;
+            background: white;
+            font-weight: bold;
+            font-size: 0.85em; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent; 
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            height: 36px; 
+            white-space: nowrap;
+        }
+
+        .sort-btn.btn-new { border-color: var(--opt-blue); color: var(--opt-blue); }
+        .sort-btn.btn-new:hover, .sort-btn.btn-new.active {
+            background-color: var(--opt-blue); color: white; transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 180, 216, 0.3);
+        }
+
+        .sort-btn.btn-old { border-color: var(--opt-green); color: var(--opt-green); }
+        .sort-btn.btn-old:hover, .sort-btn.btn-old.active {
+            background-color: var(--opt-green); color: white; transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 196, 182, 0.3);
+        }
+
+        .sort-btn.btn-hot { border-color: var(--opt-pink); color: var(--opt-pink); }
+        .sort-btn.btn-hot:hover, .sort-btn.btn-hot.active {
+            background-color: var(--opt-pink); color: white; transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 0, 110, 0.3);
+        }
+
+        /* --- 留言列表 (視覺區分核心) --- */
+        .message-list { display: flex; flex-direction: column; gap: 20px; }
+
+        .message-card {
+            background-color: var(--card-bg-normal);
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            
+            /* [修改] 增加默認陰影深度，讓卡片稍微浮起來 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+            
+            border-left: 5px solid transparent; 
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px); /* [修改] 上浮更多一點 */
+            
+            /* [修改] 懸停效果：背景變深一點點，邊框變亮琥珀金 */
+            /* 陰影加深、加大模糊半徑，營造深邃立體感 */
+            box-shadow: 0 15px 35px rgba(20, 33, 61, 0.25); 
+            
+            background-color: var(--card-bg-hover);
+            border-left-color: var(--accent-color);
+        }
+
+        .avatar-area { flex-shrink: 0; }
+        .avatar-img { 
+            width: 55px; height: 55px; 
+            border-radius: 50%; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15); 
+            border: 3px solid white; /* 加粗白邊框，讓頭像更突出 */
+        }
+
+        .content-area { flex-grow: 1; overflow: hidden; }
+
+        .header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; flex-wrap: wrap; gap: 5px; }
+        .name { font-weight: bold; color: var(--primary-bg); font-size: 1.15em; }
+        
+        .time { 
+            font-size: 0.85em; 
+            color: #888; 
+            background: rgba(255,255,255,0.8); /* 半透明白底 */
+            padding: 2px 8px; 
+            border-radius: 10px; 
+            border: 1px solid #eee;
+        }
+
+        .text { color: #444; line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
+        .text a { color: #007bff; text-decoration: none; border-bottom: 1px dotted #007bff; }
+        .text a:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+
+        .reply-target {
+            color: var(--primary-bg);
+            font-weight: bold;
+            margin-right: 5px;
+            background-color: #dbeafe;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 8px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .actions { margin-top: 15px; text-align: right; }
+        .reply-btn {
+            background: white;
+            border: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+            cursor: pointer;
+            padding: 6px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 6px; font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .reply-btn:hover { 
+            color: white; 
+            background-color: var(--accent-color); 
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 8px rgba(252, 163, 17, 0.3);
+        }
+
+        /* --- 分頁與狀態 --- */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 40px; margin-bottom: 20px; }
+
+        .page-btn {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: white; border: 2px solid #ddd; border-radius: 50%;
+            cursor: pointer; color: var(--primary-bg); transition: all 0.2s;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .page-btn:hover:not(:disabled) { border-color: var(--accent-color); color: var(--accent-color); transform: scale(1.1); }
+        .page-btn.active { background: var(--primary-bg); color: var(--accent-color); border-color: var(--primary-bg); }
+        .page-btn:disabled { opacity: 0.4; cursor: not-allowed; background: #f0f0f0; }
+
+        .loading, .status-msg { text-align: center; padding: 30px; color: #eee; /* 深色背景上改用淺色文字 */ }
+        .loading i { color: var(--accent-color); }
+
+        /* =========================================================
+           ★ 手機版專屬響應式防爆框結界 (絕對不影響電腦版) ★
+           ========================================================= */
+        @media (max-width: 768px) {
+            body { 
+                padding: 15px 10px; /* 縮小兩側留白 */
+                overflow-x: hidden; /* ★ 終極防護，禁止整個網頁左右滑動 ★ */
+            }
+            
+            /* ★ 核心修正：讓所有主要區塊的寬度計算往內縮，絕不撐破螢幕寬度 ★ */
+            .container, .form-area, .toolbar, .message-card, .search-box input, .page-size-select {
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+            
+            .container { 
+                padding: 20px 15px !important; /* 縮小容器內距 */
+            }
+            
+            .form-area {
+                padding: 20px 15px !important;
+            }
+            
+            .toolbar { 
+                flex-direction: column; 
+                align-items: stretch; 
+                gap: 12px; 
+                padding: 15px !important; 
+            }
+            
+            .sort-buttons { 
+                justify-content: space-between; 
+                width: 100%; 
+                gap: 5px;
+            }
+            
+            .sort-btn { 
+                flex: 1; 
+                justify-content: center; 
+                padding: 6px 4px;
+                font-size: 0.85em;
+            }
+            
+            .total-badge { 
+                position: relative; 
+                right: auto; 
+                top: auto; 
+                transform: none; 
+                margin: 15px auto 0; 
+                width: fit-content; 
+            }
+            
+            .message-card { 
+                padding: 15px !important; /* 卡片內部空間縮小 */
+                gap: 12px !important; 
+            }
+            
+            .avatar-img { 
+                width: 45px; 
+                height: 45px; 
+            }
+            
+            .header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 5px; 
+            }
+            
+            .text { 
+                word-wrap: break-word; 
+                word-break: break-word; /* 確保長串英文字或網址不會撐破卡片寬度 */
+            }
+            
+            .emoji-picker {
+                width: 100%;
+                max-width: 280px;
+                box-sizing: border-box;
+                right: 0;
+            }
+            
+            /* 手機版送出按鈕滿版寬度，更好點擊 */
+            button.submit-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body onclick="unlockAudio()"> 
+
+    <div class="container">
+        <!-- 標題區 -->
+        <h2>
+            <i class="fa-solid fa-mug-hot" style="color: var(--accent-color);"></i> 陶藝交流討論區
+            
+            <div class="total-badge">
+                <i class="fa-solid fa-comments"></i> 
+                共 <span id="countSpan">0</span> 則留言
+            </div>
+        </h2>
+        
+        <!-- 發文表單 -->
+        <div class="form-area">
+            <form id="guestbookForm">
+                <div class="form-group" style="display:none;">
+                    <input type="text" name="website" class="website-field" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">您的暱稱：</label>
+                    <input type="text" id="name" name="name" placeholder="請輸入怎麼稱呼您" required maxlength="20">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">留言內容：</label>
+                    <div class="textarea-wrapper">
+                        <textarea id="message" name="message" rows="4" placeholder="請輸入想要討論的內容..." required maxlength="500"></textarea>
+                        
+                        <button type="button" class="emoji-toggle-btn" id="emojiBtn" title="插入表情符號" 
+                                onmouseenter="playHoverSound()" onclick="playClickSound()">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </button>
+                        
+                        <div id="emojiPicker" class="emoji-picker hidden"></div>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="replyTo" name="replyTo" value="">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span id="replyIndicator" style="font-size: 0.9em; color: var(--accent-color); font-weight: bold;"></span>
+                    <button type="submit" class="submit-btn" id="submitBtn" 
+                            onmouseenter="playHoverSound()" onclick="playClickSound()">
+                        <i class="fa-solid fa-paper-plane"></i> 送出留言
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 工具列 -->
+        <div class="toolbar">
+            <!-- 搜尋框 -->
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="搜尋留言內容或作者...">
+            </div>
+
+            <!-- 每頁顯示數量 -->
+            <select id="pageSizeSelect" class="page-size-select" onchange="changePageSize(this.value)" onmouseenter="playHoverSound()">
+                <option value="10">每頁 10 則</option>
+                <option value="20">每頁 20 則</option>
+                <option value="50">每頁 50 則</option>
+            </select>
+            
+            <!-- 排序按鈕群組 -->
+            <div class="sort-buttons">
+                <button class="sort-btn btn-new active" onclick="changeSort('newest')" onmouseenter="playHoverSound()">
+                    最新
+                </button>
+                <button class="sort-btn btn-old" onclick="changeSort('oldest')" onmouseenter="playHoverSound()">
+                    最早
+                </button>
+                <button class="sort-btn btn-hot" onclick="changeSort('hot')" onmouseenter="playHoverSound()">
+                    熱門
+                </button>
+            </div>
+        </div>
+        
+        <!-- 列表與載入區 -->
+        <div id="loading" class="loading">
+            <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i><br>
+            <span style="display:inline-block; margin-top:10px;">釉藥配方讀取中...</span>
+        </div>
+
+        <div class="message-list" id="messageList"></div>
+        <div id="pagination" class="pagination"></div>
+
+    </div>
+
+    <!-- 音效標籤 -->
+    <audio id="hoverSound" src="hover.wav" preload="auto"></audio>
+    <audio id="clickSound" src="click.wav" preload="auto"></audio>
+
+    <script>
+        // ==========================================
+        //  Google Apps Script 網址
+        // ==========================================
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAC1Kai_m4yRI3Ikf3p4Z9r0Z63mHOHx1A1hfDdH9tM21wd8npwVaLxbRPxgpf62MJ0A/exec';
+
+        const emojiList = [
+            '😀','😂','😍','😭','😎','😡','👍','👎',
+            '🙏','❤️','🔥','✨','🏺','☕','🎨','🤔',
+            '💪','🎉','👀','🙌','🌸','🍀','❓','❗'
+        ];
+
+        let allMessages = [];      
+        let filteredMessages = []; 
+        let replyCounts = {}; 
+        
+        let itemsPerPage = 10;   
+        let currentPage = 1;
+        let currentSort = 'newest';
+
+        const form = document.getElementById('guestbookForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageList = document.getElementById('messageList');
+        const loading = document.getElementById('loading');
+        const searchInput = document.getElementById('searchInput');
+        const countSpan = document.getElementById('countSpan');
+        const paginationDiv = document.getElementById('pagination');
+        const replyIndicator = document.getElementById('replyIndicator');
+        const replyToInput = document.getElementById('replyTo');
+        const messageInput = document.getElementById('message');
+        const emojiBtn = document.getElementById('emojiBtn');
+        const emojiPicker = document.getElementById('emojiPicker');
+
+        var hoverAudio = document.getElementById("hoverSound");
+        var clickAudio = document.getElementById("clickSound");
+
+        function unlockAudio() {
+            if(hoverAudio) {
+                hoverAudio.play().then(() => {
+                    hoverAudio.pause();
+                    hoverAudio.currentTime = 0;
+                }).catch((e) => {});
+            }
+            if(clickAudio) {
+                clickAudio.play().then(() => {
+                    clickAudio.pause();
+                    clickAudio.currentTime = 0;
+                }).catch((e) => {});
+            }
+            document.body.onclick = null;
+        }
+
+        function playHoverSound() {
+            if (hoverAudio) {
+                hoverAudio.currentTime = 0;
+                hoverAudio.volume = 0.5;
+                var promise = hoverAudio.play();
+                if (promise !== undefined) { promise.catch(function(error) {}); }
+            }
+        }
+
+        function playClickSound() {
+            if (clickAudio) {
+                clickAudio.currentTime = 0;
+                clickAudio.volume = 0.5;
+                var promise = clickAudio.play();
+                if (promise !== undefined) { promise.catch(function(error) {}); }
+            }
+        }
+
+        initEmojiPicker();
+        loadMessages();
+
+        function initEmojiPicker() {
+            emojiList.forEach(char => {
+                const span = document.createElement('div');
+                span.textContent = char;
+                span.className = 'emoji-item';
+                span.onclick = () => insertEmoji(char);
+                emojiPicker.appendChild(span);
+            });
+
+            emojiBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                emojiPicker.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!emojiPicker.contains(e.target) && e.target !== emojiBtn) {
+                    emojiPicker.classList.add('hidden');
+                }
+            });
+        }
+
+        function insertEmoji(char) {
+            playClickSound(); 
+            const start = messageInput.selectionStart;
+            const end = messageInput.selectionEnd;
+            const text = messageInput.value;
+            
+            messageInput.value = text.substring(0, start) + char + text.substring(end);
+            messageInput.selectionStart = messageInput.selectionEnd = start + char.length;
+            messageInput.focus();
+            
+            emojiPicker.classList.add('hidden');
+        }
+
+        window.changePageSize = function(size) {
+            playClickSound();
+            itemsPerPage = parseInt(size);
+            currentPage = 1; 
+            updateUI();
+        }
+
+        window.changeSort = function(type) {
+            playClickSound();
+            currentSort = type;
+            document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+            if(type === 'newest') document.querySelector('.btn-new').classList.add('active');
+            if(type === 'oldest') document.querySelector('.btn-old').classList.add('active');
+            if(type === 'hot') document.querySelector('.btn-hot').classList.add('active');
+            applyFilterAndSort();
+        }
+
+        function loadMessages() {
+            loading.style.display = 'block';
+            messageList.innerHTML = '';
+            paginationDiv.innerHTML = '';
+
+            fetch(SCRIPT_URL)
+                .then(res => res.json())
+                .then(data => {
+                    loading.style.display = 'none';
+                    if (Array.isArray(data)) {
+                        allMessages = data.map(msg => ({
+                            ...msg, 
+                            name: String(msg.name || "匿名")
+                        }));
+                        calculateHotness();
+                        applyFilterAndSort();
+                    } else {
+                        messageList.innerHTML = '<div class="status-msg">資料格式錯誤。</div>';
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    loading.style.display = 'none';
+                    messageList.innerHTML = '<div class="status-msg">無法連接資料庫。</div>';
+                });
+        }
+
+        function calculateHotness() {
+            replyCounts = {};
+            allMessages.forEach(msg => {
+                if (msg.replyTo) {
+                    const targetName = msg.replyTo;
+                    replyCounts[targetName] = (replyCounts[targetName] || 0) + 1;
+                }
+            });
+        }
+
+        function applyFilterAndSort() {
+            const keyword = searchInput.value.toLowerCase();
+            let temp = allMessages.filter(msg => {
+                return msg.message.toLowerCase().includes(keyword) || 
+                       msg.name.toLowerCase().includes(keyword);
+            });
+
+            if (currentSort === 'newest') {
+                temp.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            } else if (currentSort === 'oldest') {
+                temp.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            } else if (currentSort === 'hot') {
+                temp.sort((a, b) => {
+                    const countA = replyCounts[a.name] || 0;
+                    const countB = replyCounts[b.name] || 0;
+                    return countB - countA;
+                });
+            }
+
+            filteredMessages = temp;
+            currentPage = 1;
+            updateUI();
+        }
+
+        searchInput.addEventListener('input', applyFilterAndSort);
+
+        function updateUI() {
+            countSpan.textContent = filteredMessages.length;
+            const totalPages = Math.ceil(filteredMessages.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages || 1;
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = filteredMessages.slice(start, end);
+            renderMessages(pageData);
+            renderPagination(totalPages);
+        }
+
+        function renderMessages(messages) {
+            messageList.innerHTML = '';
+            if (messages.length === 0) {
+                messageList.innerHTML = '<div class="status-msg">沒有找到符合的留言。</div>';
+                return;
+            }
+
+            messages.forEach(msg => {
+                const card = document.createElement('div');
+                card.className = 'message-card';
+                card.onmouseenter = playHoverSound;
+
+                const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.name)}&background=14213d&color=fca311&size=100&font-size=0.5`;
+
+                let timeStr = msg.timestamp;
+                if (typeof timeStr === 'string' && timeStr.includes('T')) {
+                    timeStr = timeStr.replace('T', ' ').substring(0, 16);
+                }
+
+                let replyHtml = '';
+                if (msg.replyTo) {
+                    replyHtml = `<span class="reply-target"><i class="fa-solid fa-share"></i> 回覆 ${escapeHtml(msg.replyTo)}</span><br>`;
+                }
+
+                let contentRaw = escapeHtml(msg.message);
+                let contentDisplay = linkify(contentRaw);
+                const safeContent = encodeURIComponent(msg.message);
+
+                card.innerHTML = `
+                    <div class="avatar-area">
+                        <img src="${avatarUrl}" alt="${msg.name}" class="avatar-img">
+                    </div>
+                    <div class="content-area">
+                        <div class="header">
+                            <span class="name">${escapeHtml(msg.name)}</span>
+                            <span class="time">${timeStr}</span>
+                        </div>
+                        <div class="text">${replyHtml}${contentDisplay}</div>
+                        <div class="actions">
+                            <button class="reply-btn" onclick="setReply('${escapeHtml(msg.name)}', '${safeContent}')">
+                                <i class="fa-solid fa-reply"></i> 回覆
+                            </button>
+                        </div>
+                    </div>
+                `;
+                messageList.appendChild(card);
+            });
+        }
+
+        function renderPagination(totalPages) {
+            paginationDiv.innerHTML = '';
+            if (totalPages <= 1) return;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn';
+            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => { currentPage--; updateUI(); scrollToTop(); };
+            paginationDiv.appendChild(prevBtn);
+
+            const currentInfo = document.createElement('span');
+            currentInfo.style.alignSelf = 'center';
+            currentInfo.style.margin = '0 10px';
+            currentInfo.style.color = '#777';
+            currentInfo.textContent = `${currentPage} / ${totalPages}`;
+            paginationDiv.appendChild(currentInfo);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn';
+            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => { currentPage++; updateUI(); scrollToTop(); };
+            paginationDiv.appendChild(nextBtn);
+        }
+
+        function scrollToTop() {
+            const formArea = document.querySelector('.form-area');
+            const offset = 80;
+            const elementPosition = formArea.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: elementPosition, behavior: "smooth" });
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const honeyPot = form.querySelector('.website-field');
+            if (honeyPot.value) { console.warn("Bot detected"); return; }
+
+            const lastPostTime = localStorage.getItem('lastPostTime');
+            const now = new Date().getTime();
+            if (lastPostTime && (now - lastPostTime < 60000)) {
+                const remaining = Math.ceil((60000 - (now - lastPostTime)) / 1000);
+                alert(`系統偵測您發文頻率過快，請休息 ${remaining} 秒後再試。`);
+                return;
+            }
+
+            const badWords = ['笨蛋', '白痴', '詐騙']; 
+            const content = messageInput.value;
+            if (badWords.some(word => content.includes(word))) {
+                alert("留言包含不當詞彙，請修正。");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 處理中...';
+
+            const formData = new FormData(form);
+            const data = new URLSearchParams(formData);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                alert('留言發佈成功！');
+                localStorage.setItem('lastPostTime', new Date().getTime());
+                resetForm();
+                setTimeout(loadMessages, 1500); 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('發生錯誤，請稍後再試。');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> 送出留言';
+            });
+        });
+
+        window.setReply = function(name, encodedContent) {
+            let content = decodeURIComponent(encodedContent);
+            if (content.length > 50) content = content.substring(0, 50) + "...";
+            replyToInput.value = name;
+            replyIndicator.innerHTML = `正在回覆：<strong>@${name}</strong> <i class="fa-solid fa-circle-xmark" style="cursor:pointer; margin-left:5px;" onclick="cancelReply()"></i>`;
+            messageInput.value = `『 @${name}：${content} 』\n-------------------------\n`;
+            document.querySelector('.form-area').scrollIntoView({ behavior: 'smooth' });
+            messageInput.focus();
+            messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+        };
+
+        window.cancelReply = function() {
+            replyToInput.value = "";
+            replyIndicator.innerHTML = "";
+            if (messageInput.value.includes('『 @')) {
+                messageInput.value = "";
+            }
+        };
+
+        function resetForm() {
+            form.reset();
+            cancelReply();
+        }
+
+        function escapeHtml(text) {
+            if (!text) return "";
+            return String(text)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function linkify(text) {
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, function(url) {
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link"></i> 連結</a>`;
+            });
+        }
+    </script>
+</body>
+</html>
