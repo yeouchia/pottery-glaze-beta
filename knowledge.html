@@ -71,14 +71,11 @@
             align-items: center; gap: 10px; cursor: pointer; transition: background 0.2s;
             border: 1px solid transparent;
         }
-        
-        /* 滑鼠懸停時的底色與 Icon 變色提示 */
         .category-title:hover { background-color: var(--active-bg); }
-        .category-title:hover i:first-child { color: var(--accent-color); }
         
-        /* ★ 修正：平常狀態的 Icon 顏色設為低調的灰藍色，凸顯重點 ★ */
+        /* ★ 恢復：預設狀態下，所有主標題的 Icon 都是耀眼的琥珀金 ★ */
         .category-title i:first-child { 
-            color: var(--text-muted); 
+            color: var(--accent-color); 
             font-size: 1.15em; 
             width: 24px; 
             text-align: center; 
@@ -89,7 +86,7 @@
         .category-group.open .category-title { background-color: #edf2f7; border-color: #cbd5e1; }
         .category-group.open .category-title i.toggle-icon { transform: rotate(180deg); }
 
-        /* ★ 新增：定義 Icon 點擊時的「放大抖動」微動畫 ★ */
+        /* 定義 Icon 點擊時的「放大抖動」微動畫 */
         @keyframes icon-shake-pop {
             0% { transform: scale(1) rotate(0deg); }
             25% { transform: scale(1.3) rotate(-15deg); }
@@ -98,22 +95,24 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* 被啟動的分類主標題高亮樣式 */
-        .category-group.active-category .category-title { 
-            background-color: #fff8e7 !important; 
-            border-color: #fca311 !important;     
-            color: #9a5b13 !important;            
-        }
+        /* ★ 新增：智慧四色循環 (紅、藍、綠、紫)，對應您首頁的四大分類色系 ★ */
         
-        /* ★ 關鍵綁定：啟動時，Icon 變成琥珀金，並觸發抖動動畫 ★ */
-        .category-group.active-category .category-title i:first-child {
-            color: #fca311 !important;            
-            animation: icon-shake-pop 0.5s ease-out; 
-        }
+        /* 1. 紅色系 (第 1, 5, 9... 個分類) */
+        .category-group:nth-child(4n+1).active-category .category-title { background-color: #fff5f5 !important; border-color: #fc8181 !important; color: #c53030 !important; }
+        .category-group:nth-child(4n+1).active-category .category-title i:first-child, .category-group:nth-child(4n+1).active-category .category-title i.toggle-icon { color: #e53e3e !important; animation: icon-shake-pop 0.5s ease-out; }
 
-        .category-group.active-category .category-title i.toggle-icon {
-            color: #fca311 !important;            
-        }
+        /* 2. 藍色系 (第 2, 6, 10... 個分類) */
+        .category-group:nth-child(4n+2).active-category .category-title { background-color: #ebf8ff !important; border-color: #63b3ed !important; color: #2b6cb0 !important; }
+        .category-group:nth-child(4n+2).active-category .category-title i:first-child, .category-group:nth-child(4n+2).active-category .category-title i.toggle-icon { color: #3182ce !important; animation: icon-shake-pop 0.5s ease-out; }
+
+        /* 3. 綠色系 (第 3, 7, 11... 個分類) */
+        .category-group:nth-child(4n+3).active-category .category-title { background-color: #f0fff4 !important; border-color: #68d391 !important; color: #2f855a !important; }
+        .category-group:nth-child(4n+3).active-category .category-title i:first-child, .category-group:nth-child(4n+3).active-category .category-title i.toggle-icon { color: #38a169 !important; animation: icon-shake-pop 0.5s ease-out; }
+
+        /* 4. 紫色系 (第 4, 8, 12... 個分類) */
+        .category-group:nth-child(4n+4).active-category .category-title { background-color: #faf5ff !important; border-color: #b794f4 !important; color: #6b46c1 !important; }
+        .category-group:nth-child(4n+4).active-category .category-title i:first-child, .category-group:nth-child(4n+4).active-category .category-title i.toggle-icon { color: #805ad5 !important; animation: icon-shake-pop 0.5s ease-out; }
+
 
         .article-list { list-style: none; padding-left: 28px; display: none; margin-top: 5px; flex-direction: column; gap: 2px; }
         .category-group.open .article-list { display: flex; }
