@@ -53,14 +53,17 @@ const knowledgeTree = [
         category: "陶釉講義 (黃老師編著)",
         icon: "fa-book-open-reader",
         articles: [
-            // 這裡預留給未來從 lecture.html 拆解出來的各個章節
             { id: "ch1_history", title: "第一章 陶瓷的歷史和類型", url: "./book/ch1_history.html" },
-            { id: "ch2_basics", title: "第二章 基礎釉藥知識", url: "./book/ch2_glaze_basics.html" }
+            { id: "ch2_basics", title: "第二章 基礎釉藥知識", url: "./book/ch2_glaze_basics.html" },
+            { id: "ch3_mixing", title: "第三章 釉藥調配基礎", url: "./book/ch3_glaze_mixing.html" },
+            { id: "ch4_application", title: "第四章 釉藥施釉技術", url: "./book/ch4_glaze_application.html" },
+            { id: "ch5_making", title: "第五章 陶瓷製作與燒製過程", url: "./book/ch5_pottery_making.html" },
+            { id: "ch6_safety", title: "第六章 陶瓷工作安全與實踐環保", url: "./book/ch6_safety_env.html" },
+            { id: "ch7_aesthetics", title: "第七章 陶瓷的美學和創作", url: "./book/ch7_aesthetics.html" }
         ]
     }
 ];
 
-// 提供給外部呼叫的輔助函式：透過 ID 尋找文章資訊
 function findArticleById(articleId) {
     for (const group of knowledgeTree) {
         const found = group.articles.find(art => art.id === articleId);
