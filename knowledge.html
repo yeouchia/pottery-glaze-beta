@@ -73,7 +73,6 @@
         }
         .category-title:hover { background-color: var(--active-bg); }
         
-        /* ★ 修正：讓主分類前方的 Icon 套用主題色，並固定寬度對齊 ★ */
         .category-title i:first-child { 
             color: var(--accent-color); 
             font-size: 1.15em; 
@@ -85,10 +84,19 @@
         .category-group.open .category-title { background-color: #edf2f7; border-color: #cbd5e1; }
         .category-group.open .category-title i.toggle-icon { transform: rotate(180deg); }
 
+        /* ★ 新增：當主分類內包含「正在閱讀的文章」時的專屬高亮樣式 ★ */
+        .category-group.has-active-article .category-title { 
+            background-color: #fff8e7 !important; /* 淺金底色 */
+            border-color: #fca311 !important;     /* 琥珀金邊框 */
+            color: #9a5b13 !important;            /* 文字改為深琥珀色，凸顯層級 */
+        }
+        .category-group.has-active-article .category-title i.toggle-icon {
+            color: #fca311 !important;            /* 右側箭頭也變為琥珀金 */
+        }
+
         .article-list { list-style: none; padding-left: 28px; display: none; margin-top: 5px; flex-direction: column; gap: 2px; }
         .category-group.open .article-list { display: flex; }
 
-        /* ★ 修正：加深子選單文字顏色、稍微放大字體與行距，提升易讀性 ★ */
         .article-item {
             display: block; padding: 10px 12px; font-size: 0.95rem; color: #334155; font-weight: 500;
             text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; line-height: 1.4;
@@ -161,8 +169,8 @@
             knowledgeTree.forEach((group, index) => {
                 const groupDiv = document.createElement('div');
                 groupDiv.className = 'category-group';
-                // 預設展開第一個分類
-                if (index === 0) groupDiv.classList.add('open'); 
+                
+                // 預設不強制展開第一個，由後續的參數載入邏輯來決定誰該展開
 
                 // 建立分類標題
                 const titleDiv = document.createElement('div');
@@ -202,10 +210,22 @@
             // 更新上方麵包屑路徑
             document.getElementById('current-path').innerHTML = `<span style="color: var(--accent-color);">${category}</span> <i class="fa-solid fa-angle-right" style="margin: 0 8px; font-size: 0.8em;"></i> ${title}`;
 
-            // 更新左側選單的 Active 狀態 (粗體與左側飾條)
+            // ★ 清除所有文章與主分類的 Active 狀態 ★
             document.querySelectorAll('.article-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.category-group').forEach(group => group.classList.remove('has-active-article'));
+
+            // ★ 找到當前點擊的文章並加上標示，同時向上尋找父層群組標示主標題 ★
             const activeItem = document.querySelector(`.article-item[data-id="${id}"]`);
-            if(activeItem) activeItem.classList.add('active');
+            if(activeItem) {
+                activeItem.classList.add('active');
+                
+                // 向上尋找最接近的 .category-group，加上高亮 class
+                const parentGroup = activeItem.closest('.category-group');
+                if(parentGroup) {
+                    parentGroup.classList.add('has-active-article');
+                    parentGroup.classList.add('open'); // 確保它同時是展開狀態
+                }
+            }
         }
 
         // --- 3. 處理網址參數 (深度連結 Deep Linking) ---
@@ -218,13 +238,6 @@
                 const articleData = findArticleById(targetId);
                 if (articleData) {
                     loadArticle(articleData.url, articleData.id, articleData.category, articleData.title);
-                    
-                    // 自動展開該分類
-                    document.querySelectorAll('.category-group').forEach(group => {
-                        const hasItem = group.querySelector(`[data-id="${targetId}"]`);
-                        if(hasItem) group.classList.add('open');
-                        else group.classList.remove('open');
-                    });
                     return;
                 }
             }
