@@ -22,7 +22,6 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* ★ 關鍵修復：加入 width: 100%; 強制大廳佈滿全螢幕 ★ */
         html, body {
             width: 100%;
             height: 100%;
@@ -73,22 +72,31 @@
             border: 1px solid transparent;
         }
         .category-title:hover { background-color: var(--active-bg); }
-        .category-title i.toggle-icon { margin-left: auto; font-size: 0.8rem; transition: transform 0.3s; }
+        
+        /* ★ 修正：讓主分類前方的 Icon 套用主題色，並固定寬度對齊 ★ */
+        .category-title i:first-child { 
+            color: var(--accent-color); 
+            font-size: 1.15em; 
+            width: 24px; 
+            text-align: center; 
+        }
+        
+        .category-title i.toggle-icon { margin-left: auto; font-size: 0.8rem; transition: transform 0.3s; color: var(--text-muted); }
         .category-group.open .category-title { background-color: #edf2f7; border-color: #cbd5e1; }
         .category-group.open .category-title i.toggle-icon { transform: rotate(180deg); }
 
         .article-list { list-style: none; padding-left: 28px; display: none; margin-top: 5px; flex-direction: column; gap: 2px; }
         .category-group.open .article-list { display: flex; }
 
+        /* ★ 修正：加深子選單文字顏色、稍微放大字體與行距，提升易讀性 ★ */
         .article-item {
-            display: block; padding: 8px 10px; font-size: 0.9rem; color: var(--text-muted);
-            text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer;
+            display: block; padding: 10px 12px; font-size: 0.95rem; color: #334155; font-weight: 500;
+            text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; line-height: 1.4;
         }
-        .article-item:hover { color: var(--primary-bg); background-color: #f1f5f9; padding-left: 14px; }
-        .article-item.active { color: var(--primary-bg); background-color: var(--active-bg); font-weight: bold; border-left: 4px solid var(--accent-color); padding-left: 10px;}
+        .article-item:hover { color: var(--primary-bg); background-color: #f1f5f9; padding-left: 16px; }
+        .article-item.active { color: var(--primary-bg); background-color: var(--active-bg); font-weight: bold; border-left: 4px solid var(--accent-color); padding-left: 12px;}
 
         /* === 右側主閱讀區 === */
-        /* ★ 加入 width: 100%; 強制閱讀區填滿剩餘的右半邊螢幕 ★ */
         #main-content {
             flex: 1; width: 100%; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #ffffff;
         }
