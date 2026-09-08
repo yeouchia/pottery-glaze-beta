@@ -6,70 +6,303 @@
 <title>陶土與瓷土怎麼選？新手買泥全指南</title>
 <meta name="description" content="陶土、白陶土、熟料土、瓷土怎麼選？從成型方式、作品大小與燒成溫度，快速找到適合自己的陶土。">
 <style>
-        /* ========================================== */
-        /* === 知識庫專用文章排版 CSS (全版面優化版) === */
-        /* ========================================== */
-        :root {
-            --primary-bg: #14213d;
-            --accent-color: #fca311;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --section-title: #1f3a60;
-        }
+  :root{
+    --bg:#eee7d8;
+    --paper:#fbfaf5;
+    --card:#f1f0e4;
+    --card2:#f6f4e9;
+    --line:#d8d4c5;
+    --text:#39372f;
+    --muted:#777367;
+    --accent:#6c6654;
+    --accent-light:#e8e4d6;
+    --quote:#eeeadd;
+  }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+  *{box-sizing:border-box}
 
-        /* ★ 關鍵修正 1：強制純白背景，消除畫中畫的灰色邊框感 */
-        html, body {
-            height: 100%;
-            font-family: 'Microsoft JhengHei', 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-main);
-            background-color: #ffffff; 
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
-        }
+  html{scroll-behavior:smooth}
 
-        /* ★ 關鍵修正 2：調整邊距，讓電腦版適度留白但不浪費空間 */
-        .reader-body {
-            width: 100%;
-            padding: 30px 5%; /* 左右留白 5%，讓排版呼吸 */
-            overflow-x: hidden;
-        }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+      "Noto Sans TC",
+      "PingFang TC",
+      "Microsoft JhengHei",
+      sans-serif;
+    line-height:1.85;
+    font-size:15px;
+  }
 
-        /* ★ 關鍵修正 3：解除原本 900px 的限制，讓內容全局部滿 */
-        .article-container {
-            max-width: 100%; 
-            margin: 0; /* 取消置中，向左自然對齊 */
-            line-height: 1.9;
-            font-size: 1.05rem;
-            color: #2d3748;
-            padding-bottom: 80px;
-        }
+  .page{
+    width:min(900px, calc(100% - 32px));
+    margin:34px auto 70px;
+    background:var(--paper);
+    border:1px solid #e1ddcf;
+    border-radius:12px;
+    box-shadow:0 7px 24px rgba(70,62,45,.08);
+    overflow:hidden;
+  }
 
-        /* 標題與內文樣式 (100% 保留您原本的美觀設計) */
-        .main-title { font-size: 2.2rem; color: var(--primary-bg); margin-bottom: 8px; border-bottom: 3px solid var(--accent-color); padding-bottom: 12px; }
-        .author-tag { color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem; }
-        h2.chapter-heading { font-size: 1.65rem; color: var(--primary-bg); margin-top: 55px; margin-bottom: 20px; padding: 8px 14px; background-color: #f7fafc; border-left: 5px solid var(--accent-color); border-radius: 0 6px 6px 0; }
-        h3.section-heading { font-size: 1.3rem; color: var(--section-title); margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid #edf2f7; padding-bottom: 6px; }
-        p { margin-bottom: 16px; text-align: justify; }
-        .info-box { background-color: #fffaf0; border-left: 4px solid var(--accent-color); padding: 18px 22px; border-radius: 4px; margin: 25px 0; }
+  .article{
+    padding:42px 56px 64px;
+  }
 
-        /* ========================================== */
-        /* === 關鍵修正 4：手機版專屬響應式 (完美貼齊邊緣) === */
-        /* ========================================== */
-        @media (max-width: 1000px) {
-            .reader-body { 
-                /* 手機版將左右 padding 大幅縮減至 15px，完美貼齊螢幕邊緣 */
-                padding: 15px 15px 40px 15px !important; 
-            }
-            .article-container { font-size: 1rem; }
-            .main-title { font-size: 1.6rem; margin-top: 10px; }
-            h2.chapter-heading { font-size: 1.3rem; margin-top: 30px; }
-            h3.section-heading { font-size: 1.15rem; margin-top: 25px; }
-            p { font-size: 1rem; line-height: 1.7; margin-bottom: 15px; }
-            .info-box { padding: 15px; margin: 20px 0; }
-        }
-    </style>
+  .breadcrumb{
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:18px;
+    letter-spacing:.04em;
+  }
+
+  .eyebrow{
+    display:inline-block;
+    font-size:11px;
+    color:#625d4e;
+    background:var(--accent-light);
+    border:1px solid #dcd7c7;
+    border-radius:999px;
+    padding:3px 10px;
+    margin-bottom:13px;
+  }
+
+  h1{
+    font-family:
+      "Noto Serif TC",
+      "Source Han Serif TC",
+      "PMingLiU",
+      serif;
+    font-weight:600;
+    font-size:30px;
+    line-height:1.45;
+    letter-spacing:.03em;
+    margin:0 0 18px;
+    color:#35332c;
+  }
+
+  .lead{
+    background:var(--quote);
+    border:1px solid #dedacd;
+    border-radius:8px;
+    padding:18px 20px;
+    margin:20px 0 28px;
+    color:#4d4a40;
+    font-size:14px;
+  }
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:28px;
+  }
+
+  .tag{
+    border:1px solid #d7d2c3;
+    background:#f8f6ed;
+    color:#706b5d;
+    border-radius:999px;
+    padding:3px 10px;
+    font-size:11px;
+  }
+
+  .notice,
+  .summary{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:19px 21px;
+    margin:22px 0;
+  }
+
+  .notice-title,
+  .summary-title{
+    font-weight:700;
+    font-size:15px;
+    margin:0 0 9px;
+    color:#4c493e;
+  }
+
+  .notice p,
+  .summary p{margin:5px 0}
+
+  h2{
+    font-family:
+      "Noto Serif TC",
+      "Source Han Serif TC",
+      "PMingLiU",
+      serif;
+    font-size:22px;
+    line-height:1.55;
+    margin:42px 0 17px;
+    padding-bottom:8px;
+    border-bottom:1px solid #ddd8ca;
+    color:#3e3b32;
+  }
+
+  h3{
+    font-size:17px;
+    margin:28px 0 9px;
+    color:#464238;
+  }
+
+  p{margin:10px 0}
+
+  ul,ol{
+    padding-left:1.5em;
+    margin:10px 0 18px;
+  }
+
+  li{margin:4px 0}
+
+  strong{font-weight:700}
+
+  .quote{
+    margin:18px 0;
+    padding:13px 18px;
+    border-left:4px solid #aaa38e;
+    background:#f5f3e9;
+    color:#4d4a40;
+    font-family:"Noto Serif TC","PMingLiU",serif;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0 25px;
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+    background:#faf9f3;
+  }
+
+  th,td{
+    border-bottom:1px solid #dfdccf;
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+
+  th{
+    background:#ece9dc;
+    font-weight:700;
+    color:#4d493e;
+    font-size:13px;
+  }
+
+  td{font-size:13px}
+
+  tr:last-child td{border-bottom:none}
+
+  .quick-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:16px 0 24px;
+  }
+
+  .quick{
+    background:var(--card2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:13px 15px;
+  }
+
+  .quick b{
+    display:block;
+    margin-bottom:3px;
+    color:#4b473c;
+  }
+
+  .tip{
+    background:#eeece1;
+    border:1px solid #d9d5c7;
+    border-radius:8px;
+    padding:17px 20px;
+    margin:22px 0;
+  }
+
+  .tip b{
+    display:block;
+    margin-bottom:5px;
+  }
+
+  .final-box{
+    margin-top:38px;
+    background:#ebe8dc;
+    border:1px solid #d5d0c1;
+    border-radius:9px;
+    padding:23px 24px;
+  }
+
+  .final-box h3{
+    margin-top:0;
+  }
+
+  .footer{
+    border-top:1px solid #ddd8ca;
+    margin-top:44px;
+    padding-top:18px;
+    color:#898476;
+    font-size:12px;
+  }
+
+  .backtop{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#5e594c;
+    background:#f8f6ed;
+    border:1px solid #d5d0c2;
+    border-radius:50%;
+    box-shadow:0 3px 12px rgba(60,55,43,.08);
+  }
+
+  @media(max-width:700px){
+    .page{
+      width:calc(100% - 18px);
+      margin:12px auto 40px;
+      border-radius:9px;
+    }
+
+    .article{padding:28px 22px 45px}
+
+    h1{font-size:25px}
+
+    h2{font-size:20px}
+
+    body{font-size:14px}
+
+    .quick-grid{grid-template-columns:1fr}
+
+    .lead,.notice,.summary,.tip,.final-box{
+      padding:15px 16px;
+    }
+  }
+
+  @media print{
+    body{background:white}
+    .page{
+      width:100%;
+      margin:0;
+      border:none;
+      box-shadow:none;
+    }
+    .backtop{display:none}
+  }
+</style>
 </head>
 
 <body id="top">
