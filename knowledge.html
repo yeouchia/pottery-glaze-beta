@@ -22,7 +22,9 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        /* ★ 關鍵修復：加入 width: 100%; 強制大廳佈滿全螢幕 ★ */
         html, body {
+            width: 100%;
             height: 100%;
             font-family: 'Microsoft JhengHei', 'Segoe UI', Roboto, sans-serif;
             color: var(--text-main);
@@ -86,8 +88,9 @@
         .article-item.active { color: var(--primary-bg); background-color: var(--active-bg); font-weight: bold; border-left: 4px solid var(--accent-color); padding-left: 10px;}
 
         /* === 右側主閱讀區 === */
+        /* ★ 加入 width: 100%; 強制閱讀區填滿剩餘的右半邊螢幕 ★ */
         #main-content {
-            flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #ffffff;
+            flex: 1; width: 100%; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #ffffff;
         }
 
         .top-toolbar {
