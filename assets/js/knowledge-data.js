@@ -1,5 +1,5 @@
 // assets/js/knowledge-data.js
-// 陶藝與釉藥知識庫 - 分類樹狀結構
+// 陶藝與釉藥知識庫 - 分類樹狀結構 (終極升級版 - 支援深度錨點)
 
 const knowledgeTree = [
     {
@@ -53,13 +53,84 @@ const knowledgeTree = [
         category: "陶釉講義 (黃老師編著)",
         icon: "fa-book-open-reader",
         articles: [
-            { id: "ch1_history", title: "第一章 陶瓷的歷史和類型", url: "./book/ch1_history.html" },
-            { id: "ch2_basics", title: "第二章 基礎釉藥知識", url: "./book/ch2_glaze_basics.html" },
-            { id: "ch3_mixing", title: "第三章 釉藥調配基礎", url: "./book/ch3_glaze_mixing.html" },
-            { id: "ch4_application", title: "第四章 釉藥施釉技術", url: "./book/ch4_glaze_application.html" },
-            { id: "ch5_making", title: "第五章 陶瓷製作與燒製過程", url: "./book/ch5_pottery_making.html" },
-            { id: "ch6_safety", title: "第六章 陶瓷工作安全與實踐環保", url: "./book/ch6_safety_env.html" },
-            { id: "ch7_aesthetics", title: "第七章 陶瓷的美學和創作", url: "./book/ch7_aesthetics.html" }
+            { 
+                id: "ch1_history", 
+                title: "第一章 陶瓷的歷史和類型", 
+                url: "./book/ch1_history.html",
+                subTopics: [
+                    { id: "ch1-1", title: "第一節 中國和世界陶瓷的歷史簡介" },
+                    { id: "ch1-2", title: "第二節 各種陶瓷類型的探討" },
+                    { id: "ch1-3", title: "第三節 陶瓷作品的時期和風格辨識" },
+                    { id: "ch1-4", title: "第四節 不同文化中的陶瓷藝術" },
+                    { id: "ch1-5", title: "第五節 陶瓷在不同時代和地區的重要性" }
+                ]
+            },
+            { 
+                id: "ch2_basics", 
+                title: "第二章 基礎釉藥知識", 
+                url: "./book/ch2_glaze_basics.html",
+                subTopics: [
+                    { id: "ch2-1", title: "第一節 釉藥的定義和功能" },
+                    { id: "ch2-2", title: "第二節 陶瓷釉藥的常用原料" },
+                    { id: "ch2-3", title: "第三節 釉藥的基本組成三大元素" },
+                    { id: "ch2-4", title: "第四節 釉藥對作品的影響" },
+                    { id: "ch2-5", title: "第五節 各種類型的釉藝方式" }
+                ]
+            },
+            { 
+                id: "ch3_mixing", 
+                title: "第三章 釉藥調配基礎", 
+                url: "./book/ch3_glaze_mixing.html",
+                subTopics: [
+                    { id: "ch3-1", title: "第一節 釉藥配方的基本結構瞭解" },
+                    { id: "ch3-2", title: "第二節 重要材料的掌握" },
+                    { id: "ch3-3", title: "第三節 三角座標法的運用" },
+                    { id: "ch3-4", title: "第四節 賽格爾的計算運用" },
+                    { id: "ch3-5", title: "第五節 三角座標法與賽格爾式" }
+                ]
+            },
+            { 
+                id: "ch4_application", 
+                title: "第四章 釉藥施釉技術", 
+                url: "./book/ch4_glaze_application.html",
+                subTopics: [
+                    { id: "ch4-1", title: "第一節 釉藥施釉方法的介紹" },
+                    { id: "ch4-2", title: "第二節 釉藥彩繪方式的多樣性" },
+                    { id: "ch4-3", title: "第三節 實際操作" }
+                ]
+            },
+            { 
+                id: "ch5_making", 
+                title: "第五章 陶瓷製作與燒製過程", 
+                url: "./book/ch5_pottery_making.html",
+                subTopics: [
+                    { id: "ch5-1", title: "第一節 陶瓷製作工具與設備" },
+                    { id: "ch5-2", title: "第二節 陶瓷成形方式與技法" },
+                    { id: "ch5-3", title: "第三節 釉料施加與彩繪裝飾" },
+                    { id: "ch5-4", title: "第四節 乾燥與燒制" },
+                    { id: "ch5-5", title: "第五節 出窯檢視與回顧" }
+                ]
+            },
+            { 
+                id: "ch6_safety", 
+                title: "第六章 陶瓷工作安全與實踐環保", 
+                url: "./book/ch6_safety_env.html",
+                subTopics: [
+                    { id: "ch6-1", title: "第一節 陶瓷作業的安全性" },
+                    { id: "ch6-2", title: "第二節 可重複性原料再利用" },
+                    { id: "ch6-3", title: "第三節 廢棄物處理和環境友好" },
+                    { id: "ch6-4", title: "第四節 創新的環保技術和研究" }
+                ]
+            },
+            { 
+                id: "ch7_aesthetics", 
+                title: "第七章 陶瓷的美學和創作", 
+                url: "./book/ch7_aesthetics.html",
+                subTopics: [
+                    { id: "ch7-1", title: "第一節 鼓勵創意發揮" },
+                    { id: "ch7-2", title: "第二節 展示和推廣陶瓷作品的討論" }
+                ]
+            }
         ]
     }
 ];
