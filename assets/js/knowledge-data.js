@@ -1,52 +1,56 @@
 // assets/js/knowledge-data.js
-// 陶藝與釉藥知識庫 - 分類樹狀結構 (引入 Tag 標籤系統與新目錄結構)
+// 陶藝與釉藥知識庫 - 分類樹狀結構 (扁平化資料夾 + Tag 標籤系統)
 
 const knowledgeTree = [
     {
         category: "陶藝入門",
         icon: "fa-seedling",
         articles: [
-            { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/materials/buy_clay.html" }
+            { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/buy_clay.html" }
         ]
     },
     {
         category: "成型技法",
         icon: "fa-hands-holding",
         articles: [
-            { id: "centering", title: "教你快速手拉坯定中心", tag: "拉坯成型", url: "./book/forming/throwing/centering.html" }
+            // 目前此資料夾為空，未來新增文章可放在這裡
         ]
     },
     {
         category: "實用技巧",
         icon: "fa-lightbulb",
         articles: [
-            { id: "dry_crack", title: "為什麼作品乾了總會裂開？", tag: "乾燥技巧", url: "./book/skills/drying/dry_crack.html" },
-            { id: "recycle_clay", title: "乾掉的土千萬別丟！教你如何練土", tag: "陶土處理", url: "./book/skills/clay_prep/recycle_clay.html" }
+            { id: "dry_crack", title: "為什麼作品乾了總會裂開？", tag: "乾燥技巧", url: "./book/skills/dry_crack.html" }
         ]
     },
     {
         category: "釉藥基礎",
         icon: "fa-flask",
         articles: [
-            { id: "glaze_nature", title: "何謂釉藥、釉的本質？", tag: "認識釉藥", url: "./book/glaze_basics/about_glaze/what_is_glaze.html" },
-            { id: "glaze_elements", title: "認識釉藥三大元素", tag: "釉藥組成", url: "./book/glaze_basics/composition/glaze_elements.html" },
-            { id: "types_of_glazes", title: "釉的種類？", tag: "釉藥種類", url: "./book/glaze_basics/types/types_of_glazes.html" }
+            { id: "what_is_glaze", title: "何謂釉藥、釉的本質？", tag: "認識釉藥", url: "./book/glaze_basics/what_is_glaze.html" },
+            { id: "glaze_elements", title: "認識釉藥三大元素", tag: "釉藥組成", url: "./book/glaze_basics/glaze_elements.html" },
+            { id: "types_of_glazes", title: "釉的種類？", tag: "釉藥種類", url: "./book/glaze_basics/types_of_glazes.html" },
+            { id: "glass_bonded", title: "玻璃與陶瓷的鍵結", tag: "釉藥特性", url: "./book/glaze_basics/Glass_bonded_ceramics.html" },
+            { id: "glazing_type", title: "施釉技法種類", tag: "上釉方法", url: "./book/glaze_basics/Glazing_type.html" },
+            { id: "overglaze_underglaze", title: "釉上彩與釉下彩", tag: "色釉基礎", url: "./book/glaze_basics/Overglaze_and_underglaze.html" },
+            { id: "reduction_firing_glaze", title: "還原燒的影響", tag: "釉藥特性", url: "./book/glaze_basics/Reduction_firing.html" },
+            { id: "color_of_oxides", title: "金屬氧化物的發色", tag: "色釉基礎", url: "./book/glaze_basics/The_color_of_oxides.html" }
         ]
     },
     {
         category: "窯燒知識",
         icon: "fa-fire-burner",
         articles: [
-            { id: "bisque_glaze", title: "什麼是素燒與釉燒？", tag: "燒成基礎", url: "./book/firing/firing_basics/bisque_glaze.html" },
-            { id: "kiln_atmosphere", title: "氧化與還原的魔術、窯爐氣氛控制", tag: "燒成氣氛", url: "./book/firing/atmosphere/oxidation.html" },
-            { id: "kiln_curve", title: "燒窯溫度曲線設計", tag: "燒成曲線", url: "./book/firing/firing_schedule/kiln_curve.html" }
+            { id: "bisque_glaze", title: "什麼是素燒與釉燒？", tag: "燒成基礎", url: "./book/firing/bisque_glaze.html" },
+            { id: "oxidation", title: "氧化與還原的魔術、窯爐氣氛控制", tag: "燒成氣氛", url: "./book/firing/Oxidation.html" },
+            { id: "kiln_curve", title: "燒窯溫度曲線設計", tag: "燒成曲線", url: "./book/firing/kiln_curve.html" }
         ]
     },
     {
         category: "配方實驗",
         icon: "fa-vial",
         articles: [
-            { id: "triaxial_mystery", title: "釉藥的奧秘~三角座標", tag: "配方分析", url: "./book/experiments/analysis/triaxial_mystery.html" }
+            { id: "triaxial_mystery", title: "釉藥的奧秘~三角座標", tag: "配方分析", url: "./book/experiments/triaxial_mystery.html" }
         ]
     },
     {
@@ -118,7 +122,8 @@ const knowledgeTree = [
                 subTopics: [
                     { id: "ch6-1", title: "第一節 陶瓷作業的安全性" },
                     { id: "ch6-2", title: "第二節 可重複性原料再利用" },
-                    { id: "ch6-3", title: "第三節 廢棄物處理和環境友好" }
+                    { id: "ch6-3", title: "第三節 廢棄物處理和環境友好" },
+                    { id: "ch6-4", title: "第四節 創新的環保技術和研究" }
                 ]
             },
             { 
