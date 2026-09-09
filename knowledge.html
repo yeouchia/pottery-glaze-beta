@@ -98,39 +98,59 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* ★ 智慧四色循環：包含主分類顏色，以及子標題左側縱線條的顏色連動 ★ */
-        
+        /* 智慧四色循環：包含主分類顏色，以及子標題左側縱線條的顏色連動 */
         /* 1. 紅色系 (第 1, 5, 9... 個分類) */
         .category-group:nth-child(4n+1).active-category .category-title { background-color: #fff5f5 !important; border-color: #fc8181 !important; color: #c53030 !important; }
         .category-group:nth-child(4n+1).active-category .category-title i:first-child, .category-group:nth-child(4n+1).active-category .category-title i.toggle-icon { color: #e53e3e !important; animation: icon-shake-pop 0.5s ease-out; }
         .category-group:nth-child(4n+1) .article-item.active { border-left-color: #e53e3e !important; }
+        .category-group:nth-child(4n+1) .sub-topic-item:hover::before { background-color: #e53e3e; }
 
         /* 2. 藍色系 (第 2, 6, 10... 個分類) */
         .category-group:nth-child(4n+2).active-category .category-title { background-color: #ebf8ff !important; border-color: #63b3ed !important; color: #2b6cb0 !important; }
         .category-group:nth-child(4n+2).active-category .category-title i:first-child, .category-group:nth-child(4n+2).active-category .category-title i.toggle-icon { color: #3182ce !important; animation: icon-shake-pop 0.5s ease-out; }
         .category-group:nth-child(4n+2) .article-item.active { border-left-color: #3182ce !important; }
+        .category-group:nth-child(4n+2) .sub-topic-item:hover::before { background-color: #3182ce; }
 
         /* 3. 綠色系 (第 3, 7, 11... 個分類) */
         .category-group:nth-child(4n+3).active-category .category-title { background-color: #f0fff4 !important; border-color: #68d391 !important; color: #2f855a !important; }
         .category-group:nth-child(4n+3).active-category .category-title i:first-child, .category-group:nth-child(4n+3).active-category .category-title i.toggle-icon { color: #38a169 !important; animation: icon-shake-pop 0.5s ease-out; }
         .category-group:nth-child(4n+3) .article-item.active { border-left-color: #38a169 !important; }
+        .category-group:nth-child(4n+3) .sub-topic-item:hover::before { background-color: #38a169; }
 
         /* 4. 紫色系 (第 4, 8, 12... 個分類) */
         .category-group:nth-child(4n+4).active-category .category-title { background-color: #faf5ff !important; border-color: #b794f4 !important; color: #6b46c1 !important; }
         .category-group:nth-child(4n+4).active-category .category-title i:first-child, .category-group:nth-child(4n+4).active-category .category-title i.toggle-icon { color: #805ad5 !important; animation: icon-shake-pop 0.5s ease-out; }
         .category-group:nth-child(4n+4) .article-item.active { border-left-color: #805ad5 !important; }
+        .category-group:nth-child(4n+4) .sub-topic-item:hover::before { background-color: #805ad5; }
 
 
         .article-list { list-style: none; padding-left: 28px; display: none; margin-top: 5px; flex-direction: column; gap: 2px; }
         .category-group.open .article-list { display: flex; }
 
-        /* 基礎子標題樣式 (預設的琥珀金縱線條保留給未分類的例外狀況，確保不出錯) */
+        /* 基礎文章標題樣式 */
         .article-item {
             display: block; padding: 10px 12px; font-size: 0.95rem; color: #334155; font-weight: 500;
             text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; line-height: 1.4;
         }
         .article-item:hover { color: var(--primary-bg); background-color: #f1f5f9; padding-left: 16px; }
         .article-item.active { color: var(--primary-bg); background-color: var(--active-bg); font-weight: bold; border-left: 4px solid var(--accent-color); padding-left: 12px;}
+
+        /* --- ★ 新增：子主題 (錨點) 樣式 --- */
+        .sub-topic-list {
+            list-style: none; padding-left: 16px; margin-top: 4px; margin-bottom: 8px; display: none;
+        }
+        /* 只有當父層文章 active 時才展開子主題 */
+        .article-item-container.has-subs.active-parent .sub-topic-list { display: block; }
+        
+        .sub-topic-item {
+            display: block; padding: 6px 10px 6px 20px; font-size: 0.85rem; color: #64748b;
+            text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; position: relative;
+        }
+        .sub-topic-item::before {
+            content: ""; position: absolute; left: 6px; top: 14px; width: 4px; height: 4px; border-radius: 50%; background-color: #cbd5e1; transition: all 0.2s;
+        }
+        .sub-topic-item:hover { color: #0f172a; background-color: rgba(0,0,0,0.03); }
+        .sub-topic-item:hover::before { transform: scale(1.5); }
 
         /* === 右側主閱讀區 === */
         #main-content {
@@ -189,7 +209,7 @@
     </main>
 
     <script>
-        // --- 1. 動態生成側邊欄目錄 ---
+        // --- 1. 動態生成側邊欄目錄 (加入子主題邏輯) ---
         function renderSidebar() {
             const container = document.getElementById('sidebar-content');
             container.innerHTML = '';
@@ -217,17 +237,48 @@
                 listUl.className = 'article-list';
                 
                 group.articles.forEach(article => {
-                    const itemLi = document.createElement('li');
+                    // 創建一個包裹文章標題與子主題的容器
+                    const itemContainerLi = document.createElement('li');
+                    itemContainerLi.className = 'article-item-container';
+                    if (article.subTopics && article.subTopics.length > 0) {
+                        itemContainerLi.classList.add('has-subs');
+                    }
+
+                    // 創建文章主標題
+                    const itemLi = document.createElement('div');
                     itemLi.className = 'article-item';
                     itemLi.dataset.id = article.id;
                     itemLi.textContent = article.title;
                     
                     itemLi.onclick = (e) => {
                         e.stopPropagation();
-                        loadArticle(article.url, article.id, group.category, article.title);
-                        if(window.innerWidth <= 1000) toggleSidebar(); // 手機版點擊後自動收起側欄
+                        // 點擊主標題時，不帶錨點載入
+                        loadArticle(article.url, article.id, group.category, article.title, null);
+                        if(window.innerWidth <= 1000) toggleSidebar(); 
                     };
-                    listUl.appendChild(itemLi);
+                    itemContainerLi.appendChild(itemLi);
+
+                    // --- ★ 渲染子主題 (錨點) ---
+                    if (article.subTopics && article.subTopics.length > 0) {
+                        const subUl = document.createElement('ul');
+                        subUl.className = 'sub-topic-list';
+                        
+                        article.subTopics.forEach(sub => {
+                            const subLi = document.createElement('li');
+                            subLi.className = 'sub-topic-item';
+                            subLi.textContent = sub.title;
+                            subLi.onclick = (e) => {
+                                e.stopPropagation();
+                                // 點擊子主題時，傳遞錨點 ID 進行載入
+                                loadArticle(article.url, article.id, group.category, article.title, sub.id);
+                                if(window.innerWidth <= 1000) toggleSidebar(); 
+                            };
+                            subUl.appendChild(subLi);
+                        });
+                        itemContainerLi.appendChild(subUl);
+                    }
+
+                    listUl.appendChild(itemContainerLi);
                 });
 
                 groupDiv.appendChild(titleDiv);
@@ -236,28 +287,45 @@
             });
         }
 
-        // --- 2. 載入文章與更新介面狀態 ---
-        function loadArticle(url, id, category, title) {
-            // 切換 iframe 內容
-            document.getElementById('articleFrame').src = url;
+        // --- 2. 載入文章與更新介面狀態 (加入錨點跳轉處理) ---
+        function loadArticle(url, id, category, title, anchorId) {
+            const iframe = document.getElementById('articleFrame');
+            
+            // 判斷是否需要切換 src (如果是同一頁面只是跳轉錨點，就不需要重新整理 iframe)
+            const targetUrl = anchorId ? `${url}#${anchorId}` : url;
+            const currentSrc = iframe.src.split('#')[0];
+            const newSrc = new URL(url, window.location.href).href;
+
+            if (currentSrc !== newSrc) {
+                // 如果是不同頁面，先載入新頁面
+                iframe.src = targetUrl;
+            } else if (anchorId) {
+                // 如果是同頁面且有錨點，讓 iframe 內部的內容自動滾動到錨點位置
+                iframe.contentWindow.location.replace(targetUrl);
+            }
             
             // 更新上方麵包屑路徑
             document.getElementById('current-path').innerHTML = `<span style="color: var(--accent-color);">${category}</span> <i class="fa-solid fa-angle-right" style="margin: 0 8px; font-size: 0.8em;"></i> ${title}`;
 
-            // ★ 清除所有文章與主分類的 Active 狀態 ★
+            // ★ 清除所有 Active 狀態 ★
             document.querySelectorAll('.article-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.article-item-container').forEach(el => el.classList.remove('active-parent'));
             document.querySelectorAll('.category-group').forEach(group => group.classList.remove('active-category'));
 
-            // ★ 找到當前點擊的文章並加上標示，同時向上尋找父層群組標示主標題 ★
+            // ★ 找到當前點擊的文章並加上標示，同時展開子主題，並向上尋找父層群組標示主標題 ★
             const activeItem = document.querySelector(`.article-item[data-id="${id}"]`);
             if(activeItem) {
                 activeItem.classList.add('active');
                 
+                // 為包裹容器加上 class，用來展開下方的子主題列表
+                const itemContainer = activeItem.closest('.article-item-container');
+                if(itemContainer) itemContainer.classList.add('active-parent');
+
                 // 向上尋找最接近的 .category-group，加上高亮 class
                 const parentGroup = activeItem.closest('.category-group');
                 if(parentGroup) {
                     parentGroup.classList.add('active-category');
-                    parentGroup.classList.add('open'); // 確保它同時是展開狀態
+                    parentGroup.classList.add('open'); 
                 }
             }
         }
@@ -271,13 +339,13 @@
                 // 如果有帶參數，尋找對應文章並載入
                 const articleData = findArticleById(targetId);
                 if (articleData) {
-                    loadArticle(articleData.url, articleData.id, articleData.category, articleData.title);
+                    loadArticle(articleData.url, articleData.id, articleData.category, articleData.title, null);
                     return;
                 }
             }
             // 如果沒帶參數或找不到，預設載入第一篇文章
             const firstArticle = knowledgeTree[0].articles[0];
-            loadArticle(firstArticle.url, firstArticle.id, knowledgeTree[0].category, firstArticle.title);
+            loadArticle(firstArticle.url, firstArticle.id, knowledgeTree[0].category, firstArticle.title, null);
         }
 
         // --- 4. 側邊欄開關控制 ---
