@@ -5,7 +5,7 @@ const knowledgeTree = [
     {
         category: "陶藝入門",
         icon: "fa-seedling",
-      articles: [
+     articles: [
             { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/buy_clay.html" },
             { id: "what_is_ceramics", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/what_is_ceramics.html" },
             { id: "what_is_pottery", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/what_is_pottery.html" },
