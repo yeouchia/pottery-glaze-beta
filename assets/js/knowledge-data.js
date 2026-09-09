@@ -6,12 +6,11 @@ const knowledgeTree = [
         category: "陶藝入門",
         icon: "fa-seedling",
         articles: [
-            { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/buy_clay.html" },
-            { id: "intro-4", title: "陶藝是什麼？探索陶的起源與特性", tag: "陶土與材料", url: "./book/intro/intro-4.html" },
-
-            { id: "what_is_ceramics", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/what_is_ceramics.html" },
-            { id: "what_is_pottery", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/what_is_pottery.html" },
-            { id: "what_is_the_difference_between_pottery_and_ceramics", title: "陶藝與陶瓷有什麼不同？", tag: "認識陶藝", url: "./book/intro/what_is_the_difference_between_pottery_and_ceramics.html" }
+            { id: "intro-1", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/intro-1.html" },
+            { id: "intro-2", title: "陶藝是什麼？探索陶的起源與特性", tag: "陶土與材料", url: "./book/intro/intro-2.html" },
+            { id: "intro-3", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/intro-3.html" },
+            { id: "intro-4", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/intro-4.html" },
+            { id: "intro-5", title: "陶藝與陶瓷有什麼不同？", tag: "認識陶藝", url: "./book/intro/inrto-5.html" }
         ]
     },
     {
