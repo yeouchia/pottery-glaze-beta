@@ -6,9 +6,9 @@ const knowledgeTree = [
         category: "陶藝入門",
         icon: "fa-seedling",
         articles: [
-            { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/buy_clay.html" }
-             { id: "What_is_ceramics", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/What_is_ceramics.html" }
-   { id: "What_is_pottery", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/What_is_pottery.html" }
+            { id: "buy_clay", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/buy_clay.html" },
+             { id: "What_is_ceramics", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/What_is_ceramics.html" },
+   { id: "What_is_pottery", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/What_is_pottery.html" },
    { id: "What_is_the_difference_between_pottery_and_ceramics", title: "陶藝與陶瓷有什麼不同？", tag: "認識陶藝", url: "./book/intro/What_is_the_difference_between_pottery_and_ceramics.html" }
         ]
     },
