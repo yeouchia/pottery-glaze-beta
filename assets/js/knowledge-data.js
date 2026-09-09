@@ -118,8 +118,7 @@ const knowledgeTree = [
                 subTopics: [
                     { id: "ch6-1", title: "第一節 陶瓷作業的安全性" },
                     { id: "ch6-2", title: "第二節 可重複性原料再利用" },
-                    { id: "ch6-3", title: "第三節 廢棄物處理和環境友好" },
-                    { id: "ch6-4", title: "第四節 創新的環保技術和研究" }
+                    { id: "ch6-3", title: "第三節 廢棄物處理和環境友好" }
                 ]
             },
             { 
