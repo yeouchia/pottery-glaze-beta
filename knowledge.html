@@ -6,7 +6,7 @@
     <title>陶藝知識庫 - 陶藝與釉藥調配</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- 引入知識庫大腦 (分類資料) -->
+    <!-- 引入知識庫大腦 (分類與標籤資料) -->
     <script src="./assets/js/knowledge-data.js"></script>
 
     <style>
@@ -34,7 +34,7 @@
 
         /* === 左側動態目錄側邊欄 === */
         #sidebar {
-            width: 320px;
+            width: 330px;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -44,7 +44,7 @@
             z-index: 10;
         }
 
-        #sidebar.collapsed { margin-left: -320px; }
+        #sidebar.collapsed { margin-left: -330px; }
 
         .sidebar-header {
             padding: 18px 20px;
@@ -66,68 +66,47 @@
         /* 手風琴目錄樣式 */
         .category-group { margin-bottom: 8px; }
         .category-title {
-            font-weight: bold; font-size: 0.95rem; padding: 12px; border-radius: 6px;
+            font-weight: bold; font-size: 1rem; padding: 12px; border-radius: 6px;
             color: var(--primary-bg); background-color: transparent; display: flex; 
             align-items: center; gap: 10px; cursor: pointer; transition: background 0.2s;
             border: 1px solid transparent;
         }
         
-        /* 滑鼠懸停時的底色與 Icon 變色提示 */
         .category-title:hover { background-color: var(--active-bg); }
         .category-title:hover i:first-child { color: var(--accent-color); }
-        
-        /* 預設狀態下，所有主標題的 Icon 都是耀眼的琥珀金 */
-        .category-title i:first-child { 
-            color: var(--accent-color); 
-            font-size: 1.15em; 
-            width: 24px; 
-            text-align: center; 
-            transition: all 0.3s ease;
-        }
-        
+        .category-title i:first-child { color: var(--accent-color); font-size: 1.15em; width: 24px; text-align: center; transition: all 0.3s ease; }
         .category-title i.toggle-icon { margin-left: auto; font-size: 0.8rem; transition: transform 0.3s; color: var(--text-muted); }
         .category-group.open .category-title { background-color: #edf2f7; border-color: #cbd5e1; }
         .category-group.open .category-title i.toggle-icon { transform: rotate(180deg); }
 
-        /* 定義 Icon 點擊時的「放大抖動」微動畫 */
-        @keyframes icon-shake-pop {
-            0% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.3) rotate(-15deg); }
-            50% { transform: scale(1.3) rotate(15deg); }
-            75% { transform: scale(1.3) rotate(-15deg); }
-            100% { transform: scale(1) rotate(0deg); }
+        /* === ★ 標籤過濾器 (Tag Filter) 樣式 ★ === */
+        .tag-filter-container {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            padding: 10px 12px 6px 36px;
+            display: none; /* 預設隱藏，展開時顯示 */
+        }
+        .category-group.open .tag-filter-container { display: flex; }
+        
+        .tag-btn {
+            background-color: #e2e8f0; color: #475569;
+            border: 1px solid transparent; border-radius: 12px;
+            padding: 4px 10px; font-size: 0.8rem; cursor: pointer;
+            transition: all 0.2s ease; font-weight: 500;
+        }
+        .tag-btn:hover { background-color: #cbd5e1; color: #1e293b; }
+        .tag-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(252, 163, 17, 0.3);
+            border-color: #e5930f;
         }
 
-        /* 智慧四色循環：包含主分類顏色，以及子標題左側縱線條的顏色連動 */
-        /* 1. 紅色系 (第 1, 5, 9... 個分類) */
-        .category-group:nth-child(4n+1).active-category .category-title { background-color: #fff5f5 !important; border-color: #fc8181 !important; color: #c53030 !important; }
-        .category-group:nth-child(4n+1).active-category .category-title i:first-child, .category-group:nth-child(4n+1).active-category .category-title i.toggle-icon { color: #e53e3e !important; animation: icon-shake-pop 0.5s ease-out; }
-        .category-group:nth-child(4n+1) .article-item.active { border-left-color: #e53e3e !important; }
-        .category-group:nth-child(4n+1) .sub-topic-item:hover::before { background-color: #e53e3e; }
-
-        /* 2. 藍色系 (第 2, 6, 10... 個分類) */
-        .category-group:nth-child(4n+2).active-category .category-title { background-color: #ebf8ff !important; border-color: #63b3ed !important; color: #2b6cb0 !important; }
-        .category-group:nth-child(4n+2).active-category .category-title i:first-child, .category-group:nth-child(4n+2).active-category .category-title i.toggle-icon { color: #3182ce !important; animation: icon-shake-pop 0.5s ease-out; }
-        .category-group:nth-child(4n+2) .article-item.active { border-left-color: #3182ce !important; }
-        .category-group:nth-child(4n+2) .sub-topic-item:hover::before { background-color: #3182ce; }
-
-        /* 3. 綠色系 (第 3, 7, 11... 個分類) */
-        .category-group:nth-child(4n+3).active-category .category-title { background-color: #f0fff4 !important; border-color: #68d391 !important; color: #2f855a !important; }
-        .category-group:nth-child(4n+3).active-category .category-title i:first-child, .category-group:nth-child(4n+3).active-category .category-title i.toggle-icon { color: #38a169 !important; animation: icon-shake-pop 0.5s ease-out; }
-        .category-group:nth-child(4n+3) .article-item.active { border-left-color: #38a169 !important; }
-        .category-group:nth-child(4n+3) .sub-topic-item:hover::before { background-color: #38a169; }
-
-        /* 4. 紫色系 (第 4, 8, 12... 個分類) */
-        .category-group:nth-child(4n+4).active-category .category-title { background-color: #faf5ff !important; border-color: #b794f4 !important; color: #6b46c1 !important; }
-        .category-group:nth-child(4n+4).active-category .category-title i:first-child, .category-group:nth-child(4n+4).active-category .category-title i.toggle-icon { color: #805ad5 !important; animation: icon-shake-pop 0.5s ease-out; }
-        .category-group:nth-child(4n+4) .article-item.active { border-left-color: #805ad5 !important; }
-        .category-group:nth-child(4n+4) .sub-topic-item:hover::before { background-color: #805ad5; }
-
-
+        /* 文章清單樣式 */
         .article-list { list-style: none; padding-left: 28px; display: none; margin-top: 5px; flex-direction: column; gap: 2px; }
         .category-group.open .article-list { display: flex; }
 
-        /* 基礎文章標題樣式 */
+        .article-item-container { display: block; }
+        
         .article-item {
             display: block; padding: 10px 12px; font-size: 0.95rem; color: #334155; font-weight: 500;
             text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; line-height: 1.4;
@@ -135,27 +114,20 @@
         .article-item:hover { color: var(--primary-bg); background-color: #f1f5f9; padding-left: 16px; }
         .article-item.active { color: var(--primary-bg); background-color: var(--active-bg); font-weight: bold; border-left: 4px solid var(--accent-color); padding-left: 12px;}
 
-        /* --- ★ 新增：子主題 (錨點) 樣式 --- */
-        .sub-topic-list {
-            list-style: none; padding-left: 16px; margin-top: 4px; margin-bottom: 8px; display: none;
-        }
-        /* 只有當父層文章 active 時才展開子主題 */
+        /* 子主題 (錨點) 樣式 */
+        .sub-topic-list { list-style: none; padding-left: 16px; margin-top: 4px; margin-bottom: 8px; display: none; }
         .article-item-container.has-subs.active-parent .sub-topic-list { display: block; }
         
         .sub-topic-item {
             display: block; padding: 6px 10px 6px 20px; font-size: 0.85rem; color: #64748b;
             text-decoration: none; border-radius: 4px; transition: all 0.2s; cursor: pointer; position: relative;
         }
-        .sub-topic-item::before {
-            content: ""; position: absolute; left: 6px; top: 14px; width: 4px; height: 4px; border-radius: 50%; background-color: #cbd5e1; transition: all 0.2s;
-        }
+        .sub-topic-item::before { content: ""; position: absolute; left: 6px; top: 14px; width: 4px; height: 4px; border-radius: 50%; background-color: #cbd5e1; transition: all 0.2s; }
         .sub-topic-item:hover { color: #0f172a; background-color: rgba(0,0,0,0.03); }
-        .sub-topic-item:hover::before { transform: scale(1.5); }
+        .sub-topic-item:hover::before { transform: scale(1.5); background-color: var(--accent-color); }
 
         /* === 右側主閱讀區 === */
-        #main-content {
-            flex: 1; width: 100%; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #ffffff;
-        }
+        #main-content { flex: 1; width: 100%; display: flex; flex-direction: column; height: 100vh; overflow: hidden; background-color: #ffffff; }
 
         .top-toolbar {
             height: 52px; border-bottom: 1px solid var(--border-color); display: flex;
@@ -170,10 +142,8 @@
         .toggle-btn:hover { background: var(--primary-bg); color: #ffffff; }
         .current-path { margin-left: 15px; font-size: 0.9rem; color: var(--text-muted); font-weight: bold; }
 
-        /* iframe 容器 */
         .reader-body { flex: 1; width: 100%; border: none; background-color: #fff; }
 
-        /* 手機版 RWD */
         @media (max-width: 1000px) {
             #sidebar { position: absolute; height: 100%; width: 85vw; max-width: 350px; box-shadow: 4px 0 25px rgba(0,0,0,0.2); }
             #sidebar.collapsed { margin-left: -100%; }
@@ -184,18 +154,16 @@
 </head>
 <body>
 
-    <!-- 左側動態目錄側邊欄 -->
     <aside id="sidebar" class="collapsed">
         <div class="sidebar-header">
             <h3><i class="fa-solid fa-book-journal-whills" style="color: var(--accent-color);"></i> 陶藝知識庫</h3>
             <button class="close-sidebar-mobile" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="sidebar-content" id="sidebar-content">
-            <!-- 這裡的選單會由 JavaScript 自動生成 -->
+            <!-- JavaScript 會在這裡動態生成 目錄與標籤 -->
         </div>
     </aside>
 
-    <!-- 右側主要閱讀區 -->
     <main id="main-content">
         <div class="top-toolbar">
             <button class="toggle-btn" onclick="toggleSidebar()">
@@ -203,48 +171,71 @@
             </button>
             <div class="current-path" id="current-path">請從左側選擇文章</div>
         </div>
-
-        <!-- 嵌入文章的 iframe -->
         <iframe id="articleFrame" class="reader-body" src=""></iframe>
     </main>
 
     <script>
-        // --- 1. 動態生成側邊欄目錄 (加入子主題邏輯) ---
+        // --- 1. 動態生成側邊欄目錄與標籤過濾系統 ---
         function renderSidebar() {
             const container = document.getElementById('sidebar-content');
             container.innerHTML = '';
 
-            knowledgeTree.forEach((group, index) => {
+            knowledgeTree.forEach((group) => {
                 const groupDiv = document.createElement('div');
                 groupDiv.className = 'category-group';
 
-                // 建立分類標題
+                // 建立分類大標題
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'category-title';
                 titleDiv.innerHTML = `<i class="fa-solid ${group.icon}"></i> ${group.category} <i class="fa-solid fa-chevron-down toggle-icon"></i>`;
                 
                 titleDiv.onclick = () => {
-                    // 先移除所有群組的高亮
-                    document.querySelectorAll('.category-group').forEach(g => g.classList.remove('active-category'));
-                    // 為當前點擊的群組加上高亮
-                    groupDiv.classList.add('active-category');
-                    // 展開或收合子選單
+                    document.querySelectorAll('.category-group').forEach(g => {
+                        if(g !== groupDiv) g.classList.remove('open');
+                    });
                     groupDiv.classList.toggle('open');
                 };
 
-                // 建立文章清單
+                // 建立文章清單 <ul>
                 const listUl = document.createElement('ul');
                 listUl.className = 'article-list';
                 
+                // ★ 擷取這個分類下所有獨特的 Tag (自動過濾掉沒有 Tag 的)
+                const uniqueTags = [...new Set(group.articles.map(a => a.tag).filter(Boolean))];
+                
+                // ★ 如果有 Tag，就生成一排漂亮的膠囊標籤按鈕
+                if (uniqueTags.length > 0) {
+                    const tagContainer = document.createElement('div');
+                    tagContainer.className = 'tag-filter-container';
+                    
+                    // 永遠會有一顆「全部」的按鈕
+                    const allBtn = document.createElement('button');
+                    allBtn.className = 'tag-btn active';
+                    allBtn.textContent = '全部';
+                    allBtn.onclick = (e) => filterArticles(e, listUl, '全部');
+                    tagContainer.appendChild(allBtn);
+                    
+                    // 根據讀取到的 Tag 生成按鈕
+                    uniqueTags.forEach(tag => {
+                        const tagBtn = document.createElement('button');
+                        tagBtn.className = 'tag-btn';
+                        tagBtn.textContent = tag;
+                        tagBtn.onclick = (e) => filterArticles(e, listUl, tag);
+                        tagContainer.appendChild(tagBtn);
+                    });
+                    groupDiv.appendChild(tagContainer);
+                }
+
+                // 生成文章項目
                 group.articles.forEach(article => {
-                    // 創建一個包裹文章標題與子主題的容器
                     const itemContainerLi = document.createElement('li');
                     itemContainerLi.className = 'article-item-container';
+                    itemContainerLi.dataset.tag = article.tag || '未分類'; // 綁定標籤資料供過濾使用
+                    
                     if (article.subTopics && article.subTopics.length > 0) {
                         itemContainerLi.classList.add('has-subs');
                     }
 
-                    // 創建文章主標題
                     const itemLi = document.createElement('div');
                     itemLi.className = 'article-item';
                     itemLi.dataset.id = article.id;
@@ -252,24 +243,21 @@
                     
                     itemLi.onclick = (e) => {
                         e.stopPropagation();
-                        // 點擊主標題時，不帶錨點載入
                         loadArticle(article.url, article.id, group.category, article.title, null);
                         if(window.innerWidth <= 1000) toggleSidebar(); 
                     };
                     itemContainerLi.appendChild(itemLi);
 
-                    // --- ★ 渲染子主題 (錨點) ---
+                    // 渲染子主題 (錨點)
                     if (article.subTopics && article.subTopics.length > 0) {
                         const subUl = document.createElement('ul');
                         subUl.className = 'sub-topic-list';
-                        
                         article.subTopics.forEach(sub => {
                             const subLi = document.createElement('li');
                             subLi.className = 'sub-topic-item';
                             subLi.textContent = sub.title;
                             subLi.onclick = (e) => {
                                 e.stopPropagation();
-                                // 點擊子主題時，傳遞錨點 ID 進行載入
                                 loadArticle(article.url, article.id, group.category, article.title, sub.id);
                                 if(window.innerWidth <= 1000) toggleSidebar(); 
                             };
@@ -277,7 +265,6 @@
                         });
                         itemContainerLi.appendChild(subUl);
                     }
-
                     listUl.appendChild(itemContainerLi);
                 });
 
@@ -287,68 +274,75 @@
             });
         }
 
-        // --- 2. 載入文章與更新介面狀態 (加入錨點跳轉處理) ---
+        // --- 2. 標籤過濾邏輯 ---
+        function filterArticles(event, listUl, selectedTag) {
+            event.stopPropagation();
+            
+            // 變更按鈕外觀狀態
+            const tagContainer = event.target.parentElement;
+            tagContainer.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 隱藏/顯示文章項目
+            const items = listUl.querySelectorAll('.article-item-container');
+            items.forEach(item => {
+                const itemTag = item.dataset.tag;
+                if (selectedTag === '全部' || itemTag === selectedTag) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 3. 載入文章與更新介面狀態 ---
         function loadArticle(url, id, category, title, anchorId) {
             const iframe = document.getElementById('articleFrame');
-            
-            // 判斷是否需要切換 src (如果是同一頁面只是跳轉錨點，就不需要重新整理 iframe)
             const targetUrl = anchorId ? `${url}#${anchorId}` : url;
             const currentSrc = iframe.src.split('#')[0];
             const newSrc = new URL(url, window.location.href).href;
 
             if (currentSrc !== newSrc) {
-                // 如果是不同頁面，先載入新頁面
                 iframe.src = targetUrl;
             } else if (anchorId) {
-                // 如果是同頁面且有錨點，讓 iframe 內部的內容自動滾動到錨點位置
                 iframe.contentWindow.location.replace(targetUrl);
             }
             
-            // 更新上方麵包屑路徑
             document.getElementById('current-path').innerHTML = `<span style="color: var(--accent-color);">${category}</span> <i class="fa-solid fa-angle-right" style="margin: 0 8px; font-size: 0.8em;"></i> ${title}`;
 
-            // ★ 清除所有 Active 狀態 ★
+            // 清除之前的 Active 狀態
             document.querySelectorAll('.article-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.article-item-container').forEach(el => el.classList.remove('active-parent'));
-            document.querySelectorAll('.category-group').forEach(group => group.classList.remove('active-category'));
 
-            // ★ 找到當前點擊的文章並加上標示，同時展開子主題，並向上尋找父層群組標示主標題 ★
+            // 標示當前文章
             const activeItem = document.querySelector(`.article-item[data-id="${id}"]`);
             if(activeItem) {
                 activeItem.classList.add('active');
-                
-                // 為包裹容器加上 class，用來展開下方的子主題列表
                 const itemContainer = activeItem.closest('.article-item-container');
                 if(itemContainer) itemContainer.classList.add('active-parent');
-
-                // 向上尋找最接近的 .category-group，加上高亮 class
+                
                 const parentGroup = activeItem.closest('.category-group');
-                if(parentGroup) {
-                    parentGroup.classList.add('active-category');
-                    parentGroup.classList.add('open'); 
-                }
+                if(parentGroup) parentGroup.classList.add('open'); 
             }
         }
 
-        // --- 3. 處理網址參數 (深度連結 Deep Linking) ---
+        // --- 4. 處理網址參數 ---
         function handleUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetId = urlParams.get('article');
 
             if (targetId) {
-                // 如果有帶參數，尋找對應文章並載入
                 const articleData = findArticleById(targetId);
                 if (articleData) {
                     loadArticle(articleData.url, articleData.id, articleData.category, articleData.title, null);
                     return;
                 }
             }
-            // 如果沒帶參數或找不到，預設載入第一篇文章
             const firstArticle = knowledgeTree[0].articles[0];
-            loadArticle(firstArticle.url, firstArticle.id, knowledgeTree[0].category, firstArticle.title, null);
+            if(firstArticle) loadArticle(firstArticle.url, firstArticle.id, knowledgeTree[0].category, firstArticle.title, null);
         }
 
-        // --- 4. 側邊欄開關控制 ---
+        // --- 5. 側邊欄開關 ---
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const toggleText = document.getElementById('toggleText');
@@ -356,11 +350,9 @@
             toggleText.textContent = sidebar.classList.contains('collapsed') ? '開啟目錄' : '關閉目錄';
         }
 
-        // --- 啟動初始化 ---
         window.addEventListener('DOMContentLoaded', () => {
             renderSidebar();
             handleUrlParams();
-            // 電腦版預設打開側欄
             if(window.innerWidth > 1000) {
                 document.getElementById('sidebar').classList.remove('collapsed');
                 document.getElementById('toggleText').textContent = '關閉目錄';
