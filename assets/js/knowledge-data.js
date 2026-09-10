@@ -45,10 +45,10 @@ const knowledgeTree = [
         category: "窯燒知識",
         icon: "fa-fire-burner",
         articles: [
+            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" },
             { id: "firing-2", title: "什麼是素燒與釉燒？", url: "./book/firing/firing-2.html" },
             { id: "firing-3", title: "燒成技術~氧化燒", url: "./book/firing/firing-3.html" },
-            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" },
-             { id: "firing-4", title: "燒成技術~還原燒", tag: "窯燒知識",url: "./book/firing/firing-4.html" }
+            { id: "firing-4", title: "燒成技術~還原燒", tag: "窯燒知識",url: "./book/firing/firing-4.html" }
         ]
     },
     {
