@@ -32,9 +32,9 @@ const knowledgeTree = [
         category: "釉藥基礎",
         icon: "fa-flask",
         articles: [
-            { id: "glaze_basic-1", title: "何謂釉藥、釉的本質？", url: "./book/glaze_basic/glaze_basic-1.html" },
-            { id: "glaze_basic-2", title: "認識釉藥三大元素", url: "./book/glaze_basic/glaze_basic-2.html" },
-            { id: "glaze_basic-1-3", title: "釉的種類？", url: "./book/glaze_basic/glaze_basic-1-3.html" }
+            { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", url: "./book/glaze_basics/glaze_basics-1.html" },
+            { id: "glaze_basics-2", title: "認識釉藥三大元素", url: "./book/glaze_basics/glaze_basics-2.html" },
+            { id: "glaze_basics-1-3", title: "釉的種類？", url: "./book/glaze_basics/glaze_basics-1-3.html" }
         ]
     },
     {
