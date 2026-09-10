@@ -47,7 +47,8 @@ const knowledgeTree = [
         articles: [
             { id: "firing-2", title: "什麼是素燒與釉燒？", url: "./book/firing/firing-2.html" },
             { id: "firing-3", title: "氧化與還原的魔術、窯爐氣氛控制", url: "./book/firing/firing-3.html" },
-            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" }
+            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" },
+             { id: "firing-4", title: "燒成技術~還原燒", url: "./book/firing/firing-4.html" }
         ]
     },
     {
