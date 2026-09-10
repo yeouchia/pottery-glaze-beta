@@ -7,25 +7,25 @@ const knowledgeTree = [
         icon: "fa-seedling",
         articles: [
             { id: "intro-1", title: "陶土與瓷土怎麼選？新手買泥全指南", tag: "陶土與材料", url: "./book/intro/intro-1.html" },
-            { id: "intro-2", title: "陶藝是什麼？探索陶的起源與特性", tag: "陶土與材料", url: "./book/intro/intro-2.html" },
+            { id: "intro-2", title: "陶藝是什麼？探索陶的起源與特性", tag: "認識陶藝", url: "./book/intro/intro-2.html" },
             { id: "intro-3", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/intro-3.html" },
             { id: "intro-4", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/intro-4.html" },
-            { id: "intro-5", title: "陶藝與陶瓷有什麼不同？", tag: "認識陶藝", url: "./book/intro/inrto-5.html" }
+            { id: "intro-5", title: "陶藝與陶瓷有什麼不同？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-5.html" }
         ]
     },
     {
         category: "成型技法",
         icon: "fa-hands-holding",
         articles: [
-            { id: "centering", title: "教你快速手拉坯定中心", url: "./book/centering.html" }
+            { id: "shaping-1", title: "教你快速手拉坯定中心", tag: "拉坯成型", url: "./book/shaping/shaping-1.html" }
         ]
     },
     {
         category: "實用技巧",
         icon: "fa-lightbulb",
         articles: [
-            { id: "dry_crack", title: "為什麼作品乾了總會裂開？", url: "./book/dry_crack.html" },
-            { id: "recycle_clay", title: "乾掉的土千萬別丟！教你如何練土", url: "./book/recycle_clay.html" }
+            { id: "skills-1", title: "為什麼作品乾了總會裂開？", tag: "乾燥技巧", url: "./book/skills/skills-1.html" },
+            { id: "skills-2", title: "乾掉的土千萬別丟！教你如何練土", tag: "陶土處理", url: "./book/skills/skills-2.html" }
         ]
     },
     {
@@ -33,29 +33,29 @@ const knowledgeTree = [
         icon: "fa-flask",
         articles: [
             { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-1.html" },
-            { id: "glaze_basics-2", title: "認識釉藥三大元素", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-2.html" },
-            { id: "glaze_basics-3", title: "釉的種類？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-3.html" },
-            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-4.html" },
-            { id: "glaze_basics-5", title: "上釉有那些方式？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-5.html" },
-            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-6.html" },
-            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-7.html" }
+            { id: "glaze_basics-2", title: "認識釉藥三大元素", tag: "釉藥組成", url: "./book/glaze_basics/glaze_basics-2.html" },
+            { id: "glaze_basics-3", title: "釉的種類？", tag: "釉藥種類", url: "./book/glaze_basics/glaze_basics-3.html" },
+            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", tag: "釉藥組成", url: "./book/glaze_basics/glaze_basics-4.html" },
+            { id: "glaze_basics-5", title: "上釉有那些方式？", tag: "上釉方法", url: "./book/glaze_basics/glaze_basics-5.html" },
+            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", tag: "色釉基礎", url: "./book/glaze_basics/glaze_basics-6.html" },
+            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", tag: "色釉基礎", url: "./book/glaze_basics/glaze_basics-7.html" }
         ]
     },
     {
         category: "窯燒知識",
         icon: "fa-fire-burner",
         articles: [
-            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" },
-            { id: "firing-2", title: "什麼是素燒與釉燒？", url: "./book/firing/firing-2.html" },
-            { id: "firing-3", title: "燒成技術~氧化燒", url: "./book/firing/firing-3.html" },
-            { id: "firing-4", title: "燒成技術~還原燒", tag: "窯燒知識",url: "./book/firing/firing-4.html" }
+            { id: "firing-1", title: "燒窯溫度曲線設計", tag: "燒成曲線", url: "./book/firing/firing-1.html" },
+            { id: "firing-2", title: "什麼是素燒與釉燒？", tag: "燒成基礎", url: "./book/firing/firing-2.html" },
+            { id: "firing-3", title: "燒成技術~氧化燒", tag: "燒成氣氛", url: "./book/firing/firing-3.html" },
+            { id: "firing-4", title: "燒成技術~還原燒", tag: "燒成氣氛", url: "./book/firing/firing-4.html" }
         ]
     },
     {
         category: "配方實驗",
         icon: "fa-vial",
         articles: [
-            { id: "experiments-1", title: "釉藥的奧秘~三角座標", url: "./book/experiments/experiments-1.html" }
+            { id: "experiments-1", title: "釉藥的奧秘~三角座標", tag: "配方分析", url: "./book/experiments/experiments-1.html" }
         ]
     },
     {
