@@ -50,7 +50,7 @@ const knowledgeTree = [
         category: "配方實驗",
         icon: "fa-vial",
         articles: [
-            { id: "triaxial_mystery", title: "釉藥的奧秘~三角座標", url: "./book/triaxial_mystery.html" }
+            { id: "experiments-1", title: "釉藥的奧秘~三角座標", url: "./book/experiments/experiments-1.html" }
         ]
     },
     {
