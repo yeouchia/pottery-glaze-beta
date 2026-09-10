@@ -32,13 +32,13 @@ const knowledgeTree = [
         category: "釉藥基礎",
         icon: "fa-flask",
         articles: [
-            { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", url: "./book/glaze_basics/glaze_basics-1.html" },
-            { id: "glaze_basics-2", title: "認識釉藥三大元素", url: "./book/glaze_basics/glaze_basics-2.html" },
-            { id: "glaze_basics-3", title: "釉的種類？", url: "./book/glaze_basics/glaze_basics-3.html" },
-            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", url: "./book/glaze_basics/glaze_basics-4.html" },
-            { id: "glaze_basics-5", title: "上釉有那些方式？", url: "./book/glaze_basics/glaze_basics-5.html" },
-            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", url: "./book/glaze_basics/glaze_basics-6.html" },
-            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", url: "./book/glaze_basics/glaze_basics-7.html" }
+            { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-1.html" },
+            { id: "glaze_basics-2", title: "認識釉藥三大元素", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-2.html" },
+            { id: "glaze_basics-3", title: "釉的種類？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-3.html" },
+            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-4.html" },
+            { id: "glaze_basics-5", title: "上釉有那些方式？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-5.html" },
+            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-6.html" },
+            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-7.html" }
         ]
     },
     {
