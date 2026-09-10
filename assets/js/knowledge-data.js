@@ -41,9 +41,9 @@ const knowledgeTree = [
         category: "窯燒知識",
         icon: "fa-fire-burner",
         articles: [
-            { id: "bisque_glaze", title: "什麼是素燒與釉燒？", url: "./book/bisque_glaze.html" },
-            { id: "kiln_atmosphere", title: "氧化與還原的魔術、窯爐氣氛控制", url: "./book/Oxidation.html" },
-            { id: "kiln_curve", title: "燒窯溫度曲線設計", url: "./book/Kiln temperature curve design.html" }
+            { id: "firing-2", title: "什麼是素燒與釉燒？", url: "./book/firing/firing-2.html" },
+            { id: "firing-3", title: "氧化與還原的魔術、窯爐氣氛控制", url: "./book/firing/firing-3.html" },
+            { id: "firing-1", title: "燒窯溫度曲線設計", url: "./book/firing/firing-1.html" }
         ]
     },
     {
