@@ -60,7 +60,7 @@ const knowledgeTree = [
             { 
                 id: "ch1_history", 
                 title: "第一章 陶瓷的歷史和類型", 
-                url: "./book/ch1_history.html",
+                url: "./book/lecture/ch1_history.html",
                 subTopics: [
                     { id: "ch1-1", title: "第一節 中國和世界陶瓷的歷史簡介" },
                     { id: "ch1-2", title: "第二節 各種陶瓷類型的探討" },
@@ -72,7 +72,7 @@ const knowledgeTree = [
             { 
                 id: "ch2_basics", 
                 title: "第二章 基礎釉藥知識", 
-                url: "./book/ch2_glaze_basics.html",
+                url: "./book/lecture/ch2_glaze_basics.html",
                 subTopics: [
                     { id: "ch2-1", title: "第一節 釉藥的定義和功能" },
                     { id: "ch2-2", title: "第二節 陶瓷釉藥的常用原料" },
@@ -84,7 +84,7 @@ const knowledgeTree = [
             { 
                 id: "ch3_mixing", 
                 title: "第三章 釉藥調配基礎", 
-                url: "./book/ch3_glaze_mixing.html",
+                url: "./book/lecture/ch3_glaze_mixing.html",
                 subTopics: [
                     { id: "ch3-1", title: "第一節 釉藥配方的基本結構瞭解" },
                     { id: "ch3-2", title: "第二節 重要材料的掌握" },
@@ -96,7 +96,7 @@ const knowledgeTree = [
             { 
                 id: "ch4_application", 
                 title: "第四章 釉藥施釉技術", 
-                url: "./book/ch4_glaze_application.html",
+                url: "./book/lecture/ch4_glaze_application.html",
                 subTopics: [
                     { id: "ch4-1", title: "第一節 釉藥施釉方法的介紹" },
                     { id: "ch4-2", title: "第二節 釉藥彩繪方式的多樣性" },
@@ -106,7 +106,7 @@ const knowledgeTree = [
             { 
                 id: "ch5_making", 
                 title: "第五章 陶瓷製作與燒製過程", 
-                url: "./book/ch5_pottery_making.html",
+                url: "./book/lecture/ch5_pottery_making.html",
                 subTopics: [
                     { id: "ch5-1", title: "第一節 陶瓷製作工具與設備" },
                     { id: "ch5-2", title: "第二節 陶瓷成形方式與技法" },
@@ -118,7 +118,7 @@ const knowledgeTree = [
             { 
                 id: "ch6_safety", 
                 title: "第六章 陶瓷工作安全與實踐環保", 
-                url: "./book/ch6_safety_env.html",
+                url: "./book/lecture/ch6_safety_env.html",
                 subTopics: [
                     { id: "ch6-1", title: "第一節 陶瓷作業的安全性" },
                     { id: "ch6-2", title: "第二節 可重複性原料再利用" },
@@ -128,7 +128,7 @@ const knowledgeTree = [
             { 
                 id: "ch7_aesthetics", 
                 title: "第七章 陶瓷的美學和創作", 
-                url: "./book/ch7_aesthetics.html",
+                url: "./book/lecture/ch7_aesthetics.html",
                 subTopics: [
                     { id: "ch7-1", title: "第一節 鼓勵創意發揮" },
                     { id: "ch7-2", title: "第二節 展示和推廣陶瓷作品的討論" }
