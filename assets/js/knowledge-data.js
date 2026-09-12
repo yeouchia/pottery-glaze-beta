@@ -19,41 +19,33 @@ const knowledgeTree = [
             { id: "intro-11", title: "陶土的保存方法？", tag: "陶土與材料", url: "./book/intro/intro-11.html" },
             { id: "intro-12", title: "陶土從哪裡得來？", tag: "陶土與材料", url: "./book/intro/intro-12.html" },
             { id: "intro-13", title: "陶土去哪買？", tag: "陶土與材料", url: "./book/intro/intro-13.html" },
-            { id: "intro-14", title: "陶土硬掉怎處理？", tag: "陶土與材料", url: "./book/intro/intro-14.html" },
+            { id: "intro-14", title: "陶土硬掉怎處理？", tag: "初學者常見問題", url: "./book/intro/intro-14.html" },
             { id: "intro-15", title: "自己可以調配陶土嗎？", tag: "陶土與材料", url: "./book/intro/intro-15.html" },
-     { id: "intro-16", title: "陶土是由什麼組成？", tag: "陶土與材料", url: "./book/intro/intro-16.html" },
-     { id: "intro-17", title: "陶土為什麼可以塑形？", tag: "陶土與材料", url: "./book/intro/intro-17.html" },
-     { id: "intro-18", title: "陶土為什麼會縮收？", tag: "陶土與材料", url: "./book/intro/intro-18.html" },
-     { id: "intro-19", title: "陶土有哪些種類？", tag: "陶土與材料", url: "./book/intro/intro-19.html" },
-     { id: "intro-20", title: "不同陶土可以混合嗎？", tag: "陶土與材料", url: "./book/intro/intro-20.html" },
-
-     { id: "intro-21", title: "陶土收縮率怎麼測？", tag: "陶土與材料", url: "./book/intro/intro-21.html" },
-     { id: "intro-22", title: "陶土的燒結溫度怎麼判斷？", tag: "陶土與材料", url: "./book/intro/intro-22.html" },
-     { id: "intro-23", title: "陶土為什麼會裂？", tag: "陶土與材料", url: "./book/intro/intro-23.html" },
-     { id: "intro-24", title: "陶土為什麼要燒？", tag: "陶土與材料", url: "./book/intro/intro-24.html" },
-     { id: "intro-25", title: "陶土裂掉還能救嗎？", tag: "陶土與材料", url: "./book/intro/intro-25.html" },
-
-
-{ id: "intro-26", title: "陶土和瓷土有什麼不同？", tag: "陶土與材料", url: "./book/intro/intro-26.html" },
-{ id: "intro-27", title: "陶土和瓷土哪一種比較適合初學者？", tag: "陶土與材料", url: "./book/intro/intro-27.html" },
-{ id: "intro-28", title: "陶土和瓷土可以混在一起使用嗎？", tag: "陶土與材料", url: "./book/intro/intro-28.html" },
-{ id: "intro-29", title: "陶土和瓷土燒成溫度有什麼不同？", tag: "陶土與材料", url: "./book/intro/intro-29.html" },
-{ id: "intro-30", title: "陶土和瓷土哪一種比較好？", tag: "陶土與材料", url: "./book/intro/intro-30.html" },
-
-
-{ id: "intro-31", title: "高嶺土是什麼？陶瓷材料中的重要黏土原料", tag: "陶土與材料", url: "./book/intro/intro-31.html" },
-{ id: "intro-32", title: "陶土中影響燒成後的呈色原因是什麼？", tag: "陶土與材料", url: "./book/intro/intro-32.html" },
-{ id: "intro-33", title: "球黏土（Ball Clay）是什麼？陶瓷材料中的塑性黏土", tag: "陶土與材料", url: "./book/intro/intro-33.html" },
-{ id: "intro-34", title: "陶土中的石英、長石和黏土各有什麼作用？", tag: "陶土與材料", url: "./book/intro/intro-34.html" },
-{ id: "intro-35", title: "陶土中的可塑性與非塑性材料是什麼？", tag: "陶土與材料", url: "./book/intro/intro-35.html" },
-
-
-{ id: "intro-36", title: "陶土的燒成方式，氧化燒與還原燒的結果差異變化？", tag: "陶土與材料", url: "./book/intro/intro-36.html" },
-{ id: "intro-37", title: "同一種陶土為什麼燒出不同結果？溫度、氣氛、時間與冷卻的影響", tag: "陶土與材料", url: "./book/intro/intro-37.html" },
-{ id: "intro-38", title: "陶土燒成後為什麼會變形、裂開或膨脹？", tag: "陶土與材料", url: "./book/intro/intro-38.html" },
-{ id: "intro-39", title: "陶土吸水率是什麼？從多孔陶土到緻密陶瓷的差異", tag: "陶土與材料", url: "./book/intro/intro-39.html" },
-{ id: "intro-40", title: "如何燒製出密度不同的陶土？孔洞與密度的變化形成", tag: "陶土與材料", url: "./book/intro/intro-40.html" }
-     
+            { id: "intro-16", title: "陶土是由什麼組成？", tag: "陶土與材料", url: "./book/intro/intro-16.html" },
+            { id: "intro-17", title: "陶土為什麼可以塑形？", tag: "陶土與材料", url: "./book/intro/intro-17.html" },
+            { id: "intro-18", title: "陶土為什麼會縮收？", tag: "初學者常見問題", url: "./book/intro/intro-18.html" },
+            { id: "intro-19", title: "陶土有哪些種類？", tag: "陶土與材料", url: "./book/intro/intro-19.html" },
+            { id: "intro-20", title: "不同陶土可以混合嗎？", tag: "陶土與材料", url: "./book/intro/intro-20.html" },
+            { id: "intro-21", title: "陶土收縮率怎麼測？", tag: "陶土與材料", url: "./book/intro/intro-21.html" },
+            { id: "intro-22", title: "陶土的燒結溫度怎麼判斷？", tag: "陶土與材料", url: "./book/intro/intro-22.html" },
+            { id: "intro-23", title: "陶土為什麼會裂？", tag: "初學者常見問題", url: "./book/intro/intro-23.html" },
+            { id: "intro-24", title: "陶土為什麼要燒？", tag: "初學者常見問題", url: "./book/intro/intro-24.html" },
+            { id: "intro-25", title: "陶土裂掉還能救嗎？", tag: "初學者常見問題", url: "./book/intro/intro-25.html" },
+            { id: "intro-26", title: "陶土和瓷土有什麼不同？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-26.html" },
+            { id: "intro-27", title: "陶土和瓷土哪一種比較適合初學者？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-27.html" },
+            { id: "intro-28", title: "陶土和瓷土可以混在一起使用嗎？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-28.html" },
+            { id: "intro-29", title: "陶土和瓷土燒成溫度有什麼不同？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-29.html" },
+            { id: "intro-30", title: "陶土和瓷土哪一種比較好？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-30.html" },
+            { id: "intro-31", title: "高嶺土是什麼？陶瓷材料中的重要黏土原料", tag: "陶土與材料", url: "./book/intro/intro-31.html" },
+            { id: "intro-32", title: "陶土中影響燒成後的呈色原因是什麼？", tag: "陶土與材料", url: "./book/intro/intro-32.html" },
+            { id: "intro-33", title: "球黏土（Ball Clay）是什麼？陶瓷材料中的塑性黏土", tag: "陶土與材料", url: "./book/intro/intro-33.html" },
+            { id: "intro-34", title: "陶土中的石英、長石和黏土各有什麼作用？", tag: "陶土與材料", url: "./book/intro/intro-34.html" },
+            { id: "intro-35", title: "陶土中的可塑性與非塑性材料是什麼？", tag: "陶土與材料", url: "./book/intro/intro-35.html" },
+            { id: "intro-36", title: "陶土的燒成方式，氧化燒與還原燒的結果差異變化？", tag: "初學者常見問題", url: "./book/intro/intro-36.html" },
+            { id: "intro-37", title: "同一種陶土為什麼燒出不同結果？溫度、氣氛、時間與冷卻的影響", tag: "初學者常見問題", url: "./book/intro/intro-37.html" },
+            { id: "intro-38", title: "陶土燒成後為什麼會變形、裂開或膨脹？", tag: "初學者常見問題", url: "./book/intro/intro-38.html" },
+            { id: "intro-39", title: "陶土吸水率是什麼？從多孔陶土到緻密陶瓷的差異", tag: "陶土與材料", url: "./book/intro/intro-39.html" },
+            { id: "intro-40", title: "如何燒製出密度不同的陶土？孔洞與密度的變化形成", tag: "陶土與材料", url: "./book/intro/intro-40.html" }
         ]
     },
     {
@@ -75,30 +67,30 @@ const knowledgeTree = [
         category: "釉藥基礎",
         icon: "fa-flask",
         articles: [
-            { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", tag: "認識釉藥", url: "./book/glaze_basics/glaze_basics-1.html" },
-            { id: "glaze_basics-2", title: "認識釉藥三大元素", tag: "釉藥組成", url: "./book/glaze_basics/glaze_basics-2.html" },
-            { id: "glaze_basics-3", title: "釉的種類？", tag: "釉藥種類", url: "./book/glaze_basics/glaze_basics-3.html" },
-            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", tag: "釉藥組成", url: "./book/glaze_basics/glaze_basics-4.html" },
-            { id: "glaze_basics-5", title: "上釉有那些方式？", tag: "上釉方法", url: "./book/glaze_basics/glaze_basics-5.html" },
-            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", tag: "色釉基礎", url: "./book/glaze_basics/glaze_basics-6.html" },
-            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", tag: "色釉基礎", url: "./book/glaze_basics/glaze_basics-7.html" }
+            { id: "glaze_basics-1", title: "何謂釉藥、釉的本質？", tag: "基礎理論", url: "./book/glaze_basics/glaze_basics-1.html" },
+            { id: "glaze_basics-2", title: "認識釉藥三大元素", tag: "基礎理論", url: "./book/glaze_basics/glaze_basics-2.html" },
+            { id: "glaze_basics-3", title: "釉的種類？", tag: "基礎理論", url: "./book/glaze_basics/glaze_basics-3.html" },
+            { id: "glaze_basics-4", title: "玻璃質如何結合在陶瓷？揭開釉藥燒熔的奧秘？", tag: "基礎理論", url: "./book/glaze_basics/glaze_basics-4.html" },
+            { id: "glaze_basics-5", title: "上釉有那些方式？", tag: "實務技法", url: "./book/glaze_basics/glaze_basics-5.html" },
+            { id: "glaze_basics-6", title: "何謂釉上彩與釉下彩？", tag: "呈色與裝飾", url: "./book/glaze_basics/glaze_basics-6.html" },
+            { id: "glaze_basics-7", title: "金屬氧化物的發色：各種不同的金屬氧化物呈色", tag: "呈色與裝飾", url: "./book/glaze_basics/glaze_basics-7.html" }
         ]
     },
     {
         category: "窯燒知識",
         icon: "fa-fire-burner",
         articles: [
-            { id: "firing-1", title: "燒窯溫度曲線設計", tag: "燒成曲線", url: "./book/firing/firing-1.html" },
-            { id: "firing-2", title: "什麼是素燒與釉燒？", tag: "燒成基礎", url: "./book/firing/firing-2.html" },
-            { id: "firing-3", title: "燒成技術~氧化燒", tag: "燒成氣氛", url: "./book/firing/firing-3.html" },
-            { id: "firing-4", title: "燒成技術~還原燒", tag: "燒成氣氛", url: "./book/firing/firing-4.html" }
+            { id: "firing-1", title: "燒窯溫度曲線設計", tag: "實務操作", url: "./book/firing/firing-1.html" },
+            { id: "firing-2", title: "什麼是素燒與釉燒？", tag: "燒成觀念", url: "./book/firing/firing-2.html" },
+            { id: "firing-3", title: "燒成技術~氧化燒", tag: "氣氛控制", url: "./book/firing/firing-3.html" },
+            { id: "firing-4", title: "燒成技術~還原燒", tag: "氣氛控制", url: "./book/firing/firing-4.html" }
         ]
     },
     {
         category: "配方實驗",
         icon: "fa-vial",
         articles: [
-            { id: "experiments-1", title: "釉藥的奧秘~三角座標", tag: "配方分析", url: "./book/experiments/experiments-1.html" }
+            { id: "experiments-1", title: "釉藥的奧秘~三角座標", tag: "配方系統", url: "./book/experiments/experiments-1.html" }
         ]
     },
     {
