@@ -45,8 +45,14 @@ const knowledgeTree = [
 { id: "intro-32", title: "陶土中影響燒成後的呈色原因是什麼？", tag: "陶土與材料", url: "./book/intro/intro-32.html" },
 { id: "intro-33", title: "球黏土（Ball Clay）是什麼？陶瓷材料中的塑性黏土", tag: "陶土與材料", url: "./book/intro/intro-33.html" },
 { id: "intro-34", title: "陶土中的石英、長石和黏土各有什麼作用？", tag: "陶土與材料", url: "./book/intro/intro-34.html" },
-{ id: "intro-35", title: "陶土中的可塑性與非塑性材料是什麼？", tag: "陶土與材料", url: "./book/intro/intro-35.html" }
+{ id: "intro-35", title: "陶土中的可塑性與非塑性材料是什麼？", tag: "陶土與材料", url: "./book/intro/intro-35.html" },
 
+
+{ id: "intro-36", title: "陶土的燒成方式，氧化燒與還原燒的結果差異變化？", tag: "陶土與材料", url: "./book/intro/intro-36.html" },
+{ id: "intro-37", title: "同一種陶土為什麼燒出不同結果？溫度、氣氛、時間與冷卻的影響", tag: "陶土與材料", url: "./book/intro/intro-37.html" },
+{ id: "intro-38", title: "陶土燒成後為什麼會變形、裂開或膨脹？", tag: "陶土與材料", url: "./book/intro/intro-38.html" },
+{ id: "intro-39", title: "陶土吸水率是什麼？從多孔陶土到緻密陶瓷的差異", tag: "陶土與材料", url: "./book/intro/intro-39.html" },
+{ id: "intro-40", title: "如何燒製出密度不同的陶土？孔洞與密度的變化形成", tag: "陶土與材料", url: "./book/intro/intro-40.html" }
      
         ]
     },
