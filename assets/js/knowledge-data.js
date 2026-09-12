@@ -10,7 +10,44 @@ const knowledgeTree = [
             { id: "intro-2", title: "陶藝是什麼？探索陶的起源與特性", tag: "認識陶藝", url: "./book/intro/intro-2.html" },
             { id: "intro-3", title: "陶藝是什麼？", tag: "認識陶藝", url: "./book/intro/intro-3.html" },
             { id: "intro-4", title: "陶瓷是什麼？", tag: "認識陶藝", url: "./book/intro/intro-4.html" },
-            { id: "intro-5", title: "陶藝與陶瓷有什麼不同？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-5.html" }
+            { id: "intro-5", title: "陶藝與陶瓷有什麼不同？", tag: "陶與瓷的基本知識", url: "./book/intro/intro-5.html" },
+            { id: "intro-6", title: "陶藝的基本製作流程", tag: "陶藝製作流程", url: "./book/intro/intro-6.html" },
+            { id: "intro-7", title: "初學者如何開始學陶藝？", tag: "認識陶藝", url: "./book/intro/intro-7.html" },
+            { id: "intro-8", title: "學陶藝需要準備什麼？", tag: "認識陶藝", url: "./book/intro/intro-8.html" },
+            { id: "intro-9", title: "什麼是揉土？", tag: "陶藝製作流程", url: "./book/intro/intro-9.html" },
+            { id: "intro-10", title: "什麼是修坯？", tag: "陶藝製作流程", url: "./book/intro/intro-10.html" },
+            { id: "intro-11", title: "陶土的保存方法？", tag: "陶土與材料", url: "./book/intro/intro-11.html" },
+            { id: "intro-12", title: "陶土從哪裡得來？", tag: "陶土與材料", url: "./book/intro/intro-12.html" },
+            { id: "intro-13", title: "陶土去哪買？", tag: "陶土與材料", url: "./book/intro/intro-13.html" },
+            { id: "intro-14", title: "陶土硬掉怎處理？", tag: "陶土與材料", url: "./book/intro/intro-14.html" },
+            { id: "intro-15", title: "自己可以調配陶土嗎？", tag: "陶土與材料", url: "./book/intro/intro-15.html" },
+     { id: "intro-16", title: "陶土是由什麼組成？", tag: "陶土與材料", url: "./book/intro/intro-16.html" },
+     { id: "intro-17", title: "陶土為什麼可以塑形？", tag: "陶土與材料", url: "./book/intro/intro-17.html" },
+     { id: "intro-18", title: "陶土為什麼會縮收？", tag: "陶土與材料", url: "./book/intro/intro-18.html" },
+     { id: "intro-19", title: "陶土有哪些種類？", tag: "陶土與材料", url: "./book/intro/intro-19.html" },
+     { id: "intro-20", title: "不同陶土可以混合嗎？", tag: "陶土與材料", url: "./book/intro/intro-20.html" },
+
+     { id: "intro-21", title: "陶土收縮率怎麼測？", tag: "陶土與材料", url: "./book/intro/intro-21.html" },
+     { id: "intro-22", title: "陶土的燒結溫度怎麼判斷？", tag: "陶土與材料", url: "./book/intro/intro-22.html" },
+     { id: "intro-23", title: "陶土為什麼會裂？", tag: "陶土與材料", url: "./book/intro/intro-23.html" },
+     { id: "intro-24", title: "陶土為什麼要燒？", tag: "陶土與材料", url: "./book/intro/intro-24.html" },
+     { id: "intro-25", title: "陶土裂掉還能救嗎？", tag: "陶土與材料", url: "./book/intro/intro-25.html" },
+
+
+{ id: "intro-26", title: "陶土和瓷土有什麼不同？", tag: "陶土與材料", url: "./book/intro/intro-26.html" },
+{ id: "intro-27", title: "陶土和瓷土哪一種比較適合初學者？", tag: "陶土與材料", url: "./book/intro/intro-27.html" },
+{ id: "intro-28", title: "陶土和瓷土可以混在一起使用嗎？", tag: "陶土與材料", url: "./book/intro/intro-28.html" },
+{ id: "intro-29", title: "陶土和瓷土燒成溫度有什麼不同？", tag: "陶土與材料", url: "./book/intro/intro-29.html" },
+{ id: "intro-30", title: "陶土和瓷土哪一種比較好？", tag: "陶土與材料", url: "./book/intro/intro-30.html" },
+
+
+{ id: "intro-31", title: "高嶺土是什麼？陶瓷材料中的重要黏土原料", tag: "陶土與材料", url: "./book/intro/intro-31.html" },
+{ id: "intro-32", title: "陶土中影響燒成後的呈色原因是什麼？", tag: "陶土與材料", url: "./book/intro/intro-32.html" },
+{ id: "intro-33", title: "球黏土（Ball Clay）是什麼？陶瓷材料中的塑性黏土", tag: "陶土與材料", url: "./book/intro/intro-33.html" },
+{ id: "intro-34", title: "陶土中的石英、長石和黏土各有什麼作用？", tag: "陶土與材料", url: "./book/intro/intro-34.html" },
+{ id: "intro-35", title: "陶土中的可塑性與非塑性材料是什麼？", tag: "陶土與材料", url: "./book/intro/intro-35.html" }
+
+     
         ]
     },
     {
