@@ -52,7 +52,16 @@ const knowledgeTree = [
         category: "成型技法",
         icon: "fa-hands-holding",
         articles: [
-            { id: "shaping-1", title: "教你快速手拉坯定中心", tag: "拉坯成型", url: "./book/shaping/shaping-1.html" }
+            { id: "shaping-1", title: "陶土的成形技法有哪些主要方式？", tag: "成型技法", url: "./book/shaping/shaping-1.html" },
+
+
+{ id: "shaping-2", title: "手捏陶藝是什麼？", tag: "手捏成型", url: "./book/shaping/shaping-2.html" },
+{ id: "shaping-3", title: "手捏陶藝基本技法", tag: "手捏成型", url: "./book/shaping/shaping-3.html" },
+{ id: "shaping-4", title: "手捏成型常見問題", tag: "手捏成型", url: "./book/shaping/shaping-4.html" },
+{ id: "shaping-5", title: "手捏陶工作桌的選擇與材質", tag: "手捏成型", url: "./book/shaping/shaping-5.html" }
+
+
+
         ]
     },
     {
