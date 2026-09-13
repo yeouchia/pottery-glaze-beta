@@ -53,14 +53,16 @@ const knowledgeTree = [
         icon: "fa-hands-holding",
         articles: [
             { id: "shaping-1", title: "陶土的成形技法有哪些主要方式？", tag: "成型技法", url: "./book/shaping/shaping-1.html" },
-
-
 { id: "shaping-2", title: "手捏陶藝是什麼？", tag: "手捏成型", url: "./book/shaping/shaping-2.html" },
 { id: "shaping-3", title: "手捏陶藝基本技法", tag: "手捏成型", url: "./book/shaping/shaping-3.html" },
 { id: "shaping-4", title: "手捏成型常見問題", tag: "手捏成型", url: "./book/shaping/shaping-4.html" },
-{ id: "shaping-5", title: "手捏陶工作桌的選擇與材質", tag: "手捏成型", url: "./book/shaping/shaping-5.html" }
+{ id: "shaping-5", title: "手捏陶工作桌的選擇與材質", tag: "手捏成型", url: "./book/shaping/shaping-5.html" },
 
-
+{ id: "shaping-6", title: "盤築法是什麼？", tag: "手捏成型", url: "./book/shaping/shaping-6.html" },
+{ id: "shaping-7", title: "陶藝盤築技巧", tag: "手捏成型", url: "./book/shaping/shaping-7.html" },
+{ id: "shaping-8", title: "如何讓盤築作品不倒？", tag: "手捏成型", url: "./book/shaping/shaping-8.html" },
+{ id: "shaping-9", title: "盤築成型常見問題", tag: "手捏成型", url: "./book/shaping/shaping-9.html" },
+{ id: "shaping-10", title: "大型作品如何盤築？", tag: "手捏成型", url: "./book/shaping/shaping-10.html" }
 
         ]
     },
