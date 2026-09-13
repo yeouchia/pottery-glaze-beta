@@ -172,43 +172,49 @@
             gap: 5px;
         }
 
-        /* === 對應側邊欄的專屬分類色彩配色 === */
+        /* === 完美對應側邊欄分類色彩配色 === */
         
-        /* 1. 陶藝入門 (溫潤黃橘色調) */
-        .card-intro { border-top: 4px solid #e67e22; }
-        .card-intro .card-icon { background-color: #fef5e7; color: #e67e22; }
-        .card-intro:hover .card-icon { background-color: #e67e22; color: white; }
-        .card-intro .card-footer { color: #e67e22; }
+        /* 1. 陶藝入門 (紅系色調) */
+        .card-intro { border-top: 4px solid #e53e3e; }
+        .card-intro .card-icon { background-color: #fff5f5; color: #e53e3e; }
+        .card-intro:hover .card-icon { background-color: #e53e3e; color: white; }
+        .card-intro .card-footer { color: #e53e3e; }
 
-        /* 2. 成型技法 (大地琥珀色調) */
-        .card-shaping { border-top: 4px solid #d35400; }
-        .card-shaping .card-icon { background-color: #fbeee6; color: #d35400; }
-        .card-shaping:hover .card-icon { background-color: #d35400; color: white; }
-        .card-shaping .card-footer { color: #d35400; }
+        /* 2. 成型技法 (藍系色調) */
+        .card-shaping { border-top: 4px solid #3182ce; }
+        .card-shaping .card-icon { background-color: #ebf8ff; color: #3182ce; }
+        .card-shaping:hover .card-icon { background-color: #3182ce; color: white; }
+        .card-shaping .card-footer { color: #3182ce; }
 
-        /* 3. 實用技巧 (明亮活力黃色調) */
-        .card-skills { border-top: 4px solid #f1c40f; }
-        .card-skills .card-icon { background-color: #fef9e7; color: #d4ac0d; }
-        .card-skills:hover .card-icon { background-color: #f1c40f; color: #14213d; }
-        .card-skills .card-footer { color: #d4ac0d; }
+        /* 3. 實用技巧 (綠系色調) */
+        .card-skills { border-top: 4px solid #38a169; }
+        .card-skills .card-icon { background-color: #f0fff4; color: #38a169; }
+        .card-skills:hover .card-icon { background-color: #38a169; color: white; }
+        .card-skills .card-footer { color: #38a169; }
 
-        /* 4. 釉藥基礎 (沈穩神祕紫色調) */
-        .card-glaze { border-top: 4px solid #8e44ad; }
-        .card-glaze .card-icon { background-color: #f4ecf7; color: #8e44ad; }
-        .card-glaze:hover .card-icon { background-color: #8e44ad; color: white; }
-        .card-glaze .card-footer { color: #8e44ad; }
+        /* 4. 釉藥基礎 (紫系色調) */
+        .card-glaze { border-top: 4px solid #805ad5; }
+        .card-glaze .card-icon { background-color: #faf5ff; color: #805ad5; }
+        .card-glaze:hover .card-icon { background-color: #805ad5; color: white; }
+        .card-glaze .card-footer { color: #805ad5; }
 
-        /* 5. 窯燒知識 (窯火橙紅色調) */
-        .card-firing { border-top: 4px solid #e74c3c; }
-        .card-firing .card-icon { background-color: #ffdada; color: #e74c3c; }
-        .card-firing:hover .card-icon { background-color: #e74c3c; color: white; }
-        .card-firing .card-footer { color: #e74c3c; }
+        /* 5. 窯燒知識 (紅系色調) */
+        .card-firing { border-top: 4px solid #e53e3e; }
+        .card-firing .card-icon { background-color: #fff5f5; color: #e53e3e; }
+        .card-firing:hover .card-icon { background-color: #e53e3e; color: white; }
+        .card-firing .card-footer { color: #e53e3e; }
 
-        /* 6. 配方實驗 (科技青藍色調) */
-        .card-experiment { border-top: 4px solid #2980b9; }
-        .card-experiment .card-icon { background-color: #ebf5fb; color: #2980b9; }
-        .card-experiment:hover .card-icon { background-color: #2980b9; color: white; }
-        .card-experiment .card-footer { color: #2980b9; }
+        /* 6. 配方實驗 (藍系色調) */
+        .card-experiment { border-top: 4px solid #3182ce; }
+        .card-experiment .card-icon { background-color: #ebf8ff; color: #3182ce; }
+        .card-experiment:hover .card-icon { background-color: #3182ce; color: white; }
+        .card-experiment .card-footer { color: #3182ce; }
+
+        /* 7. 陶釉講義 (綠系色調 - 黃老師編著) */
+        .card-lecture { border-top: 4px solid #38a169; }
+        .card-lecture .card-icon { background-color: #f0fff4; color: #38a169; }
+        .card-lecture:hover .card-icon { background-color: #38a169; color: white; }
+        .card-lecture .card-footer { color: #38a169; }
 
         /* 響應式微調 */
         @media (max-width: 768px) {
@@ -237,7 +243,7 @@
             <i class="fa-solid fa-compass"></i> 探索核心知識主題
         </div>
 
-      <div class="category-grid">
+        <div class="category-grid">
             <!-- 1. 陶藝入門 -->
             <a href="./knowledge.html?cat=intro" target="content_frame" class="category-card card-intro">
                 <div>
@@ -321,7 +327,22 @@
                 </div>
                 <div class="card-footer">進入主題 <i class="fa-solid fa-arrow-right"></i></div>
             </a>
+
+            <!-- 7. 陶釉講義 (黃老師編著) -->
+            <a href="./knowledge.html?cat=lecture" target="content_frame" class="category-card card-lecture">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                        <h3>陶釉講義 (黃老師編著)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>收錄陶瓷歷史類型、基礎釉藥知識、調配基礎、施燒技術與安全環保等七大專屬章節。</p>
+                    </div>
+                </div>
+                <div class="card-footer">進入主題 <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
         </div>
+    </div>
 
     <script>
         function handleSearch(e) {

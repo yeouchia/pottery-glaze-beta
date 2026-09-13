@@ -356,7 +356,7 @@
             }
         }
 
-        // --- 4. 處理網址參數 (結合 scrollIntoView 完美置頂) ---
+        // --- 4. 處理網址參數 (結合 scrollIntoView 完美置頂與講義對應) ---
         function handleUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetId = urlParams.get('article');
@@ -377,7 +377,8 @@
                     'skills': 2,       
                     'glaze': 3,        
                     'firing': 4,       
-                    'experiments': 5   
+                    'experiments': 5,
+                    'lecture': 6       // ★ 已成功補上陶釉講義對應索引
                 };
 
                 const groupIndex = catMap[targetCatKey];
@@ -399,7 +400,6 @@
                                 groupDivs[groupIndex].classList.add('open');
                                 groupDivs[groupIndex].classList.add('active-category');
                                 
-                                // ★ 使用 scrollIntoView 確保無論哪一個分類都能完美置頂
                                 const targetTitle = groupDivs[groupIndex].querySelector('.category-title');
                                 if (targetTitle) {
                                     targetTitle.scrollIntoView({
