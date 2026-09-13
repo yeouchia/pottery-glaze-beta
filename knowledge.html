@@ -356,7 +356,7 @@
             }
         }
 
-        // --- 4. 處理網址參數 (完整對應大廳卡片點擊與捲動置頂) ---
+        // --- 4. 處理網址參數 (結合 scrollIntoView 完美置頂) ---
         function handleUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const targetId = urlParams.get('article');
@@ -399,16 +399,16 @@
                                 groupDivs[groupIndex].classList.add('open');
                                 groupDivs[groupIndex].classList.add('active-category');
                                 
-                                const sidebarContent = document.getElementById('sidebar-content');
+                                // ★ 使用 scrollIntoView 確保無論哪一個分類都能完美置頂
                                 const targetTitle = groupDivs[groupIndex].querySelector('.category-title');
                                 if (targetTitle) {
-                                    sidebarContent.scrollTo({
-                                        top: targetTitle.offsetTop - 10,
-                                        behavior: 'smooth'
+                                    targetTitle.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
                                     });
                                 }
                             }
-                        }, 100);
+                        }, 150);
                         return;
                     }
                 }
