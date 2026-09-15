@@ -370,7 +370,11 @@
             <!-- 全站文章智慧搜尋列 -->
             <div class="knowledge-search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="搜尋全站知識庫文章 (例如：手拉坯、三角座標、翹曲)..." onkeyup="filterKnowledgeArticles()">
+
+
+                <input type="text" id="searchInput" placeholder="搜尋全站知識庫文章 (例如：手拉坯、三角座標、翹曲)..." onkeyup="filterKnowledgeArticles()" oninput="filterKnowledgeArticles()">
+
+
             </div>
         </div>
 
