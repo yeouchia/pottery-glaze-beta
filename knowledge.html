@@ -169,13 +169,12 @@
     </main>
 
     <script>
-        // 取得網址列中的目標文章 ID (若有透過搜尋進來)
         function getTargetArticleId() {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('article');
         }
 
-        // --- 1. 動態生成側邊欄目錄 (支援搜尋目標自動置頂排序) ---
+        // --- 1. 動態生成側邊欄目錄 (支援搜尋目標置頂，且確保無參數時正常渲染) ---
         function renderSidebar() {
             const container = document.getElementById('sidebar-content');
             container.innerHTML = '';
@@ -224,13 +223,13 @@
                     groupDiv.appendChild(tagContainer);
                 }
 
-                // ★ 核心智慧邏輯：若此分類包含搜尋目標文章，將該文章暫時排序到最前面！
+                // 複製一份文章陣列來做排序
                 let articlesToRender = [...group.articles];
                 if (targetId) {
                     const targetIndex = articlesToRender.findIndex(a => a.id === targetId);
                     if (targetIndex !== -1) {
                         const [matchedArticle] = articlesToRender.splice(targetIndex, 1);
-                        articlesToRender.unshift(matchedArticle); // 移至陣列第一位
+                        articlesToRender.unshift(matchedArticle);
                     }
                 }
 
@@ -339,14 +338,16 @@
             const urlParams = new URLSearchParams(window.location.search);
             const targetCatKey = urlParams.get('cat');
 
+            // 無論如何，先保證側邊欄完整渲染出來
+            renderSidebar();
+
             if (targetId) {
                 const articleData = findArticleById(targetId);
                 if (articleData) {
-                    // 先重新渲染側邊欄（會自動把該篇文章排到該分類的第一位）
+                    // 若有帶 article 參數，重新渲染一次以達成指定文章置頂
                     renderSidebar();
                     loadArticle(articleData.url, articleData.id, articleData.category, articleData.title, null);
                     
-                    // 自動展開對應群組
                     setTimeout(() => {
                         document.querySelectorAll('.category-group').forEach(group => {
                             const foundItem = group.querySelector(`.article-item[data-id="${targetId}"]`);
@@ -369,27 +370,27 @@
                     'intro': 0, 'shaping': 1, 'skills': 2, 'glaze': 3, 'firing': 4, 'experiments': 5, 'lecture': 6
                 };
                 const groupIndex = catMap[targetCatKey];
-                if (groupIndex !== undefined && knowledgeTree[groupIndex]) {
-                    const selectedGroup = knowledgeTree[groupIndex];
-                    const firstArticle = selectedGroup.articles[0];
-                    if (firstArticle) {
-                        loadArticle(firstArticle.url, firstArticle.id, selectedGroup.category, firstArticle.title, null);
-                        setTimeout(() => {
-                            const groupDivs = document.querySelectorAll('.category-group');
-                            if (groupDivs[groupIndex]) {
-                                groupDivs.forEach(g => { g.classList.remove('open'); g.classList.remove('active-category'); });
-                                groupDivs[groupIndex].classList.add('open');
-                                groupDivs[groupIndex].classList.add('active-category');
-                                const targetTitle = groupDivs[groupIndex].querySelector('.category-title');
-                                if (targetTitle) targetTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (groupIndex !== undefined) {
+                    setTimeout(() => {
+                        const groupDivs = document.querySelectorAll('.category-group');
+                        if (groupDivs[groupIndex]) {
+                            groupDivs.forEach(g => { g.classList.remove('open'); g.classList.remove('active-category'); });
+                            groupDivs[groupIndex].classList.add('open');
+                            groupDivs[groupIndex].classList.add('active-category');
+                            const targetTitle = groupDivs[groupIndex].querySelector('.category-title');
+                            if (targetTitle) targetTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            
+                            // 同時自動載入該分類的第一篇文章
+                            const firstArtItem = groupDivs[groupIndex].querySelector('.article-item');
+                            if (firstArtItem) {
+                                firstArtItem.click();
                             }
-                        }, 150);
-                        return;
-                    }
+                        }
+                    }, 100);
+                    return;
                 }
             }
 
-            renderSidebar();
             const firstArticle = knowledgeTree[0].articles[0];
             if(firstArticle) loadArticle(firstArticle.url, firstArticle.id, knowledgeTree[0].category, firstArticle.title, null);
         }
