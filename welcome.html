@@ -41,6 +41,7 @@
             align-items: center;
         }
 
+        /* 頂部 Banner 標題區塊 */
         .top-banner {
             background: var(--card-bg);
             width: 100%;
@@ -95,6 +96,7 @@
         .share-circle-btn.line { background-color: #00c300; }
         .share-circle-btn.copy { background-color: #64748b; }
 
+        /* 功能導覽卡片區 (電腦版 4 欄) */
         .cards-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-bottom: 20px;
         }
@@ -127,6 +129,7 @@
         .card-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: #334155; }
         .card-list li i { font-size: 1.05rem; color: #64748b; width: 18px; text-align: center; }
 
+        /* 探索陶藝知識與搜尋列 */
         .knowledge-header { width: 100%; text-align: center; margin: 50px 0 35px 0; position: relative; }
         .knowledge-header h2 { font-size: 1.8rem; color: var(--primary-color); font-weight: 800; margin-bottom: 8px; }
         .knowledge-header p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px; }
@@ -166,6 +169,7 @@
         .knowledge-card:hover .k-link { color: var(--accent-color); }
         .knowledge-card:hover .k-link i { transform: translateX(6px); color: var(--accent-color); }
 
+        /* 安裝教學 Modal 樣式 */
         .install-modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(20, 33, 61, 0.7); backdrop-filter: blur(4px); z-index: 4000;
@@ -182,10 +186,126 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
+        /* ========================================== */
+        /* === 手機版專屬 RWD 精緻響應式排版 (修復版) === */
+        /* ========================================== */
         @media (max-width: 1250px) {
-            .welcome-wrapper { padding: 4vw 4vw 35vw 4vw !important; }
-            .cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            .knowledge-grid { grid-template-columns: 1fr !important; }
+            .welcome-wrapper { padding: 15px 12px 60px 12px !important; }
+            
+            .top-banner {
+                flex-direction: column !important; 
+                align-items: stretch !important; 
+                padding: 24px 20px !important; 
+                border-radius: 16px !important; 
+                margin-bottom: 20px !important;
+                margin-top: 10px !important;
+                position: relative !important; 
+            }
+            
+            .banner-left { 
+                flex-direction: column !important; 
+                width: 100% !important;
+                gap: 0 !important; 
+                position: static !important;
+            }
+
+            .banner-title-group {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                width: 100% !important;
+                position: relative;
+                z-index: 12 !important; 
+            }
+            
+            .banner-icon { font-size: 3rem !important; margin-bottom: 10px !important; }
+
+            .banner-text h1 {
+                text-align: left !important;
+                font-size: 1.5rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .banner-text p {
+                text-align: left !important;
+                font-size: 0.9rem !important;
+                line-height: 1.6 !important;
+                margin-bottom: 15px !important;
+                white-space: normal !important; 
+            }
+            
+            .install-btn {
+                margin: 5px 0 15px 0 !important;
+                padding: 8px 18px !important;
+                font-size: 0.9rem !important;
+                border-radius: 30px !important;
+                width: fit-content !important;
+                position: relative !important;
+                z-index: 15 !important;
+            }
+
+            .banner-right {
+                width: 100% !important;
+                align-items: flex-start !important; 
+                padding-left: 0 !important;
+                margin-top: 15px !important;
+                border-top: 1px solid #edf2f7;
+                padding-top: 15px;
+            }
+            .share-title { font-size: 0.95rem !important; margin-bottom: 10px !important; }
+            .share-buttons { gap: 10px !important; }
+            .share-circle-btn { width: 40px !important; height: 40px !important; font-size: 1.1rem !important; }
+
+            .banner-avatar { 
+                position: absolute !important;
+                bottom: -10px !important;  
+                right: -5px !important;   
+                width: 110px !important;   
+                max-width: 120px !important;
+                margin: 0 !important;     
+                z-index: 10 !important;
+                pointer-events: none !important; 
+            }
+
+            /* 手機版四大功能卡片 2x2 完美精緻排版 */
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                margin-bottom: 25px !important;
+            }
+
+            .feature-card {
+                padding: 16px 14px !important;
+                border-radius: 14px !important;
+                border-left-width: 5px !important; 
+            }
+
+            .card-header { gap: 10px !important; margin-bottom: 10px !important; }
+            .card-icon { font-size: 1.2rem !important; width: 35px !important; height: 35px !important; border-radius: 8px !important; }
+            .card-title { font-size: 1rem !important; font-weight: 800 !important; }
+            .card-desc { font-size: 0.8rem !important; line-height: 1.4 !important; margin-bottom: 12px !important; }
+            .card-list { gap: 6px !important; }
+            .card-list li { font-size: 0.8rem !important; font-weight: 700 !important; gap: 8px !important; }
+            .card-list li i { font-size: 0.85rem !important; width: 16px !important; }
+
+            .knowledge-header { margin: 30px 0 20px 0 !important; }
+            .knowledge-header h2 { font-size: 1.5rem !important; margin-bottom: 6px !important; }
+            .knowledge-header p { font-size: 0.95rem !important; margin-bottom: 15px !important; }
+            
+            .knowledge-search-bar input { padding: 12px 15px 12px 45px !important; font-size: 0.95rem !important; }
+            .knowledge-search-bar i { left: 18px !important; font-size: 1.1rem !important; }
+
+            .knowledge-grid {
+                grid-template-columns: 1fr !important; 
+                gap: 16px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .knowledge-card { padding: 20px 18px !important; border-radius: 14px !important; }
+            .k-category { font-size: 0.7rem !important; margin-bottom: 10px !important; padding: 3px 10px !important; }
+            .k-title { font-size: 1.1rem !important; margin-bottom: 10px !important; }
+            .k-desc { font-size: 0.9rem !important; margin-bottom: 15px !important; line-height: 1.6 !important; }
+            .k-link { font-size: 0.9rem !important; }
         }
     </style>
 </head>
@@ -204,6 +324,14 @@
                             <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
                         </button>
                     </div>
+                </div>
+            </div>
+            <div class="banner-right">
+                <div class="share-title"><i class="fa-solid fa-share-nodes"></i> 分享給好友</div>
+                <div class="share-buttons">
+                    <button onclick="shareToFB()" class="share-circle-btn fb" title="分享到 Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="shareToLine()" class="share-circle-btn line" title="分享到 LINE"><i class="fa-brands fa-line"></i></button>
+                    <button onclick="copyCurrentLink()" class="share-circle-btn copy" title="複製連結"><i class="fa-solid fa-link"></i></button>
                 </div>
             </div>
         </div>
@@ -239,10 +367,10 @@
             <h2><i class="fa-solid fa-book-journal-whills" style="color: #fca311;"></i> 探索陶藝知識</h2>
             <p>循序漸進，從基礎理論到進階實作，用最清楚的解答陪伴您理解陶藝。</p>
             
-            <!-- 升級版全站文章智慧搜尋列 -->
+            <!-- 全站文章智慧搜尋列 -->
             <div class="knowledge-search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="搜尋全站 600 篇知識庫文章 (例如：手拉坯、三角座標、翹曲)..." onkeyup="filterKnowledgeArticles()">
+                <input type="text" id="searchInput" placeholder="搜尋全站知識庫文章 (例如：手拉坯、三角座標、翹曲)..." onkeyup="filterKnowledgeArticles()">
             </div>
         </div>
 
@@ -254,8 +382,19 @@
         </div>
     </div>
 
+    <!-- 安裝引導 Modal -->
+    <div class="install-modal-overlay" id="installModal" onclick="closeInstallGuide()">
+        <div class="install-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="closeInstallGuide()"><i class="fa-solid fa-xmark"></i></div>
+            <h3 id="install-title"><i class="fa-solid fa-mobile-screen"></i> 取得專屬桌面 APP</h3>
+            <p id="install-desc">系統載入中...</p>
+            <div class="install-steps" id="install-steps"></div>
+            <button class="modal-ok-btn" onclick="closeInstallGuide()">我知道了，立刻設定！</button>
+        </div>
+    </div>
+
     <script>
-        // 初始化：動態將 knowledgeTree 的文章渲染到首頁，支援全站 600 篇檢索
+        // 初始化：動態將 knowledgeTree 的文章渲染到首頁，支援全站檢索
         window.addEventListener('DOMContentLoaded', () => {
             renderWelcomeCards();
         });
@@ -277,7 +416,6 @@
                     `;
                 });
             });
-            // 保留無結果提示訊息在最前面
             const noMsgHtml = document.getElementById('noResultsMsg').outerHTML;
             grid.innerHTML = noMsgHtml + allArticlesHtml;
         }
@@ -306,6 +444,44 @@
             } else {
                 noResultsMsg.style.display = "none";
             }
+        }
+
+        function getSiteUrl() { return window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/index.html'); }
+
+        function shareToFB() {
+            const rawUrl = getSiteUrl();
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile && navigator.share) { navigator.share({ title: '陶藝與釉藥調配', url: rawUrl }).catch((e) => {}); } else { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(rawUrl)}`, '_blank', 'width=600,height=400'); }
+        }
+
+        function shareToLine() {
+            const url = getSiteUrl(); const textToShare = encodeURIComponent('推薦這個實用的陶藝與釉藥調配工具：\n' + url); const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) { window.location.href = `https://line.me/R/msg/text/?${textToShare}`; } else { window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`, '_blank', 'width=500,height=500'); }
+        }
+
+        function copyCurrentLink() {
+            navigator.clipboard.writeText(getSiteUrl()).then(() => { alert('✨ 網站網址已複製！快去分享給陶藝好友吧！'); }).catch(() => { alert('複製失敗，請手動複製網址。'); });
+        }
+
+        function showInstallGuide() {
+            const modal = document.getElementById('installModal'); const desc = document.getElementById('install-desc'); const steps = document.getElementById('install-steps');
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; const isAndroid = /Android/.test(navigator.userAgent);
+
+            if (isIOS) {
+                desc.innerHTML = "蘋果 iOS (Safari) 專屬安裝步驟：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動，選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角「新增」，即可隨時開啟全螢幕 APP！</div>`;
+            } else if (isAndroid) {
+                desc.innerHTML = "安卓 Android (Chrome) 專屬安裝步驟：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-ellipsis-vertical"></i> 1. 點擊瀏覽器右上角的「選單 (三個點)」</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 選擇「加到主畫面」或「安裝應用程式」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊「新增」，即可隨時開啟全螢幕 APP！</div>`;
+            } else {
+                desc.innerHTML = "電腦版儲存方式：";
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-star"></i> 1. 請使用鍵盤 Ctrl+D (或 Cmd+D) 加入書籤</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 若要體驗免網址列的 APP 模式，請使用您的手機瀏覽器開啟本站設定！</div>`;
+            }
+            modal.style.display = 'flex'; setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeInstallGuide() {
+            const modal = document.getElementById('installModal'); modal.classList.remove('show'); setTimeout(() => modal.style.display = 'none', 300);
         }
     </script>
 </body>
