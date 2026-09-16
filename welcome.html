@@ -181,7 +181,7 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 🌟 專屬於手機版（小於 1250px）：作品圖片完美往上提升，與下方分享區塊底部貼齊 */
+        /* 🌟 專屬於手機版（小於 1250px）：公仔放大至 130px，右邊緣與底部完美貼齊卡片邊框 */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
             
@@ -189,23 +189,24 @@
                 flex-direction: column !important; 
                 align-items: flex-start !important; 
                 text-align: left !important;
-                padding: 20px 18px 20px 18px !important; /* 🌟 拿掉下方多餘留白 */
+                padding: 18px 15px 15px 15px !important; 
                 margin-bottom: 12px !important; 
                 position: relative !important;
+                overflow: hidden !important;
             }
             .banner-left { 
                 flex-direction: column !important; 
                 align-items: flex-start !important; 
-                gap: 10px !important; 
+                gap: 8px !important; 
                 width: 100% !important;
             }
             
-            /* 🌟 將公仔圖片往上提，與右側分享列底部完美貼齊 */
+            /* 🌟 公仔放大到 130px，右邊緣 `right: 0`、底部 `bottom: 0` 貼齊卡片邊緣 */
             .banner-avatar { 
                 position: absolute !important;
-                right: 12px !important;
-                bottom: 15px !important; /* 剛好對齊分享按鈕底部 */
-                width: 105px !important; 
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 130px !important; 
                 margin: 0 !important; 
                 z-index: 10;
             }
@@ -222,19 +223,19 @@
             
             .banner-text h1 { font-size: 1.25rem !important; margin-bottom: 4px !important; }
             .banner-text p { font-size: 0.82rem !important; line-height: 1.35 !important; }
-            .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 10px !important; }
+            .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 8px !important; }
 
             .banner-right { 
-                margin-top: 15px !important; 
-                padding-top: 12px !important; 
+                margin-top: 12px !important; 
+                padding-top: 10px !important; 
                 border-top: 1px solid rgba(0,0,0,0.08) !important; 
-                width: 58% !important; /* 限制寬度，避免跟右下角的公仔重疊 */
+                width: 52% !important; /* 確保分享按鈕不會被放大的公仔蓋住 */
                 align-items: flex-start !important;
-                gap: 8px !important; 
+                gap: 6px !important; 
             }
             .share-title { font-size: 0.82rem !important; }
-            .share-buttons { justify-content: flex-start !important; gap: 8px !important; }
-            .share-circle-btn { width: 36px !important; height: 36px !important; font-size: 0.92rem !important; }
+            .share-buttons { justify-content: flex-start !important; gap: 6px !important; }
+            .share-circle-btn { width: 34px !important; height: 34px !important; font-size: 0.9rem !important; }
 
             .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-bottom: 15px !important; }
             
@@ -280,7 +281,7 @@
                 </button>
             </div>
             
-            <!-- 作品公仔圖（手機版會完美往上移動至右下角與底部貼齊） -->
+            <!-- 🌟 作品公仔圖（手機版會放大至 130px，右邊緣與底部完美貼齊卡片邊框） -->
             <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
 
             <div class="banner-right">
