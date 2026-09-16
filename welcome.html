@@ -50,6 +50,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
         }
 
         .banner-left { display: flex; align-items: center; gap: 25px; }
@@ -180,31 +182,69 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 🌟 手機版專屬微調：精簡文字並最佳化間距 */
+        /* 🌟 恢復手機版完美經典 Banner 排版：左上 icon+標題，右下鹿角公仔作品圖！ */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
-            .top-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 18px 15px !important; margin-bottom: 12px !important; }
-            .banner-left { flex-direction: column !important; align-items: center !important; gap: 10px !important; }
-            .banner-avatar { width: 110px !important; margin: -20px 0 -10px 0 !important; }
-            .banner-title-group { flex-direction: column !important; gap: 6px !important; }
-            .banner-icon { display: none !important; }
+            
+            .top-banner { 
+                flex-direction: column !important; 
+                align-items: flex-start !important; 
+                text-align: left !important;
+                padding: 20px 18px 120px 18px !important; /* 下方留出空間給右下角公仔 */
+                margin-bottom: 12px !important; 
+                position: relative !important;
+            }
+            .banner-left { 
+                flex-direction: column !important; 
+                align-items: flex-start !important; 
+                gap: 10px !important; 
+                width: 100% !important;
+            }
+            
+            /* 🌟 右下角公仔作品圖絕對定位設定 */
+            .banner-avatar { 
+                position: absolute !important;
+                right: 10px !important;
+                bottom: 10px !important;
+                width: 110px !important; 
+                margin: 0 !important; 
+                z-index: 10;
+            }
+
+            .banner-title-group { 
+                flex-direction: row !important; 
+                align-items: center !important;
+                gap: 12px !important; 
+            }
+            .banner-icon { 
+                display: block !important; 
+                font-size: 2.2rem !important; 
+            } /* 顯示左側黃色層疊 icon */
+            
             .banner-text h1 { font-size: 1.25rem !important; margin-bottom: 4px !important; }
-            .banner-text p { font-size: 0.85rem !important; line-height: 1.4 !important; }
-            .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 8px !important; }
-            .banner-right { margin-top: 12px !important; padding-top: 12px !important; border-top: 1px solid rgba(0,0,0,0.08) !important; width: 100% !important; gap: 8px !important; }
-            .share-title { font-size: 0.85rem !important; }
-            .share-circle-btn { width: 36px !important; height: 36px !important; font-size: 0.95rem !important; }
+            .banner-text p { font-size: 0.82rem !important; line-height: 1.35 !important; }
+            .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 10px !important; }
+
+            .banner-right { 
+                margin-top: 15px !important; 
+                padding-top: 12px !important; 
+                border-top: 1px solid rgba(0,0,0,0.08) !important; 
+                width: 100% !important; 
+                align-items: flex-start !important;
+                gap: 8px !important; 
+            }
+            .share-title { font-size: 0.82rem !important; }
+            .share-buttons { justify-content: flex-start !important; }
+            .share-circle-btn { width: 36px !important; height: 36px !important; font-size: 0.92rem !important; }
 
             .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-bottom: 15px !important; }
             
-            /* 卡片內部縮小設定 */
             .feature-card { padding: 12px 10px !important; border-radius: 12px !important; }
             .card-header { gap: 6px !important; margin-bottom: 6px !important; }
             .card-icon { width: 26px !important; height: 26px !important; font-size: 0.9rem !important; border-radius: 6px !important; }
             .card-title { font-size: 0.85rem !important; font-weight: 800 !important; }
             .card-desc { font-size: 0.72rem !important; margin-bottom: 8px !important; line-height: 1.25 !important; }
             
-            /* 清單文字與 icon 縮小 */
             .card-list { gap: 5px !important; }
             .card-list li { font-size: 0.72rem !important; gap: 5px !important; font-weight: 600 !important; }
             .card-list li i { font-size: 0.78rem !important; width: 14px !important; }
@@ -229,18 +269,21 @@
     <div class="welcome-wrapper">
         <div class="top-banner">
             <div class="banner-left">
-                <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
                 <div class="banner-title-group">
                     <i class="fa-solid fa-layer-group banner-icon"></i>
                     <div class="banner-text">
                         <h1>陶藝與釉藥調配</h1>
                         <p>融合科學計算與藝術創作的陶藝中心。<br>分享陶瓷歷史、創作靈感與生活美學。</p>
-                        <button class="install-btn" onclick="showInstallGuide()">
-                            <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
-                        </button>
                     </div>
                 </div>
+                <button class="install-btn" onclick="showInstallGuide()">
+                    <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
+                </button>
             </div>
+            
+            <!-- 🌟 作品公仔圖（在手機版會完美定位於右下角） -->
+            <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
+
             <div class="banner-right">
                 <div class="share-title"><i class="fa-solid fa-share-nodes"></i> 分享給好友</div>
                 <div class="share-buttons">
@@ -254,7 +297,7 @@
         <!-- 四大功能介紹卡片 -->
         <div class="cards-grid">
             
-            <!-- 卡片 1：精準釉藥計算（已將說明文字精簡為單行完美顯示） -->
+            <!-- 卡片 1：精準釉藥計算 -->
             <div class="feature-card card-calc">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-calculator"></i></div><div class="card-title">精準釉藥計算</div></div>
                 <div class="card-desc">專業釉色科學調配工具：</div>
