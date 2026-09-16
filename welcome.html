@@ -180,42 +180,18 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 🌟 關鍵修正：手機版（小於 1250px）專屬壓縮與縮放設定，恢復原本緊湊精緻的大小 */
+        /* 手機版響應式壓縮設定 */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
-            
-            .top-banner { 
-                flex-direction: column !important; 
-                align-items: center !important; 
-                text-align: center !important;
-                padding: 18px 15px !important; 
-                margin-bottom: 12px !important; 
-            }
-            .banner-left { 
-                flex-direction: column !important; 
-                align-items: center !important; 
-                gap: 10px !important; 
-            }
-            .banner-avatar { 
-                width: 110px !important; 
-                margin: -20px 0 -10px 0 !important; 
-            }
-            .banner-title-group { 
-                flex-direction: column !important; 
-                gap: 6px !important; 
-            }
-            .banner-icon { display: none !important; } /* 手機隱藏大型裝飾圖標以省空間 */
+            .top-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 18px 15px !important; margin-bottom: 12px !important; }
+            .banner-left { flex-direction: column !important; align-items: center !important; gap: 10px !important; }
+            .banner-avatar { width: 110px !important; margin: -20px 0 -10px 0 !important; }
+            .banner-title-group { flex-direction: column !important; gap: 6px !important; }
+            .banner-icon { display: none !important; }
             .banner-text h1 { font-size: 1.25rem !important; margin-bottom: 4px !important; }
             .banner-text p { font-size: 0.85rem !important; line-height: 1.4 !important; }
             .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 8px !important; }
-
-            .banner-right { 
-                margin-top: 12px !important; 
-                padding-top: 12px !important; 
-                border-top: 1px solid rgba(0,0,0,0.08) !important; 
-                width: 100% !important; 
-                gap: 8px !important; 
-            }
+            .banner-right { margin-top: 12px !important; padding-top: 12px !important; border-top: 1px solid rgba(0,0,0,0.08) !important; width: 100% !important; gap: 8px !important; }
             .share-title { font-size: 0.85rem !important; }
             .share-circle-btn { width: 36px !important; height: 36px !important; font-size: 0.95rem !important; }
 
@@ -270,7 +246,10 @@
             </div>
         </div>
 
+        <!-- 四大功能介紹卡片（已完整回復您的經典豐富內容） -->
         <div class="cards-grid">
+            
+            <!-- 卡片 1：精準釉藥計算 -->
             <div class="feature-card card-calc">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-calculator"></i></div><div class="card-title">精準釉藥計算</div></div>
                 <div class="card-desc">科學調配完美釉色之專業工具：</div>
@@ -278,23 +257,46 @@
                     <li><i class="fa-solid fa-flask"></i> 原料轉釉式</li>
                     <li><i class="fa-solid fa-table"></i> 釉式轉原料</li>
                     <li><i class="fa-solid fa-right-left"></i> 雙向精準轉換</li>
+                    <li><i class="fa-solid fa-laptop-code"></i> 賽格式與三角座標教學</li>
                 </ul>
             </div>
+
+            <!-- 卡片 2：豐富影音課程 -->
             <div class="feature-card card-video">
                 <div class="card-header"><div class="card-icon"><i class="fa-brands fa-youtube"></i></div><div class="card-title">豐富影音課程</div></div>
                 <div class="card-desc">完整 YouTube 教學影片庫：</div>
-                <ul class="card-list"><li><i class="fa-solid fa-landmark"></i> 陶瓷歷史與文化介紹</li><li><i class="fa-solid fa-hands-holding"></i> 陶瓷拉坯製作過程</li></ul>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-landmark"></i> 陶瓷歷史與文化介紹</li>
+                    <li><i class="fa-solid fa-hands-holding"></i> 陶瓷拉坯製作過程</li>
+                    <li><i class="fa-solid fa-paintbrush"></i> 釉色與裝飾技法</li>
+                    <li><i class="fa-solid fa-fire-burner"></i> 釉藥調配實務</li>
+                </ul>
             </div>
+
+            <!-- 卡片 3：陶釉教學講義 -->
             <div class="feature-card card-lecture">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div><div class="card-title">陶釉教學講義</div></div>
                 <div class="card-desc">完整七大章節陶瓷專書文稿：</div>
-                <ul class="card-list"><li><i class="fa-solid fa-book-bookmark"></i> 陶瓷歷史與五大名窯</li><li><i class="fa-solid fa-shapes"></i> 三角座標與賽格爾式理論</li></ul>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-book-bookmark"></i> 陶瓷歷史與五大名窯</li>
+                    <li><i class="fa-solid fa-vial"></i> 14種常用釉藥原料解析</li>
+                    <li><i class="fa-solid fa-shapes"></i> 三角座標與賽格爾式理論</li>
+                    <li><i class="fa-solid fa-fire"></i> 窯爐操作與安全規範</li>
+                </ul>
             </div>
+
+            <!-- 卡片 4：陶藝生活與靈感 -->
             <div class="feature-card card-life">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-heart"></i></div><div class="card-title">陶藝生活與靈感</div></div>
                 <div class="card-desc">關注 FB 與 IG 獲得創作養分：</div>
-                <ul class="card-list"><li><i class="fa-solid fa-palette"></i> 個人原創作品分享</li><li><i class="fa-solid fa-comments"></i> 留言板互動提問</li></ul>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-palette"></i> 個人原創作品分享</li>
+                    <li><i class="fa-solid fa-fire"></i> 炎變の燒柴燒記錄</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> 鶯歌工商教學資源交流</li>
+                    <li><i class="fa-solid fa-comments"></i> 留言板互動提問</li>
+                </ul>
             </div>
+
         </div>
 
         <div class="knowledge-header">
@@ -432,7 +434,7 @@
 
             if (isIOS) {
                 desc.innerHTML = "蘋果 iOS (Safari) 專屬安裝步驟：";
-                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動，選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角“新增”，即可隨時開啟全螢幕 APP！</div>`;
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動, 選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角“新增”，即可隨時開啟全螢幕 APP！</div>`;
             } else if (isAndroid) {
                 desc.innerHTML = "安卓 Android (Chrome) 專屬安裝步驟：";
                 steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-ellipsis-vertical"></i> 1. 點擊瀏覽器右上角的「選單 (三個點)」</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 選擇「加到主畫面」或「安裝應用程式」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊「新增」，即可隨時開啟全螢幕 APP！</div>`;
