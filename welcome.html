@@ -39,7 +39,7 @@
             align-items: center;
         }
 
-        /* 🌟 電腦版維持原本完美的左右對稱結構 */
+        /* 電腦版維持原本完美的左右結構 */
         .top-banner {
             background: var(--card-bg);
             width: 100%;
@@ -181,7 +181,7 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 🌟 專屬於手機版（小於 1250px）：公仔完美定位在右下角貼齊，電腦版完全不受影響 */
+        /* 🌟 精準修正手機版（小於 1250px）：完美對照標準布置圖，解決按鈕重疊與文字斷行問題 */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
             
@@ -189,7 +189,7 @@
                 flex-direction: column !important; 
                 align-items: flex-start !important; 
                 text-align: left !important;
-                padding: 18px 15px 15px 15px !important; 
+                padding: 16px 14px 135px 14px !important; /* 🌟 下方保留剛好的空間，讓公仔跟按鈕完全不重疊 */
                 margin-bottom: 12px !important; 
                 position: relative !important;
                 overflow: hidden !important;
@@ -201,12 +201,12 @@
                 width: 100% !important;
             }
             
-            /* 手機版公仔絕對定位到右下角 */
+            /* 公仔固定在右下角貼齊 */
             .banner-avatar { 
                 position: absolute !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                width: 130px !important; 
+                width: 120px !important; 
                 margin: 0 !important; 
                 z-index: 10;
             }
@@ -214,40 +214,41 @@
             .banner-title-group { 
                 flex-direction: row !important; 
                 align-items: center !important;
-                gap: 12px !important; 
+                gap: 10px !important; 
             }
             .banner-icon { 
                 display: block !important; 
-                font-size: 2.2rem !important; 
+                font-size: 2rem !important; 
             }
             
-            .banner-text h1 { font-size: 1.25rem !important; margin-bottom: 4px !important; }
-            .banner-text p { font-size: 0.82rem !important; line-height: 1.35 !important; }
-            .install-btn { padding: 6px 16px !important; font-size: 0.82rem !important; margin-top: 8px !important; }
+            .banner-text h1 { font-size: 1.15rem !important; margin-bottom: 3px !important; }
+            .banner-text p { font-size: 0.78rem !important; line-height: 1.3 !important; }
+            .install-btn { padding: 6px 14px !important; font-size: 0.78rem !important; margin-top: 6px !important; }
 
             .banner-right { 
-                margin-top: 12px !important; 
-                padding-top: 10px !important; 
+                margin-top: 10px !important; 
+                padding-top: 8px !important; 
                 border-top: 1px solid rgba(0,0,0,0.08) !important; 
-                width: 52% !important; 
+                width: 100% !important; 
                 align-items: flex-start !important;
                 gap: 6px !important; 
             }
-            .share-title { font-size: 0.82rem !important; }
+            .share-title { font-size: 0.78rem !important; }
             .share-buttons { justify-content: flex-start !important; gap: 6px !important; }
-            .share-circle-btn { width: 34px !important; height: 34px !important; font-size: 0.9rem !important; }
+            .share-circle-btn { width: 32px !important; height: 32px !important; font-size: 0.85rem !important; }
 
             .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-bottom: 15px !important; }
             
-            .feature-card { padding: 12px 10px !important; border-radius: 12px !important; }
-            .card-header { gap: 6px !important; margin-bottom: 6px !important; }
-            .card-icon { width: 26px !important; height: 26px !important; font-size: 0.9rem !important; border-radius: 6px !important; }
-            .card-title { font-size: 0.85rem !important; font-weight: 800 !important; }
-            .card-desc { font-size: 0.72rem !important; margin-bottom: 8px !important; line-height: 1.25 !important; }
+            /* 🌟 卡片內文字與圖示微調，徹底解決換行問題 */
+            .feature-card { padding: 12px 9px !important; border-radius: 12px !important; }
+            .card-header { gap: 5px !important; margin-bottom: 5px !important; }
+            .card-icon { width: 24px !important; height: 24px !important; font-size: 0.82rem !important; border-radius: 6px !important; }
+            .card-title { font-size: 0.8rem !important; font-weight: 800 !important; white-space: nowrap !important; }
+            .card-desc { font-size: 0.68rem !important; margin-bottom: 6px !important; line-height: 1.2 !important; white-space: nowrap !important; }
             
-            .card-list { gap: 5px !important; }
-            .card-list li { font-size: 0.72rem !important; gap: 5px !important; font-weight: 600 !important; }
-            .card-list li i { font-size: 0.78rem !important; width: 14px !important; }
+            .card-list { gap: 4px !important; }
+            .card-list li { font-size: 0.68rem !important; gap: 4px !important; font-weight: 600 !important; white-space: nowrap !important; }
+            .card-list li i { font-size: 0.72rem !important; width: 12px !important; }
 
             .knowledge-header { margin: 25px 0 15px 0 !important; }
             .knowledge-header h2 { font-size: 1.25rem !important; }
@@ -268,20 +269,21 @@
 
     <div class="welcome-wrapper">
         <div class="top-banner">
-            <!-- 🌟 電腦版完美的左右對稱結構：左邊公仔、中間標題、右邊分享 -->
             <div class="banner-left">
-                <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
                 <div class="banner-title-group">
                     <i class="fa-solid fa-layer-group banner-icon"></i>
                     <div class="banner-text">
                         <h1>陶藝與釉藥調配</h1>
                         <p>融合科學計算與藝術創作的陶藝中心。<br>分享陶瓷歷史、創作靈感與生活美學。</p>
-                        <button class="install-btn" onclick="showInstallGuide()">
-                            <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
-                        </button>
                     </div>
                 </div>
+                <button class="install-btn" onclick="showInstallGuide()">
+                    <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
+                </button>
             </div>
+            
+            <!-- 作品公仔圖（完美與右下角貼齊，且不壓到按鈕） -->
+            <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
 
             <div class="banner-right">
                 <div class="share-title"><i class="fa-solid fa-share-nodes"></i> 分享給好友</div>
