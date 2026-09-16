@@ -66,7 +66,6 @@
         .brand:hover { background-color: rgba(255, 255, 255, 0.08); }
         .brand:hover .brand-text h1 { color: var(--accent-color); }
 
-        /* 主選單：精簡間距，讓 6 個按鈕完美容納於一般電腦螢幕 */
         .nav-menu { display: flex; align-items: center; flex-grow: 1; justify-content: flex-end; gap: 6px; }
         .tools-group { display: flex; gap: 6px; align-items: center; }
 
@@ -169,6 +168,35 @@
             .tools-group { flex-direction: column !important; width: 100% !important; gap: 8px !important; align-items: center !important; }
             .dropdown { width: 90% !important; margin: 0 auto !important; display: flex !important; flex-direction: column !important; gap: 0 !important; }
             .nav-btn { width: 100% !important; justify-content: space-between !important; padding: 10px 16px !important; font-size: 0.95rem !important; }
+            
+            /* 🌟 關鍵修正：手機版點擊下拉後的展開樣式設定 */
+            .dropdown.mobile-open .dropdown-content {
+                visibility: visible !important;
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                position: static !important;
+                padding-top: 6px !important;
+                pointer-events: auto !important;
+                width: 100% !important;
+            }
+            .dropdown.mobile-open .nav-btn i.fa-caret-down {
+                transform: rotate(180deg);
+            }
+            .dropdown-content {
+                position: static !important;
+                transform: none !important;
+                padding-top: 0;
+            }
+            .dropdown-inner {
+                max-height: none !important;
+                box-shadow: none !important;
+                border-radius: 6px !important;
+            }
+            .dropdown-item {
+                padding: 10px 14px !important;
+                font-size: 0.88rem !important;
+            }
+
             .social-group { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.15) !important; padding-left: 0 !important; margin-top: 10px !important; padding-top: 15px !important; width: 100% !important; justify-content: center !important; }
         }
     </style>
