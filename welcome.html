@@ -180,7 +180,7 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 手機版響應式壓縮設定 */
+        /* 🌟 手機版專屬微調：將卡片標題、說明、清單文字與圖示全面縮小，比例更精緻舒服 */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
             .top-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 18px 15px !important; margin-bottom: 12px !important; }
@@ -196,13 +196,18 @@
             .share-circle-btn { width: 36px !important; height: 36px !important; font-size: 0.95rem !important; }
 
             .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-bottom: 15px !important; }
-            .feature-card { padding: 14px 12px !important; border-radius: 12px !important; }
-            .card-header { gap: 8px !important; margin-bottom: 8px !important; }
-            .card-icon { width: 32px !important; height: 32px !important; font-size: 1.1rem !important; border-radius: 8px !important; }
-            .card-title { font-size: 0.95rem !important; }
-            .card-desc { font-size: 0.78rem !important; margin-bottom: 10px !important; line-height: 1.3 !important; }
-            .card-list { gap: 6px !important; }
-            .card-list li { font-size: 0.78rem !important; gap: 6px !important; }
+            
+            /* 卡片內部縮小設定 */
+            .feature-card { padding: 12px 10px !important; border-radius: 12px !important; }
+            .card-header { gap: 6px !important; margin-bottom: 6px !important; }
+            .card-icon { width: 26px !important; height: 26px !important; font-size: 0.9rem !important; border-radius: 6px !important; }
+            .card-title { font-size: 0.85rem !important; font-weight: 800 !important; }
+            .card-desc { font-size: 0.72rem !important; margin-bottom: 8px !important; line-height: 1.25 !important; }
+            
+            /* 清單文字與 icon 縮小 */
+            .card-list { gap: 5px !important; }
+            .card-list li { font-size: 0.72rem !important; gap: 5px !important; font-weight: 600 !important; }
+            .card-list li i { font-size: 0.78rem !important; width: 14px !important; }
 
             .knowledge-header { margin: 25px 0 15px 0 !important; }
             .knowledge-header h2 { font-size: 1.25rem !important; }
@@ -246,7 +251,7 @@
             </div>
         </div>
 
-        <!-- 四大功能介紹卡片（已完整回復您的經典豐富內容） -->
+        <!-- 四大功能介紹卡片 -->
         <div class="cards-grid">
             
             <!-- 卡片 1：精準釉藥計算 -->
@@ -434,7 +439,7 @@
 
             if (isIOS) {
                 desc.innerHTML = "蘋果 iOS (Safari) 專屬安裝步驟：";
-                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動, 選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角“新增”，即可隨時開啟全螢幕 APP！</div>`;
+                steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-arrow-up-from-bracket"></i> 1. 點擊瀏覽器正下方的「分享」圖示</div><div class="step-item"><i class="fa-solid fa-square-plus"></i> 2. 往下滑動，選擇「加入主畫面」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊右上角“新增”，即可隨時開啟全螢幕 APP！</div>`;
             } else if (isAndroid) {
                 desc.innerHTML = "安卓 Android (Chrome) 專屬安裝步驟：";
                 steps.innerHTML = `<div class="step-item"><i class="fa-solid fa-ellipsis-vertical"></i> 1. 點擊瀏覽器右上角的「選單 (三個點)」</div><div class="step-item"><i class="fa-solid fa-mobile-screen"></i> 2. 選擇「加到主畫面」或「安裝應用程式」</div><div class="step-item"><i class="fa-solid fa-check"></i> 3. 點擊「新增」，即可隨時開啟全螢幕 APP！</div>`;
