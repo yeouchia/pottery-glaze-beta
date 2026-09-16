@@ -39,6 +39,7 @@
             align-items: center;
         }
 
+        /* 🌟 電腦版維持原本完美的左右結構 */
         .top-banner {
             background: var(--card-bg);
             width: 100%;
@@ -50,8 +51,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
         }
 
         .banner-left { display: flex; align-items: center; gap: 25px; }
@@ -182,7 +181,7 @@
             border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 1.1rem; margin-top: 15px;
         }
 
-        /* 🌟 恢復手機版完美經典 Banner 排版：左上 icon+標題，右下鹿角公仔作品圖！ */
+        /* 🌟 專屬於手機版（小於 1250px）的排版調整：公仔右下角、icon左上角 */
         @media (max-width: 1250px) {
             .welcome-wrapper { padding: 10px 8px 40px 8px !important; }
             
@@ -190,7 +189,7 @@
                 flex-direction: column !important; 
                 align-items: flex-start !important; 
                 text-align: left !important;
-                padding: 20px 18px 120px 18px !important; /* 下方留出空間給右下角公仔 */
+                padding: 20px 18px 120px 18px !important; 
                 margin-bottom: 12px !important; 
                 position: relative !important;
             }
@@ -201,7 +200,6 @@
                 width: 100% !important;
             }
             
-            /* 🌟 右下角公仔作品圖絕對定位設定 */
             .banner-avatar { 
                 position: absolute !important;
                 right: 10px !important;
@@ -219,7 +217,7 @@
             .banner-icon { 
                 display: block !important; 
                 font-size: 2.2rem !important; 
-            } /* 顯示左側黃色層疊 icon */
+            }
             
             .banner-text h1 { font-size: 1.25rem !important; margin-bottom: 4px !important; }
             .banner-text p { font-size: 0.82rem !important; line-height: 1.35 !important; }
@@ -268,22 +266,22 @@
 
     <div class="welcome-wrapper">
         <div class="top-banner">
+            <!-- 🌟 電腦版專屬左側與中間排版（對應 1-2 圖原貌） -->
             <div class="banner-left">
+                <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
                 <div class="banner-title-group">
                     <i class="fa-solid fa-layer-group banner-icon"></i>
                     <div class="banner-text">
                         <h1>陶藝與釉藥調配</h1>
                         <p>融合科學計算與藝術創作的陶藝中心。<br>分享陶瓷歷史、創作靈感與生活美學。</p>
+                        <button class="install-btn" onclick="showInstallGuide()">
+                            <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
+                        </button>
                     </div>
                 </div>
-                <button class="install-btn" onclick="showInstallGuide()">
-                    <i class="fa-solid fa-mobile-screen-button"></i> 加入手機桌面 (APP)
-                </button>
             </div>
-            
-            <!-- 🌟 作品公仔圖（在手機版會完美定位於右下角） -->
-            <img src="./welcome/1.png" alt="陶藝原創作品" class="banner-avatar">
 
+            <!-- 電腦版專屬右側分享按鈕區 -->
             <div class="banner-right">
                 <div class="share-title"><i class="fa-solid fa-share-nodes"></i> 分享給好友</div>
                 <div class="share-buttons">
@@ -297,7 +295,6 @@
         <!-- 四大功能介紹卡片 -->
         <div class="cards-grid">
             
-            <!-- 卡片 1：精準釉藥計算 -->
             <div class="feature-card card-calc">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-calculator"></i></div><div class="card-title">精準釉藥計算</div></div>
                 <div class="card-desc">專業釉色科學調配工具：</div>
@@ -309,7 +306,6 @@
                 </ul>
             </div>
 
-            <!-- 卡片 2：豐富影音課程 -->
             <div class="feature-card card-video">
                 <div class="card-header"><div class="card-icon"><i class="fa-brands fa-youtube"></i></div><div class="card-title">豐富影音課程</div></div>
                 <div class="card-desc">完整 YouTube 教學影片庫：</div>
@@ -321,7 +317,6 @@
                 </ul>
             </div>
 
-            <!-- 卡片 3：陶釉教學講義 -->
             <div class="feature-card card-lecture">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div><div class="card-title">陶釉教學講義</div></div>
                 <div class="card-desc">完整七大章節陶瓷專書文稿：</div>
@@ -333,7 +328,6 @@
                 </ul>
             </div>
 
-            <!-- 卡片 4：陶藝生活與靈感 -->
             <div class="feature-card card-life">
                 <div class="card-header"><div class="card-icon"><i class="fa-solid fa-heart"></i></div><div class="card-title">陶藝生活與靈感</div></div>
                 <div class="card-desc">關注 FB 與 IG 獲得創作養分：</div>
